@@ -11,16 +11,16 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AuthorizationPage : ContentPage
+    public partial class RegistrationPage : ContentPage
     {
-        public AuthorizationPage()
+        public RegistrationPage()
         {
             InitializeComponent();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RegistrationPage());
+            Navigation.PushAsync(new PolicyPage());
         }
 
         private void Button_Clicked(object sender, EventArgs e)

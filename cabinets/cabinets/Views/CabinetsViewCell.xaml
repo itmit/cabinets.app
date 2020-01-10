@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cabinets.Views.CabinetsViewCell">
+  <ViewCell.View>
+      <!--Ячейка представления для списка на странице выбрать кабинет-->
+      <Grid BackgroundColor="White" ColumnSpacing="10" Margin="0,5">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Label" TargetType="Label">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontSize" Value="10"/>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame IsClippedToBounds="True" Padding="0" CornerRadius="1" HasShadow="False">
+                <Image Source="pic_cabinet.png" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Margin="5"></Image>
+            </Frame>
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                <Label TextColor="#505050">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Кабинет "/>
+                                <Span Text="1"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Style="{StaticResource Label}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Вместимость: до "/>
+                                    <Span Text="9"/>
+                                    <Span Text=" чел"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Style="{StaticResource Label}" HorizontalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Площадь: "/>
+                                    <Span Text="14"/>
+                                    <Span Text=" м"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Label Text="Для индивидуальных и групповых занятий семейной психотерапии, психодиагностики" Style="{StaticResource Label}"/>
+            </StackLayout>
+      </Grid>
+  </ViewCell.View>
+</ViewCell>
