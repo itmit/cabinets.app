@@ -5807,16 +5807,25 @@ namespace cabinets.Droid
 			public const int pic_cabinet = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int pic_logo = 2131165306;
+			public const int pic_cabinet2 = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int pic_title = 2131165307;
+			public const int pic_cabinet3 = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int tooltip_frame_dark = 2131165308;
+			public const int pic_logo = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int tooltip_frame_light = 2131165309;
+			public const int pic_news = 2131165309;
+			
+			// aapt resource value: 0x7F07007E
+			public const int pic_title = 2131165310;
+			
+			// aapt resource value: 0x7F07007F
+			public const int tooltip_frame_dark = 2131165311;
+			
+			// aapt resource value: 0x7F070080
+			public const int tooltip_frame_light = 2131165312;
 			
 			static Drawable()
 			{

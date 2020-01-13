@@ -27,5 +27,10 @@ namespace cabinets.Pages
         {
             Navigation.PushAsync(new MainTabbedView());
         }
+
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Registr.IsEnabled = true;
+        }
     }
 }

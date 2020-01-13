@@ -9,10 +9,7 @@
              Title="Выбрать кабинет">
     <ContentPage.Content>
         <!--Страница кабинеты-->
-        <ListView Margin="15,5" HasUnevenRows="True" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" SelectionMode="None">
-            <ListView.ItemsSource>
-                <x:String>000</x:String>
-            </ListView.ItemsSource>
+        <ListView Margin="15,5" HasUnevenRows="True" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding Cabinets}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <viewCell:CabinetsViewCell/>

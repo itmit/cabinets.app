@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" Color="#31516D"/>
+                    <CheckBox Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" Color="#31516D" CheckedChanged="CheckBox_CheckedChanged"/>
                     <Label Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
@@ -52,7 +52,7 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <Button Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked" Command="{Binding .}"/>
+                <Button x:Name="Registr" IsEnabled="False" Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked" Command="{Binding .}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

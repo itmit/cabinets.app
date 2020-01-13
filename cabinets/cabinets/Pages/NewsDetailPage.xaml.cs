@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class NewsDetailPage : ContentPage
     {
-        public NewsPage()
+        public NewsDetailPage()
         {
             InitializeComponent();
-        }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Navigation.PushAsync(new NewsDetailPage());
         }
     }
 }

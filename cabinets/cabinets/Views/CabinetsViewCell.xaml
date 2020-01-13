@@ -14,6 +14,11 @@
                         <Setter Property="TextColor" Value="#505050"/>
                         <Setter Property="FontSize" Value="10"/>
                     </Style>
+                    <Style x:Key="BoxView" TargetType="BoxView">
+                        <Setter Property="Grid.Column" Value="1"/>
+                        <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                        <Setter Property="VerticalOptions" Value="Start"/>
+                    </Style>
                 </ResourceDictionary>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
@@ -21,7 +26,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Frame IsClippedToBounds="True" Padding="0" CornerRadius="1" HasShadow="False">
-                <Image Source="pic_cabinet.png" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Margin="5"></Image>
+                <Image Source="{Binding Image}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Margin="5"/>
             </Frame>
             <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
                 <Label TextColor="#505050">
@@ -29,18 +34,18 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="Кабинет "/>
-                                <Span Text="1"/>
+                                <Span Text="{Binding Number}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Margin="0,0,10,0">
                     <Label Style="{StaticResource Label}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Вместимость: до "/>
-                                    <Span Text="9"/>
+                                    <Span Text="{Binding Сapacity}"/>
                                     <Span Text=" чел"/>
                                 </FormattedString.Spans>
                             </FormattedString>
@@ -51,15 +56,17 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Площадь: "/>
-                                    <Span Text="14"/>
-                                    <Span Text=" м"/>
+                                    <Span Text="{Binding Square}"/>
+                                    <Span Text="м²"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                <Label Text="Для индивидуальных и групповых занятий семейной психотерапии, психодиагностики" Style="{StaticResource Label}"/>
+                <Label Text="Для индивидуальных и групповых занятий семейной психотерапии, психодиагностики" Style="{StaticResource Label}" Margin="0,0,10,0"/>
             </StackLayout>
-      </Grid>
+            <BoxView Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20" BackgroundColor="{Binding BoxColor}" Margin="0,0,10,0"/>
+            <BoxView Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8" BackgroundColor="White" Margin="0,17,11,0" Rotation="-45"/>
+        </Grid>
   </ViewCell.View>
 </ViewCell>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cabinets.Views.NewsViewCell">
+  <ViewCell.View>
+      <!--Ячейка представления для списка новостей-->
+        <Grid BackgroundColor="White" ColumnSpacing="15" Margin="0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Margin="5" Source="pic_news.png" WidthRequest="75" HeightRequest="75"></Image>
+            <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Уважаемые коллеги!" FontSize="12" TextColor="#505050"></Label>
+                    <Label Text="15.12.2019" FontSize="10" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"></Label>
+                </StackLayout>
+                <Label Text="Команда @arendapsy от всей души поздравляет Вас с Днем психолога! Желаем вам удачи, сил, энергии, профессионального и личностного роста!" FontSize="10" TextColor="#505050" Margin="0,0,25,0"></Label>
+            </StackLayout>
+        </Grid>
+  </ViewCell.View>
+</ViewCell>
