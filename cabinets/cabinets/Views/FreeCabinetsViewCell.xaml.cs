@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class FreeCabinetsViewCell : ViewCell
     {
-        public ProfilePage()
+        public FreeCabinetsViewCell()
         {
             InitializeComponent();
-        }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Navigation.PushAsync(new MyBookingPage());
         }
     }
 }

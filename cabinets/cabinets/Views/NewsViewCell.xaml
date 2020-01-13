@@ -18,7 +18,7 @@
                     <Label Text="Уважаемые коллеги!" FontSize="12" TextColor="#505050"></Label>
                     <Label Text="15.12.2019" FontSize="10" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"></Label>
                 </StackLayout>
-                <Label Text="Команда @arendapsy от всей души поздравляет Вас с Днем психолога! Желаем вам удачи, сил, энергии, профессионального и личностного роста!" FontSize="10" TextColor="#505050" Margin="0,0,25,0"></Label>
+                <Label Text="Команда @arendapsy от всей души поздравляет Вас с Днем психолога! Желаем вам удачи, сил, энергии, профессионального и личностного роста! Команда @arendapsy от всей души поздравляет Вас с Днем психолога! Желаем вам удачи, сил, энергии, профессионального и личностного роста!" FontSize="10" TextColor="#505050" Margin="0,0,25,0" MaxLines="4" LineBreakMode="TailTruncation"></Label>
             </StackLayout>
         </Grid>
   </ViewCell.View>

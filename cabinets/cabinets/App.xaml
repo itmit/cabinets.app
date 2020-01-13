@@ -15,6 +15,13 @@
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="TextColor" Value="#FFFFFF"/>
             </Style>
+            <Style x:Key="ButtonTransparent" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#31516D"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="#31516D"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
             <Style x:Key="EntryAuth" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#828282"/>
                 <Setter Property="TextColor" Value="#828282"/>
@@ -29,6 +36,15 @@
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="BorderColor" Value="#828282"/>
+            </Style>
+            <Style x:Key="FrameLabel" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="BorderColor" Value="#31516D"/>
+                <Setter Property="WidthRequest" Value="215"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -12,5 +12,10 @@ namespace cabinets.Pages
             InitializeComponent();
             BindingContext = new CabinetsViewModel();
         }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Navigation.PushAsync(new CabinetsDetailPage());
+        }
     }
 }

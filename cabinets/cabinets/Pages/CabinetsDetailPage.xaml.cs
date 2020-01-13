@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class CabinetsDetailPage : ContentPage
     {
-        public ProfilePage()
+        public CabinetsDetailPage()
         {
             InitializeComponent();
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MyBookingPage());
+            Navigation.PopAsync();
         }
     }
 }
