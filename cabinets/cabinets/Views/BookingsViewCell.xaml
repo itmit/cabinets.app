@@ -14,7 +14,7 @@
                     <FormattedString>
                         <FormattedString.Spans>
                             <Span Text="Кабинет "/>
-                            <Span Text="666"/>
+                            <Span Text="1"/>
                         </FormattedString.Spans>
                     </FormattedString>
                 </Label.FormattedText>

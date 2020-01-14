@@ -3,13 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contentView="clr-namespace:cabinets.ContentViews"
              mc:Ignorable="d"
              x:Class="cabinets.Pages.CabinetsDetailPage"
              Title="Кабинет 1">
     <ContentPage.Content>
         <!--Детальная страница кабинета-->
-        <ScrollView>
-            <StackLayout Margin="15,10">
+        <ScrollView Margin="15,10" VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <CarouselView HeightRequest="170">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="70"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemsSource>
+                        <x:String>000</x:String>
+                    </CarouselView.ItemsSource>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <contentView:CarouselContenView/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
                 <BoxView BackgroundColor="#FEC0CB" HeightRequest="5"/>
                 <StackLayout Orientation="Horizontal" Spacing="20">
                     <Label TextColor="#505050">

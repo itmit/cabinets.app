@@ -25,7 +25,7 @@ namespace cabinets.Pages
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainTabbedView());
+            Navigation.PushAsync(new MainTabbedView() { CurrentPage = new ProfilePage() });
         }
     }
 }

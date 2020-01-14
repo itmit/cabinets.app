@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cabinets.ContentViews.EditContentView">
+  <ContentView.Content>
+      <!--Наполнение (редактирование) на странице мои бронирования-->
+      <StackLayout>
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Frame" TargetType="Frame">
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="CornerRadius" Value="2"/>
+                        <Setter Property="BorderColor" Value="#D3D9DE"/>
+                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+            <Frame Style="{StaticResource Frame}">
+                <Picker Title="Кабинет 2" FontSize="14" TextColor="#505050" TitleColor="#505050">
+                    <Picker.Items>
+                        <x:String>Кабинет 1</x:String>
+                        <x:String>Кабинет 2</x:String>
+                        <x:String>Кабинет 3</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Frame>
+            <Frame Style="{StaticResource Frame}">
+                <DatePicker FontSize="14" TextColor="#505050"/>
+            </Frame>
+            <Frame Style="{StaticResource Frame}">
+                <TimePicker FontSize="14" TextColor="#505050"/>
+            </Frame>
+            <Button Text="Сохранить изменения" Style="{StaticResource ButtonBlur}"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

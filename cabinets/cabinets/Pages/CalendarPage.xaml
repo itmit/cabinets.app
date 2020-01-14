@@ -44,8 +44,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackLayout Spacing="0">
-                    <Button Text="Забронировать" Style="{StaticResource ButtonBlur}"/>
-                    <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
+                    <Button Text="Забронировать" Style="{StaticResource ButtonBlur}" IsEnabled="False"/>
+                    <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" Clicked="Button_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

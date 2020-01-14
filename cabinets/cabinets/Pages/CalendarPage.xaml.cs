@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cabinets.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace cabinets.Pages
         public CalendarPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+           
         }
     }
 }

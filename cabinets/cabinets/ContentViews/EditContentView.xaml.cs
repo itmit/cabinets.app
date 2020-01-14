@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.ContentViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyBookingPage : ContentPage
+    public partial class EditContentView : ContentView
     {
-        public MyBookingPage()
+        public EditContentView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            EditContentView.IsVisible = true;
-            FirstContentView.IsVisible = false;
         }
     }
 }

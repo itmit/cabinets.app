@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contentView="clr-namespace:cabinets.ContentViews"
              mc:Ignorable="d"
              x:Class="cabinets.Pages.MyBookingPage"
              Title="Мои бронирования">
@@ -32,26 +33,26 @@
                     </Label.FormattedText>
                 </Label>
                 <Grid>
-                    
-                </Grid>
-                <StackLayout>
-                    <Label TextColor="#505050">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Кабинет "/>
-                                    <Span Text="2"/>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label Text="18.12.2019" TextColor="#505050"/>
-                    <Label Text="17.00 - 18.00" TextColor="#505050"/>
-                    <StackLayout Spacing="0" Margin="0,10">
-                        <Button Text="Редактировать запись" Style="{StaticResource ButtonBlur}"/>
-                        <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
+                    <StackLayout x:Name="FirstContentView" IsVisible="True">
+                        <Label TextColor="#505050">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Кабинет "/>
+                                        <Span Text="2"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="18.12.2019" TextColor="#505050"/>
+                        <Label Text="17.00 - 18.00" TextColor="#505050"/>
+                        <StackLayout Spacing="0" Margin="0,10">
+                            <Button Text="Редактировать запись" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked"/>
+                            <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
+                    <contentView:EditContentView x:Name="EditContentView" IsVisible="False"/>
+                </Grid>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
