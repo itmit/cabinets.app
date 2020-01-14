@@ -16,5 +16,11 @@ namespace cabinets.ContentViews
         {
             InitializeComponent();
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+           
+           await Application.Current.MainPage.DisplayAlert(" ", "Внесенные изменения успешно сохранены", "В ПРОФИЛЬ");
+        }
     }
 }

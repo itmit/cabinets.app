@@ -48,7 +48,7 @@
                         <Label Text="17.00 - 18.00" TextColor="#505050"/>
                         <StackLayout Spacing="0" Margin="0,10">
                             <Button Text="Редактировать запись" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked"/>
-                            <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
+                            <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10" Clicked="Button_Clicked_1"/>
                         </StackLayout>
                     </StackLayout>
                     <contentView:EditContentView x:Name="EditContentView" IsVisible="False"/>

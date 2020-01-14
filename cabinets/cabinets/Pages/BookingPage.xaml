@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:calendar="clr-namespace:cabinets.Views"
+             xmlns:viewCell="clr-namespace:cabinets.Views"
+             mc:Ignorable="d"
+             x:Class="cabinets.Pages.BookingPage"
+             Title="Кабинет 5">
+    <ContentPage.Content>
+        <!--Страница кабинета с календарем-->
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="LabelFrame" TargetType="Label">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="HorizontalOptions" Value="Center"/>
+                            <Setter Property="VerticalOptions" Value="Center"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <calendar:CalendarView/>
+                <StackLayout Margin="15,0">
+                    <Label FontSize="12" Text="Свободное время"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListView HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None" HeightRequest="180" Grid.Column="0">
+                            <ListView.ItemsSource>
+                                <x:String>000000</x:String>
+                            </ListView.ItemsSource>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <viewCell:TimeViewCell/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label TextColor="#505050" HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Кабинет №"/>
+                                            <Span Text="5"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="12 января 2019" TextColor="#505050" HorizontalOptions="Center"/>
+                            <Label Text="Выберите время" TextColor="#505050" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout Spacing="0">
+                        <Button x:Name="Booking" Text="Забронировать" Style="{StaticResource ButtonBlur}" IsEnabled="False"/>
+                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" Clicked="Button_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

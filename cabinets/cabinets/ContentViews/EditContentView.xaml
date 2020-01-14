@@ -33,7 +33,7 @@
             <Frame Style="{StaticResource Frame}">
                 <TimePicker FontSize="14" TextColor="#505050"/>
             </Frame>
-            <Button Text="Сохранить изменения" Style="{StaticResource ButtonBlur}"/>
+            <Button Text="Сохранить изменения" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked"/>
         </StackLayout>
   </ContentView.Content>
 </ContentView>

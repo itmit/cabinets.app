@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CabinetsDetailPage : ContentPage
+    public partial class BookingPage : ContentPage
     {
-        public CabinetsDetailPage()
+        public BookingPage()
         {
             InitializeComponent();
         }
@@ -20,11 +20,6 @@ namespace cabinets.Pages
         private void Button_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
-        }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BookingPage());
         }
     }
 }

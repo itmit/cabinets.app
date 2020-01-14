@@ -22,5 +22,10 @@ namespace cabinets.Pages
             EditContentView.IsVisible = true;
             FirstContentView.IsVisible = false;
         }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            Application.Current.MainPage.DisplayActionSheet("Вы действительно хотите отменить запись?", "ОТМЕНИТЬ","НЕТ");
+        }
     }
 }
