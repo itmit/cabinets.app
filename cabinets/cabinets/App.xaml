@@ -25,10 +25,12 @@
             <Style x:Key="EntryAuth" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#828282"/>
                 <Setter Property="TextColor" Value="#828282"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
             <Style x:Key="EntryReg" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#828282"/>
                 <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
             <Style x:Key="FrameEntry" TargetType="Frame">
                 <Setter Property="IsClippedToBounds" Value="True"/>

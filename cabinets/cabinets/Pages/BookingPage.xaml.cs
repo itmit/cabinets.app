@@ -21,5 +21,12 @@ namespace cabinets.Pages
         {
             Navigation.PopAsync();
         }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Price.IsVisible = true;
+            Booking.IsEnabled = true;
+            Booking.Opacity = 1;
+        }
     }
 }

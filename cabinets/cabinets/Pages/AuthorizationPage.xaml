@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customEntry="clr-namespace:cabinets.Controls"
              mc:Ignorable="d"
              x:Class="cabinets.Pages.AuthorizationPage"
              NavigationPage.HasNavigationBar="False"
@@ -13,10 +14,10 @@
             <Image Source="pic_logo.png" WidthRequest="100" HorizontalOptions="Center" Margin="0,80,0,0"/>
             <Image Source="pic_title.png" WidthRequest="170" HorizontalOptions="Center" Margin="0,10,0,45"/>
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10">
-                <Entry Placeholder="Логин" Style="{StaticResource EntryAuth}"/>
+                <customEntry:CustomEntry  Placeholder="Логин" Style="{StaticResource EntryAuth}"/>
             </Frame>
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,15">
-                <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource EntryAuth}"/>
+                <customEntry:CustomEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource EntryAuth}"/>
             </Frame>
             <Button Text="Войти" Style="{StaticResource ButtonBlur}" Margin="0,0,0,100" Clicked="Button_Clicked" Command="{Binding .}"/>
             <Label Text="Зарегистрироваться" HorizontalOptions="Center" TextColor="#828282">

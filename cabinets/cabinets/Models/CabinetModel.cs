@@ -50,5 +50,14 @@ namespace cabinets.Models
             get; 
             set; 
         }
+
+        /// <summary>
+        /// Возвращает дату
+        /// </summary>
+        public string Date 
+        {
+            get; 
+            set; 
+        }
     }
 }

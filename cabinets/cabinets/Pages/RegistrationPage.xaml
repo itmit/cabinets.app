@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customEntry="clr-namespace:cabinets.Controls"
              mc:Ignorable="d"
              x:Class="cabinets.Pages.RegistrationPage"
              Title="Регистрация">
@@ -11,25 +12,25 @@
         <ScrollView>
             <StackLayout Margin="20,15" Spacing="0">
                 <Frame Style="{StaticResource FrameEntry}">
-                    <Entry Placeholder="Имя" Text="{Binding FirstName}" Style="{StaticResource EntryReg}"/>
+                    <customEntry:CustomEntry Placeholder="Имя" Text="{Binding FirstName}" Style="{StaticResource EntryReg}"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
-                    <Entry Placeholder="Фамилия" Text="{Binding LastName}" Style="{StaticResource EntryReg}"/>
+                    <customEntry:CustomEntry Placeholder="Фамилия" Text="{Binding LastName}" Style="{StaticResource EntryReg}"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}">
-                    <Entry Placeholder="Дата рождения" Text="{Binding Date}" Style="{StaticResource EntryReg}"/>
+                    <customEntry:CustomEntry Placeholder="Дата рождения" Text="{Binding Date}" Style="{StaticResource EntryReg}"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
-                    <Entry Placeholder="Номер телефона" Text="{Binding Phone}" Style="{StaticResource EntryReg}"/>
+                    <customEntry:CustomEntry Placeholder="Номер телефона" Text="{Binding Phone}" Style="{StaticResource EntryReg}"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}">
-                    <Entry Placeholder="E-mail" Text="{Binding Email}" Style="{StaticResource EntryReg}"/>
+                    <customEntry:CustomEntry Placeholder="E-mail" Text="{Binding Email}" Style="{StaticResource EntryReg}"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
-                    <Entry Placeholder="Пароль" Text="{Binding Password}" Style="{StaticResource EntryReg}" IsPassword="True"/>
+                    <customEntry:CustomEntry Placeholder="Пароль" Text="{Binding Password}" Style="{StaticResource EntryReg}" IsPassword="True"/>
                 </Frame>
                 <Frame Style="{StaticResource FrameEntry}">
-                    <Entry Placeholder="Повторить пароль" Text="{Binding RepeatPass}" Style="{StaticResource EntryReg}" IsPassword="True"/>
+                    <customEntry:CustomEntry Placeholder="Повторить пароль" Text="{Binding RepeatPass}" Style="{StaticResource EntryReg}" IsPassword="True"/>
                 </Frame>
                 <Grid Margin="0,20">
                     <Grid.ColumnDefinitions>

@@ -19,13 +19,13 @@
                 </ResourceDictionary>
             </StackLayout.Resources>
             <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                <Label Text="Пушкин Александр Сергеевич" Style="{StaticResource Label}"/>
+                <Label Text="{Binding FullName}" Style="{StaticResource Label}"/>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="Телефон: "/>
-                                <Span Text="8(922)783-33-33"/>
+                                <Span Text="{Binding Phone}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -34,8 +34,8 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="E-mail: "></Span>
-                                <Span Text="AlexSerg@gmail.com"></Span>
+                                <Span Text="E-mail: "/>
+                                <Span Text="{Binding Email}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -43,10 +43,7 @@
             </StackLayout>
             <StackLayout BackgroundColor="White" Padding="20">
                 <Label Text="Мои бронирования" Style="{StaticResource Label}"></Label>
-                <ListView HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemTapped="ListView_ItemTapped">
-                    <ListView.ItemsSource>
-                        <x:String>000</x:String>
-                    </ListView.ItemsSource>
+                <ListView HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemTapped="ListView_ItemTapped" ItemsSource="{Binding Bookings}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <viewCell:BookingsViewCell/>

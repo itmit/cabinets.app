@@ -8,13 +8,13 @@
   <ViewCell.View>
       <!--Ячейка представления для списка мои бронирования в профиле-->
       <StackLayout Orientation="Horizontal">
-            <Label Text="18.12.2019" TextColor="#505050" HorizontalOptions="Start"/>
+            <Label Text="{Binding Date}" TextColor="#505050" HorizontalOptions="Start"/>
             <Label TextColor="#505050" HorizontalOptions="EndAndExpand" FontSize="10" VerticalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>
                             <Span Text="Кабинет "/>
-                            <Span Text="1"/>
+                            <Span Text="{Binding Number}"/>
                         </FormattedString.Spans>
                     </FormattedString>
                 </Label.FormattedText>

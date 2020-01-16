@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cabinets.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace cabinets.Pages
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = new ProfileViewModel();
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
