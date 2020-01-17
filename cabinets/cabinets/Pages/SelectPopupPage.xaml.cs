@@ -11,23 +11,21 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyBookingPage : ContentPage
+    public partial class SelectPopupPage : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public MyBookingPage()
+        public SelectPopupPage()
         {
             InitializeComponent();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            EditContentView.IsVisible = true;
-            FirstContentView.IsVisible = false;
+            Navigation.PopPopupAsync();
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            var page = new SelectPopupPage();
-            Navigation.PushPopupAsync(page);
+            Navigation.PopPopupAsync();
         }
     }
 }

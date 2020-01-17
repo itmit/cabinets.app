@@ -8,7 +8,17 @@
   <ViewCell.View>
       <!--Ячейка представления для списка свободных кабинетов в календаре-->
         <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
-            <Label Text="12.00 - 13.00 Кабинет 2" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="12.00 - 13.00"/>
+                            <Span Text=" Кабинет "/>
+                            <Span Text="2"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </Frame>
   </ViewCell.View>
 </ViewCell>

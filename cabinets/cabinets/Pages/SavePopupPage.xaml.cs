@@ -1,24 +1,22 @@
-﻿using cabinets.Pages;
+﻿using System;
 using Rg.Plugins.Popup.Extensions;
-using System;
-
+using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.ContentViews
+namespace cabinets.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditContentView : ContentView
+    public partial class SavePopupPage : PopupPage
     {
-        public EditContentView()
+        public SavePopupPage()
         {
             InitializeComponent();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            var popupPage = new SavePopupPage();
-            Navigation.PushPopupAsync(popupPage);
+            Navigation.PopPopupAsync();
         }
     }
 }

@@ -33,7 +33,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <ListView HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None" HeightRequest="180" ItemTapped="ListView_ItemTapped">
+                    <ListView HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None" HorizontalOptions="Start" WidthRequest="215" HeightRequest="180" ItemTapped="ListView_ItemTapped">
                         <ListView.ItemsSource>
                             <x:String>000000</x:String>
                         </ListView.ItemsSource>
