@@ -19,7 +19,7 @@ namespace cabinets.Pages
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            Navigation.PopToRootAsync();
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

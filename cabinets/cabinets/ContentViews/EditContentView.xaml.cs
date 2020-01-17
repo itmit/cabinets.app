@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cabinets.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace cabinets.ContentViews
         {
            
            await Application.Current.MainPage.DisplayAlert(" ", "Внесенные изменения успешно сохранены", "В ПРОФИЛЬ");
+           await Navigation.PopAsync();
         }
     }
 }
