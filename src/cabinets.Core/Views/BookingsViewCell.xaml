@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="cabinets.Views.BookingsViewCell">
+             x:Class="cabinets.Core.Views.BookingsViewCell">
   <ViewCell.View>
       <!--Ячейка представления для списка мои бронирования в профиле-->
       <StackLayout Orientation="Horizontal">

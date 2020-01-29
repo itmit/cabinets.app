@@ -1,24 +1,17 @@
-﻿using cabinets.Models;
-using cabinets.ViewModels;
-using cabinets.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using cabinets.Core.ViewModels.News;
+using cabinets.Pages;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Core.Pages.News
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class NewsPage : MvxContentPage<NewsViewModel>
     {
         public NewsPage()
         {
             InitializeComponent();
-            BindingContext = new NewsViewModel();
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

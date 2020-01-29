@@ -1,17 +1,13 @@
-﻿using cabinets.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
+using cabinets.Core.ViewModels;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Core.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalendarPage : ContentPage
+    public partial class CalendarPage : MvxContentPage<CalendarViewModel>
     {
         public CalendarPage()
         {

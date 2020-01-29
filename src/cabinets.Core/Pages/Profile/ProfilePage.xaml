@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="profile:ProfileViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewCell="clr-namespace:cabinets.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:profile="clr-namespace:cabinets.Core.ViewModels.Profile;assembly=cabinets.Core"
+             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
              mc:Ignorable="d"
-             x:Class="cabinets.Pages.ProfilePage"
+             x:Class="cabinets.Core.Pages.Profile.ProfilePage"
              Title="Профиль">
     <ContentPage.Content>
         <!--Страница профиля-->
@@ -46,11 +49,11 @@
                 <ListView HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemTapped="ListView_ItemTapped" ItemsSource="{Binding Bookings}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <viewCell:BookingsViewCell/>
+                            <views1:BookingsViewCell/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

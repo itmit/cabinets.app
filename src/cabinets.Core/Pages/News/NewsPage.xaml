@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="news:NewsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewCell="clr-namespace:cabinets.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
              mc:Ignorable="d"
-             x:Class="cabinets.Pages.NewsPage"
+             x:Class="cabinets.Core.Pages.News.NewsPage"
              Title="Новости">
     <ContentPage.Content>
         <!--Страница новостей-->
@@ -17,4 +19,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>
