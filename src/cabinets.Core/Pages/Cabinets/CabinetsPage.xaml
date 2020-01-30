@@ -9,7 +9,9 @@
              xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Cabinets.CabinetsPage"
-             Title="Выбрать кабинет">
+             d:NavigationPage.HasNavigationBar="True"
+             IconImageSource="ic_home"
+             Title="Кабинеты">
     <ContentPage.Content>
         <!--Страница кабинеты-->
         <ListView Margin="15,5" HasUnevenRows="True" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding Cabinets}" ItemTapped="ListView_ItemTapped">

@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using cabinets.Models;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace cabinets.Core.ViewModels.Cabinets
 {
-	public class CabinetsViewModel : MvxViewModel
+	public class CabinetsViewModel : MvxNavigationViewModel
 	{
 
 		private MvxObservableCollection<CabinetModel> _cabinets;
@@ -81,5 +83,10 @@ namespace cabinets.Core.ViewModels.Cabinets
 			get => _boxColor;
 			set => _boxColor = value;
 		}
-    }
+
+		public CabinetsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+			: base(logProvider, navigationService)
+		{
+		}
+	}
 }

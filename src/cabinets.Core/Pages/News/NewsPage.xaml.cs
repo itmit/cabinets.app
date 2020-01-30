@@ -1,5 +1,6 @@
 ﻿using cabinets.Core.ViewModels.News;
 using cabinets.Pages;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,8 +8,9 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Core.Pages.News
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : MvxContentPage<NewsViewModel>
-    {
+	[MvxTabbedPagePresentation(NoHistory = true, Animated = false)]
+	public partial class NewsPage : MvxContentPage<NewsViewModel>
+	{
         public NewsPage()
         {
             InitializeComponent();

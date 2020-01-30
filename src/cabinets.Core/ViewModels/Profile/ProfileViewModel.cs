@@ -1,20 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using cabinets.Core.Models;
+using cabinets.Core.Repositories;
 using cabinets.Models;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace cabinets.Core.ViewModels.Profile
 {
-	public class ProfileViewModel : MvxViewModel
+	public class ProfileViewModel : MvxNavigationViewModel
 	{
 		private MvxObservableCollection<CabinetModel> _bookings;
-		private string _fullName;
-		private string _phone;
-		private string _email;
+		private readonly IUserRepository _userRepository;
+		private User _user;
 
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+
 			Bookings = new MvxObservableCollection<CabinetModel> {
 				new CabinetModel
 				{
@@ -33,6 +38,15 @@ namespace cabinets.Core.ViewModels.Profile
 				}
 
 			};
+
+			User = _userRepository.GetAll()
+						   .Single();
+		}
+
+		public User User
+		{
+			get => _user;
+			private set => SetProperty(ref _user, value);
 		}
 
 		public MvxObservableCollection<CabinetModel> Bookings
@@ -41,22 +55,10 @@ namespace cabinets.Core.ViewModels.Profile
 			set => _bookings = value;
 		}
 
-		public string FullName
+		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository)
+			: base(logProvider, navigationService)
 		{
-			get => _fullName;
-			set => _fullName = value;
+			_userRepository = userRepository;
 		}
-
-		public string Phone
-		{
-			get => _phone;
-			set => _phone = value;
-		}
-
-		public string Email
-		{
-			get => _email;
-			set => _email = value;
-		}
-    }
+	}
 }

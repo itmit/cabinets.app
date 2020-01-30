@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using cabinets.Core.Models;
+using cabinets.Core.Pages;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
 using cabinets.Core.Views;
@@ -94,7 +95,7 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 			_userRepository.Add(user);
 
-			Application.Current.MainPage = new MainTabbedView();
+			await NavigationService.Navigate<MainViewModel>();
 		}
 
 		public IMvxCommand OpenRegistrationCommand

@@ -1,4 +1,5 @@
-﻿using Realms;
+﻿using System;
+using Realms;
 
 namespace cabinets.Core.RealmObjects
 {
@@ -12,13 +13,35 @@ namespace cabinets.Core.RealmObjects
 		} = System.Guid.NewGuid()
 				.ToString();
 
-		public string Login
+		/// <summary>
+		/// Возвращает полное имя пользователя
+		/// </summary>
+		public string Name
 		{
 			get;
 			set;
 		}
 
-		public string Role
+		/// <summary>
+		/// Возвращает номер телефона пользователя
+		/// </summary>
+		public string Phone
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Возвращает электронную почту пользователя
+		/// </summary>
+		public string Email
+		{
+			get;
+			set;
+		}
+
+
+		public DateTimeOffset Birthday
 		{
 			get;
 			set;

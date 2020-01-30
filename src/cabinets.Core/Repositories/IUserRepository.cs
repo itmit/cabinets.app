@@ -7,7 +7,7 @@ namespace cabinets.Core.Repositories
 	{
 		void Add(User user);
 
-		IEnumerable<User> GetUsers();
+		IEnumerable<User> GetAll();
 
 		void Remove(User user);
 

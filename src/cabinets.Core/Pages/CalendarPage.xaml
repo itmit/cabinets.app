@@ -9,7 +9,9 @@
              xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.CalendarPage"
-             Title="Календарь">
+             Title="Календарь"
+             d:NavigationPage.HasNavigationBar="True"
+             IconImageSource="ic_calendar">
     <ContentPage.Content>
         <!--Страница календаря-->
         <ScrollView>

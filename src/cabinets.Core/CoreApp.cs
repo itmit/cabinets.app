@@ -6,6 +6,7 @@ using cabinets.Core.ViewModels.Auth;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using Realms;
 using Xamarin.Essentials;
 
 namespace cabinets.Core
@@ -24,10 +25,12 @@ namespace cabinets.Core
 				.EndingWith("Repository")
 				.AsInterfaces()
 				.RegisterAsDynamic();
-			
+
+			RealmConfiguration.DefaultConfiguration.SchemaVersion = 2;
+
 			var userRepository = Mvx.IoCProvider.Resolve<IUserRepository>();
 
-			User user = userRepository.GetUsers().SingleOrDefault();
+			User user = userRepository.GetAll().SingleOrDefault();
 			
 			if (user?.AccessToken == null)
 			{

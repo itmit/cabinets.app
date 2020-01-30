@@ -8,6 +8,8 @@
              xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.News.NewsPage"
+             IconImageSource="ic_filetext"
+             d:NavigationPage.HasNavigationBar="True"
              Title="Новости">
     <ContentPage.Content>
         <!--Страница новостей-->

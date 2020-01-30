@@ -25,12 +25,13 @@ namespace cabinets.Core.Repositories
 				cfg.CreateMap<User, UserRealmObject>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.AccessToken.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.AccessToken.Type))
-				   .ForPath(m => m.AccessToken.ExpiresAt, o => o.MapFrom(q => q.AccessToken.ExpiresAt));
+				   .ForPath(m => m.AccessToken.ExpiresAt, o => o.MapFrom(q => q.AccessToken.ExpiresAt))
+				   .ForPath(m => m.Birthday, o => o.MapFrom(q => q.Birthday));
 				cfg.CreateMap<UserRealmObject, User>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.AccessToken.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.AccessToken.Type))
-				   .ForPath(m => m.AccessToken.ExpiresAt, o => o.MapFrom(q => q.AccessToken.ExpiresAt.DateTime));
-
+				   .ForPath(m => m.AccessToken.ExpiresAt, o => o.MapFrom(q => q.AccessToken.ExpiresAt.DateTime))
+				   .ForPath(m => m.Birthday, o => o.MapFrom(q => q.Birthday.DateTime));
 			}));
 		}
 		#endregion
@@ -49,7 +50,7 @@ namespace cabinets.Core.Repositories
 			}
 		}
 
-		public IEnumerable<User> GetUsers()
+		public IEnumerable<User> GetAll()
 		{
 			using (var realm = Realm.GetInstance())
 			{

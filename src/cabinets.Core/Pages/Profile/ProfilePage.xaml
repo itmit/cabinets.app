@@ -9,7 +9,9 @@
              xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Profile.ProfilePage"
-             Title="Профиль">
+             Title="Профиль"
+             d:NavigationPage.HasNavigationBar="True"
+             IconImageSource="ic_user">
     <ContentPage.Content>
         <!--Страница профиля-->
         <StackLayout>
@@ -22,13 +24,13 @@
                 </ResourceDictionary>
             </StackLayout.Resources>
             <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                <Label Text="{Binding FullName}" Style="{StaticResource Label}"/>
+                <Label Text="{Binding User.Name}" Style="{StaticResource Label}"/>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="Телефон: "/>
-                                <Span Text="{Binding Phone}"/>
+                                <Span Text="{Binding User.Phone}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -38,7 +40,7 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="E-mail: "/>
-                                <Span Text="{Binding Email}"/>
+                                <Span Text="{Binding User.Email}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

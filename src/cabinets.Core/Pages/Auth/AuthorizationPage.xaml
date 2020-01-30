@@ -7,6 +7,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
              xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+             xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Auth.AuthorizationPage"
              NavigationPage.HasNavigationBar="False"
@@ -17,7 +18,11 @@
             <Image Source="pic_logo.png" WidthRequest="100" HorizontalOptions="Center" Margin="0,80,0,0"/>
             <Image Source="pic_title.png" WidthRequest="170" HorizontalOptions="Center" Margin="0,10,0,45"/>
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10">
-                <controls:CustomEntry Text="{Binding Login}" Placeholder="Логин" Style="{StaticResource EntryAuth}"/>
+                <controls:CustomEntry Text="{Binding Login}" Placeholder="Логин" Style="{StaticResource EntryAuth}" Keyboard="Numeric">
+                    <controls:CustomEntry.Behaviors>
+                        <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                    </controls:CustomEntry.Behaviors>
+                </controls:CustomEntry>
             </Frame>
             <Label Text="{Binding ErrorsDictionary[Login]}"
                    IsVisible="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
