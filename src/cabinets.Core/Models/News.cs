@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace cabinets.Models
+﻿namespace cabinets.Core.Models
 {
-    public class NewsModel
+    public class News
     {
         /// <summary>
         /// Возвращает картинку новости

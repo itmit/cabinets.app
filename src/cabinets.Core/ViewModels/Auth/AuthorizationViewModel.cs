@@ -89,6 +89,18 @@ namespace cabinets.Core.ViewModels.Auth
 
 			if (user == null)
 			{
+				if (_authService.Errors == null)
+				{
+					await Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+					return;
+				}
+
+				if (_authService.Errors.ContainsKey("Fatal") && !string.IsNullOrEmpty(_authService.Errors["Fatal"]))
+				{
+					await Application.Current.MainPage.DisplayAlert("Внимание", _authService.Errors["Fatal"], "Ок");
+					return;
+				}
+
 				ErrorsDictionary = _authService.Errors;
 				await RaisePropertyChanged(nameof(ErrorsDictionary));
 				return;
@@ -104,7 +116,7 @@ namespace cabinets.Core.ViewModels.Auth
 			{
 				_openRegistrationCommand = _openRegistrationCommand ?? new MvxCommand(() =>
 				{
-					// NavigationService.Navigate()
+					NavigationService.Navigate<RegistrationViewModel>();
 				});
 				return _openRegistrationCommand;
 			}

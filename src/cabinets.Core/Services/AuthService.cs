@@ -21,6 +21,10 @@ namespace cabinets.Core.Services
 		/// </summary>
 		private const string LoginUri = "http://cabinets.itmit-studio.ru/api/login";
 
+		private const string RegistrationUri = "http://cabinets.itmit-studio.ru/api/register";
+
+		private const string LogoutUri = "http://cabinets.itmit-studio.ru/api/logout";
+
 		/// <summary>
 		/// <see cref="IMapper"/> для преобразования ДТО в модели.
 		/// </summary>
@@ -67,8 +71,7 @@ namespace cabinets.Core.Services
 
 				Debug.WriteLine(requestBody);
 
-				var response = await client.PostAsync(LoginUri, 
-													  new StringContent(requestBody, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(LoginUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);
@@ -78,15 +81,53 @@ namespace cabinets.Core.Services
 					return null;
 				}
 
-				if (response.IsSuccessStatusCode)
+				var jsonData = JsonConvert.DeserializeObject<GeneralDto<UserDto>>(jsonString);
+
+				if (jsonData.Success)
 				{
-					var jsonData = JsonConvert.DeserializeObject<GeneralDto<UserDto>>(jsonString);
 					return await Task.FromResult(_mapper.Map<User>(jsonData.Data));
 				}
 
-				var error = JsonConvert.DeserializeObject<ErrorDto>(jsonString);
-				Errors = error.Errors;
-				Errors["Fatal"] = error.Error;
+				Errors = jsonData.Errors;
+				Errors["Fatal"] = jsonData.Error;
+
+				return null;
+			}
+		}
+
+		public async Task<User> Registration(User user, string password, string confirmPassword)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+				var requestBody = JsonConvert.SerializeObject(new RegisterDto
+				{
+					Email = user.Email,
+					Name = user.Name,
+					Birthday = user.Birthday.ToString("yyyy-MM-dd"),
+					Password = password,
+					PasswordConfirm = confirmPassword,
+					Phone = user.Phone
+				});
+
+				Debug.WriteLine(requestBody);
+
+				var response = await client.PostAsync(RegistrationUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				var jsonData = JsonConvert.DeserializeObject<GeneralDto<UserDto>>(jsonString);
+
+				if (jsonData.Success)
+				{
+					user = await Task.FromResult(_mapper.Map<User>(jsonData.Data));
+					return user;
+				}
+
+				Errors = jsonData.Errors;
+				Errors["Fatal"] = jsonData.Error;
 
 				return null;
 			}
@@ -97,5 +138,19 @@ namespace cabinets.Core.Services
 			get;
 			private set;
 		} = new Dictionary<string, string>();
+
+		public async void Logout(User user)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
+
+				var response = await client.PostAsync(LogoutUri, null);
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+			}
+		}
 	}
 }

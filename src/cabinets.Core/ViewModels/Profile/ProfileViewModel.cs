@@ -3,7 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
+using cabinets.Core.Services;
+using cabinets.Core.ViewModels.Auth;
 using cabinets.Models;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -15,6 +18,8 @@ namespace cabinets.Core.ViewModels.Profile
 		private MvxObservableCollection<CabinetModel> _bookings;
 		private readonly IUserRepository _userRepository;
 		private User _user;
+		private MvxCommand _logoutCommand;
+		private readonly IAuthService _authService;
 
 		public override async Task Initialize()
 		{
@@ -55,10 +60,27 @@ namespace cabinets.Core.ViewModels.Profile
 			set => _bookings = value;
 		}
 
-		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository)
+		public MvxCommand LogoutCommand
+		{
+			get
+			{
+				_logoutCommand = _logoutCommand ?? new MvxCommand(LogoutCommandExecute);
+				return _logoutCommand;
+			}
+		}
+
+		private void LogoutCommandExecute()
+		{
+			_authService.Logout(User);
+			_userRepository.Remove(User);
+			NavigationService.Navigate<AuthorizationViewModel>();
+		}
+
+		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository, IAuthService authService)
 			: base(logProvider, navigationService)
 		{
 			_userRepository = userRepository;
+			_authService = authService;
 		}
 	}
 }

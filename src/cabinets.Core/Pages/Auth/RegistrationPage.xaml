@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+             xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Auth.RegistrationPage"
              Title="Регистрация">
@@ -16,24 +17,59 @@
                 <Frame Style="{StaticResource FrameEntry}">
                     <controls:CustomEntry Placeholder="Имя" Text="{Binding FirstName}" Style="{StaticResource EntryReg}"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[FirstName]}"
+                       IsVisible="{Binding ErrorsDictionary[FirstName], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[FirstName], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
                     <controls:CustomEntry Placeholder="Фамилия" Text="{Binding LastName}" Style="{StaticResource EntryReg}"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[LastName]}"
+                       IsVisible="{Binding ErrorsDictionary[LastName], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[LastName], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}">
-                    <controls:CustomEntry Placeholder="Дата рождения" Text="{Binding Date}" Style="{StaticResource EntryReg}"/>
+                    <DatePicker Date="{Binding Date}"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[Date]}"
+                       IsVisible="{Binding ErrorsDictionary[Date], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Date], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
-                    <controls:CustomEntry Placeholder="Номер телефона" Text="{Binding Phone}" Style="{StaticResource EntryReg}"/>
+                    <controls:CustomEntry Placeholder="Номер телефона" 
+                                          Keyboard="Numeric"
+                                          Text="{Binding PhoneNumber}" 
+                                          Style="{StaticResource EntryReg}">
+                        <controls:CustomEntry.Behaviors>
+                            <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                        </controls:CustomEntry.Behaviors>
+                    </controls:CustomEntry>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[PhoneNumber]}"
+                       IsVisible="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}">
-                    <controls:CustomEntry Placeholder="E-mail" Text="{Binding Email}" Style="{StaticResource EntryReg}"/>
+                    <controls:CustomEntry Placeholder="E-mail" Keyboard="Email" Text="{Binding Email}" Style="{StaticResource EntryReg}"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[Email]}"
+                       IsVisible="{Binding ErrorsDictionary[Email], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Email], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
                     <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" Style="{StaticResource EntryReg}" IsPassword="True"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[Password]}"
+                       IsVisible="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Frame Style="{StaticResource FrameEntry}">
                     <controls:CustomEntry Placeholder="Повторить пароль" Text="{Binding RepeatPass}" Style="{StaticResource EntryReg}" IsPassword="True"/>
                 </Frame>
+                <Label Text="{Binding ErrorsDictionary[RepeatPass]}"
+                       IsVisible="{Binding ErrorsDictionary[RepeatPass], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[RepeatPass], Converter={StaticResource NullToBoolConverter}}"
+                />
                 <Grid Margin="0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -55,7 +91,7 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <Button x:Name="Registr" IsEnabled="False" Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked" Command="{Binding .}"/>
+                <Button x:Name="Registr" IsEnabled="False" Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" Command="{Binding RegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

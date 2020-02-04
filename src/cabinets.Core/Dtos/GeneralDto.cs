@@ -1,4 +1,6 @@
-﻿namespace cabinets.Core.Dtos
+﻿using System.Collections.Generic;
+
+namespace cabinets.Core.Dtos
 {
 	/// <summary>
 	/// Представляет общую реализацию DTO для api.
@@ -32,5 +34,17 @@
 			get;
 			set;
 		} = false;
+
+		public Dictionary<string, string> Errors
+		{
+			get;
+			set;
+		}
+
+		public string Error
+		{
+			get;
+			set;
+		}
 	}
 }

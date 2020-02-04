@@ -56,6 +56,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+
+            <Button Text="Выход" Command="{Binding LogoutCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

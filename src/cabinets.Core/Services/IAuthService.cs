@@ -17,9 +17,13 @@ namespace cabinets.Core.Services
 		/// <returns>Авторизованный пользователь.</returns>
 		Task<User> Login(string login, string password);
 
+		Task<User> Registration(User user, string password, string confirmPassword);
+
 		Dictionary<string, string> Errors
 		{
 			get;
 		}
+
+		void Logout(User user);
 	}
 }
