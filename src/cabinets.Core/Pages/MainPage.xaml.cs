@@ -5,6 +5,7 @@ using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Application = Xamarin.Forms.Application;
 
 namespace cabinets.Core.Pages
 {
@@ -23,26 +24,23 @@ namespace cabinets.Core.Pages
 
 		private bool _firstTime = true;
 
+		private static bool _firstSt = true;
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+
+			if (_firstSt)
+			{
+				_firstSt = false;
+				ViewModel.A();
+				return;
+			}
+
 			if (_firstTime)
 			{
+				_firstTime = false;
 				ViewModel.ShowInitialViewModelsCommand.ExecuteAsync();
 				CurrentPage = Children[ViewModel.FirstPageIndex];
-
-				_firstTime = false;
-				if (Children == null)
-				{
-					return;
-				}
-				foreach (var child in Children)
-				{
-					if (child is NavigationPage page)
-					{
-						page.BarBackgroundColor = Color.FromHex("#31516D");
-					}
-				}
 			}
 		}
 	}

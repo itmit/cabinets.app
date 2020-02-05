@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="cabinets:CabinetDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:contentView="clr-namespace:cabinets.ContentViews"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:cabinets="clr-namespace:cabinets.Core.ViewModels.Cabinets;assembly=cabinets.Core"
              mc:Ignorable="d"
-             x:Class="cabinets.Pages.CabinetsDetailPage"
-             Title="Кабинет 1">
+             x:Class="cabinets.Core.Pages.Cabinets.CabinetsDetailPage"
+             Title="{Binding Cabinet.Name}">
     <ContentPage.Content>
         <!--Детальная страница кабинета-->
         <ScrollView Margin="15,10" VerticalScrollBarVisibility="Never">
@@ -31,7 +33,7 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Вместимость: до "/>
-                                    <Span Text="5"/>
+                                    <Span Text="{Binding Cabinet.Capacity}"/>
                                     <Span Text=" чел"/>
                                 </FormattedString.Spans>
                             </FormattedString>
@@ -42,14 +44,14 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Площадь: "/>
-                                    <Span Text="13"/>
+                                    <Span Text="{Binding Cabinet.Area}"/>
                                     <Span Text="м²"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                <Label Text="Для индивидуального и семейного консультирования и работы детского психолога,психотерапии, психодиагностики и арт-терапии, коучинга.&#10;&#10;Небольшой кабинет в теплых тонах и приятном тропическом стиле:&#10;&#10;Удобный кожаный диван для двоих,2 не больших стола, напольная лампа, дополнительно имеются складные стулья, подушки, плед, массажный стол, флипчарт, коврик для йоги, светодиодные свечи, набор письменных принадлежностей (цветные карандаши, ручки, маркеры и т.д.), планшеты для бумаг и бумага.&#10;&#10;Есть всё для кофе-брейка чай и растворимый кофе, а так же кофе Nespresso и порционные сливки, вкусные печеньки." TextColor="#505050" FontSize="12"/>
+                <Label Text="{Binding Cabinet.Description}" TextColor="#505050" FontSize="12"/>
                 <StackLayout Spacing="0">
                     <Button Text="Выбрать дату и время" Margin="0,10" Style="{StaticResource ButtonBlur}" Clicked="Button_Clicked_1"/>
                     <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Clicked="Button_Clicked"/>
@@ -57,4 +59,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

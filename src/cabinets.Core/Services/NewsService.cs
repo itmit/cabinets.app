@@ -9,7 +9,6 @@ using AutoMapper;
 using cabinets.Core.Dtos;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
-using cabinets.Models;
 using Newtonsoft.Json;
 
 namespace cabinets.Core.Services

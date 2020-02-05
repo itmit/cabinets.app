@@ -16,9 +16,9 @@ namespace cabinets.Core.Pages.Cabinets
             InitializeComponent();
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Navigation.PushAsync(new CabinetsDetailPage());
-        }
-    }
+		private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			((ListView) sender).SelectedItem = null;
+		}
+	}
 }

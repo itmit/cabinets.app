@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
-using cabinets.Models;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;

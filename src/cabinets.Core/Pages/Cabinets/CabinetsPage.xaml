@@ -14,7 +14,13 @@
              Title="Кабинеты">
     <ContentPage.Content>
         <!--Страница кабинеты-->
-        <ListView Margin="15,5" HasUnevenRows="True" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding Cabinets}" ItemTapped="ListView_ItemTapped">
+        <ListView Margin="15,5"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  VerticalScrollBarVisibility="Never"
+                  ItemsSource="{Binding Cabinets}"
+                  ItemSelected="ListView_OnItemSelected"
+                  SelectedItem="{Binding SelectedCabinet}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <views1:CabinetsViewCell/>

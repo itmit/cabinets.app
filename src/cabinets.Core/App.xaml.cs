@@ -1,4 +1,5 @@
 ﻿using cabinets.Pages;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Application = Xamarin.Forms.Application;
 
@@ -13,8 +14,8 @@ namespace cabinets.Core
         }
 
         protected override void OnStart()
-        {
-        }
+		{
+		}
 
         protected override void OnSleep()
         {

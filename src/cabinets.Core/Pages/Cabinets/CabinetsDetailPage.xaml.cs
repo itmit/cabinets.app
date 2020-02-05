@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using cabinets.Core.ViewModels.Cabinets;
+using cabinets.Core.ViewModels.Profile;
+using cabinets.Pages;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Core.Pages.Cabinets
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CabinetsDetailPage : ContentPage
+    public partial class CabinetsDetailPage : MvxContentPage<CabinetDetailViewModel>
     {
         public CabinetsDetailPage()
         {

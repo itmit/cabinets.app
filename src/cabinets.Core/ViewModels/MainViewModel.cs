@@ -21,6 +21,11 @@ namespace cabinets.Core.ViewModels
 			: base(logProvider, navigationService)
 		{ }
 
+		public void A()
+		{
+			NavigationService.Navigate<MainViewModel>();
+		}
+
 		public IMvxAsyncCommand ShowInitialViewModelsCommand
 		{
 			get

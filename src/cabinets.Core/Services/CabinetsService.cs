@@ -17,6 +17,7 @@ namespace cabinets.Core.Services
 	{
 		private readonly AccessToken _token;
 		private readonly Mapper _mapper;
+		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
 
 		public CabinetsService(IUserRepository userRepository)
 		{
@@ -26,7 +27,8 @@ namespace cabinets.Core.Services
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<Cabinet, CabinetDto>();
-				cfg.CreateMap<CabinetDto, Cabinet>();
+				cfg.CreateMap<CabinetDto, Cabinet>()
+				   .ForMember(cab => cab.PhotoSource, m=> m.MapFrom(dto => DomainUri + dto.Photo));
 			}));
 		}
 

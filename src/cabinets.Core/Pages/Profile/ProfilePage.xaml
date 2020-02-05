@@ -10,7 +10,6 @@
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Profile.ProfilePage"
              Title="Профиль"
-             d:NavigationPage.HasNavigationBar="True"
              IconImageSource="ic_user">
     <ContentPage.Content>
         <!--Страница профиля-->

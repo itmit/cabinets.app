@@ -5,7 +5,6 @@ using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
 using cabinets.Core.ViewModels.Auth;
-using cabinets.Models;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -15,7 +14,7 @@ namespace cabinets.Core.ViewModels.Profile
 {
 	public class ProfileViewModel : MvxNavigationViewModel
 	{
-		private MvxObservableCollection<CabinetModel> _bookings;
+		private MvxObservableCollection<Cabinet> _bookings;
 		private readonly IUserRepository _userRepository;
 		private User _user;
 		private MvxCommand _logoutCommand;
@@ -25,18 +24,18 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			await base.Initialize();
 
-			Bookings = new MvxObservableCollection<CabinetModel> {
-				new CabinetModel
+			Bookings = new MvxObservableCollection<Cabinet> {
+				new Cabinet
 				{
 					Number = 1,
 					Date = "01.01.2020"
 				},
-				new CabinetModel
+				new Cabinet
 				{
 					Number = 2,
 					Date = "02.01.2020"
 				},
-				new CabinetModel
+				new Cabinet
 				{
 					Number = 3,
 					Date = "03.01.2020"
@@ -54,7 +53,7 @@ namespace cabinets.Core.ViewModels.Profile
 			private set => SetProperty(ref _user, value);
 		}
 
-		public MvxObservableCollection<CabinetModel> Bookings
+		public MvxObservableCollection<Cabinet> Bookings
 		{
 			get => _bookings;
 			set => _bookings = value;
