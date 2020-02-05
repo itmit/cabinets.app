@@ -18,8 +18,8 @@ namespace cabinets.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-
-			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 			//global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
 			Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

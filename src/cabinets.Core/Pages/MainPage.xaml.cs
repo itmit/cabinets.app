@@ -28,7 +28,9 @@ namespace cabinets.Core.Pages
 			base.OnAppearing();
 			if (_firstTime)
 			{
-				ViewModel.ShowInitialViewModelsCommand.ExecuteAsync(null);
+				ViewModel.ShowInitialViewModelsCommand.ExecuteAsync();
+				CurrentPage = Children[ViewModel.FirstPageIndex];
+
 				_firstTime = false;
 				if (Children == null)
 				{

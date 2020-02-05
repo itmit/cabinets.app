@@ -75,7 +75,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" Color="#31516D" CheckedChanged="CheckBox_CheckedChanged"/>
+                    <CheckBox Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" Color="#31516D" IsChecked="{Binding IsCheckedPolicy}"/>
                     <Label Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
@@ -83,7 +83,7 @@
                                     <Span Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с " TextColor="#505050"/>
                                     <Span Text="политикой конфиденциальности." TextColor="Blue" TextDecorations="Underline">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding .}" NumberOfTapsRequired="1"/>
+                                            <TapGestureRecognizer Command="{Binding OpenPolicyCommand}" NumberOfTapsRequired="1"/>
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString.Spans>
@@ -91,7 +91,7 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <Button x:Name="Registr" IsEnabled="False" Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" Command="{Binding RegistrationCommand}"/>
+                <Button Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" IsEnabled="{Binding IsCheckedPolicy}" Command="{Binding RegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

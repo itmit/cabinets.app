@@ -1,5 +1,6 @@
 ﻿using cabinets.Pages;
-using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Application = Xamarin.Forms.Application;
 
 namespace cabinets.Core
 {
@@ -8,7 +9,8 @@ namespace cabinets.Core
         public App() 
         {
             InitializeComponent();
-		}
+			On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+        }
 
         protected override void OnStart()
         {

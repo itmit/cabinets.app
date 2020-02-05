@@ -29,5 +29,12 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("photos")]
+		public PictureDto[] DetailPictureSources
+		{
+			get;
+			set;
+		}
 	}
 }

@@ -15,7 +15,7 @@ namespace cabinets.Core.ViewModels.Auth
 	{
 		private string _firstName;
 		private string _lastName;
-		private DateTime _date;
+		private DateTime _date = new DateTime(2000, 1, 1);
 		private string _phoneNumber;
 		private string _email;
 		private string _password;
@@ -24,6 +24,9 @@ namespace cabinets.Core.ViewModels.Auth
 		private MvxCommand _registrationCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IUserRepository _userRepository;
+		private MvxCommand _openPolicyCommand;
+		private bool _isCheckedPolicy;
+		private Dictionary<string, string> _errorsDictionary = new Dictionary<string, string>();
 
 		public RegistrationViewModel(IAuthService authService, IMvxNavigationService navigationService, IUserRepository userRepository)
 		{
@@ -78,7 +81,7 @@ namespace cabinets.Core.ViewModels.Auth
 		{
 			get
 			{
-				_registrationCommand = _registrationCommand ?? new MvxCommand(RegistrationCommandExecute);
+				_registrationCommand = _registrationCommand ?? new MvxCommand(RegistrationCommandExecute, () => IsCheckedPolicy);
 				return _registrationCommand;
 			}
 		}
@@ -160,20 +163,32 @@ namespace cabinets.Core.ViewModels.Auth
 				return;
 			}
 			_userRepository.Add(user);
-			await _navigationService.Navigate<MainViewModel>();
+			await _navigationService.Navigate<TwoButtonViewModel>();
 		}
 
-		public override Task Initialize()
+		public MvxCommand OpenPolicyCommand
 		{
-			RaisePropertyChanged(nameof(ErrorsDictionary));
-			return base.Initialize();
+			get
+			{
+				_openPolicyCommand = _openPolicyCommand ?? new MvxCommand(() =>
+				{
+					_navigationService.Navigate<PolicyViewModel>();
+				});
+				return _openPolicyCommand;
+			}
+		}
+
+		public bool IsCheckedPolicy
+		{
+			get => _isCheckedPolicy;
+			set => SetProperty(ref _isCheckedPolicy, value);
+			
 		}
 
 		public Dictionary<string, string> ErrorsDictionary
 		{
-			get;
-			set;
-		} = new Dictionary<string, string>();
-
+			get => _errorsDictionary;
+			set => SetProperty(ref _errorsDictionary, value);
+		}
 	}
 }

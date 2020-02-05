@@ -17,16 +17,17 @@ namespace cabinets.Core.Services
 	public class NewsService : INewsService
 	{
 		private readonly AccessToken _token;
-		private Mapper _mapper;
+		private readonly Mapper _mapper;
 
 		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/news/index";
+		private const string GetNewsDetailUri = "http://cabinets.itmit-studio.ru/api/news/show";
 
-		private const string StorageUri = "http://cabinets.itmit-studio.ru/";
+		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
 
 		public NewsService(IUserRepository userRepository)
 		{
 			_token = userRepository.GetAll()
-								   .Single().AccessToken; 
+								   .Single().AccessToken;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<News, NewsDto>()
@@ -36,8 +37,9 @@ namespace cabinets.Core.Services
 
 				cfg.CreateMap<NewsDto, News>()
 				   .ForMember(news => news.Title, m => m.MapFrom(dto => dto.Head))
+				   .ForMember(news => news.DetailPictureSources, m => m.MapFrom(dto => dto.DetailPictureSources))
 				   .ForMember(news => news.DetailText, m => m.MapFrom(dto => dto.Body))
-				   .ForMember(news => news.Image, m => m.MapFrom(dto => StorageUri + dto.PreviewPicture));
+				   .ForMember(news => news.Image, m => m.MapFrom(dto => DomainUri + dto.PreviewPicture));
 			}));
 		}
 
@@ -78,11 +80,58 @@ namespace cabinets.Core.Services
 				return null;
 			}
 		}
+		
 		public Dictionary<string, string> Errors
 		{
 			get;
 			private set;
 		}
-		public Task<News> GetNews(Guid guid) => throw new NotImplementedException();
+
+		public async Task<News> GetNews(Guid guid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.PostAsync(GetNewsDetailUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"uuid", guid.ToString()}
+				}));
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					Errors = new Dictionary<string, string>
+					{
+						{"Fatal", "Нет ответа от сервера"}
+					};
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<NewsDto>>(json);
+
+				if (data.Success)
+				{
+					string[] pictures = new string[data.Data.DetailPictureSources.Length];
+					for (int i = 0; i < data.Data.DetailPictureSources.Length; i++)
+					{
+						pictures[i] = DomainUri + data.Data.DetailPictureSources[i].Picture;
+					}
+					var news = _mapper.Map<News>(data.Data);
+					news.DetailPictureSources = pictures;
+					return news;
+				}
+
+				if (!string.IsNullOrEmpty(data.Error))
+				{
+					Errors["Fatal"] = data.Error;
+				}
+
+				Errors = data.Errors;
+				return null;
+			}
+		}
 	}
 }

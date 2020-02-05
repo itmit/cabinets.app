@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using cabinets.Core.ViewModels.Cabinets;
@@ -11,9 +12,10 @@ using MvvmCross.ViewModels;
 
 namespace cabinets.Core.ViewModels
 {
-	public class MainViewModel : MvxNavigationViewModel
+	public class MainViewModel : MvxNavigationViewModel<Type>
 	{
 		private IMvxAsyncCommand _showInitialViewModelsCommand;
+		private Type _type;
 
 		public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
@@ -30,6 +32,15 @@ namespace cabinets.Core.ViewModels
 
 		private Task ShowInitialViewModels(CancellationToken arg)
 		{
+			if (_type == typeof(CabinetsViewModel))
+			{
+				FirstPageIndex = 1;
+			}
+
+			if (_type == typeof(CalendarViewModel))
+			{
+				FirstPageIndex = 2;
+			}
 			var tasks = new List<Task>
 			{
 				NavigationService.Navigate<ProfileViewModel>(cancellationToken: arg),
@@ -39,6 +50,17 @@ namespace cabinets.Core.ViewModels
 			};
 
 			return Task.WhenAll(tasks);
+		}
+
+		public int FirstPageIndex
+		{
+			get;
+			private set;
+		}
+
+		public override void Prepare(Type parameter)
+		{
+			_type = parameter;
 		}
 	}
 }

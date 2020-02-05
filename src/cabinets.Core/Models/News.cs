@@ -1,4 +1,6 @@
-﻿namespace cabinets.Core.Models
+﻿using System;
+
+namespace cabinets.Core.Models
 {
     public class News
     {
@@ -10,6 +12,18 @@
             get; 
             set; 
         }
+		
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+
+		public string[] DetailPictureSources
+		{
+			get;
+			set;
+		}
 
         /// <summary>
         /// Возвращает заголовок новости

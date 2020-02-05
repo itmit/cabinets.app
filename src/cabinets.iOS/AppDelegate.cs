@@ -23,7 +23,7 @@ namespace cabinets.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-
+			FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

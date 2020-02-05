@@ -13,7 +13,13 @@
              Title="Новости">
     <ContentPage.Content>
         <!--Страница новостей-->
-        <ListView Margin="15,5" HasUnevenRows="True" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemTapped="ListView_ItemTapped" ItemsSource="{Binding News}">
+        <ListView Margin="15,5" 
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  VerticalScrollBarVisibility="Never"
+                  ItemTapped="ListView_ItemTapped"
+                  SelectedItem="{Binding SelectedNews}"
+                  ItemsSource="{Binding News}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <viewCell:NewsViewCell/>

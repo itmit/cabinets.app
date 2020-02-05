@@ -14,11 +14,11 @@ namespace cabinets.Core.Pages.News
         public NewsPage()
         {
             InitializeComponent();
-        }
+		}
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Navigation.PushAsync(new NewsDetailPage());
-        }
+		{
+			((ListView) sender).SelectedItem = null;
+		}
     }
 }

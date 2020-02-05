@@ -1,31 +1,19 @@
-﻿using cabinets.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using cabinets.Core.Views;
+﻿using System;
+using cabinets.Core.ViewModels.Auth;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Core.Pages.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TwoButtonPage : ContentPage
+	[MvxContentPagePresentation(NoHistory = true, Animated = false)]
+    public partial class TwoButtonPage : MvxContentPage<TwoButtonViewModel>
     {
         public TwoButtonPage()
         {
             InitializeComponent();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-           // Navigation.PushAsync(new MainTabbedView());
-        }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-          //  Navigation.PushAsync(new MainTabbedView());
-        }
-    }
+	}
 }
