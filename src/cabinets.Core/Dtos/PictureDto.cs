@@ -7,5 +7,10 @@
 			get;
 			set;
 		}
+		public string Photo
+		{
+			get;
+			set;
+		}
 	}
 }

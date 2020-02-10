@@ -35,7 +35,7 @@ namespace cabinets.Core.Models
 		}
 
 		/// <summary>Returns a string that represents the current object.</summary>
-		/// <returns>A string that represents the current object.</returns>
+		/// <returns>NavigateToMainPage string that represents the current object.</returns>
 		public override string ToString() => $"{Type} {Body}";
 	}
 }

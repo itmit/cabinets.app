@@ -14,8 +14,12 @@
              Title="Кабинеты">
     <ContentPage.Content>
         <!--Страница кабинеты-->
-        <ListView Margin="15,5"
+        <views:MvxListView Margin="15,5"
                   HasUnevenRows="True"
+                  IsPullToRefreshEnabled="True"
+                  VerticalOptions="FillAndExpand"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
                   SeparatorVisibility="None"
                   VerticalScrollBarVisibility="Never"
                   ItemsSource="{Binding Cabinets}"
@@ -26,6 +30,6 @@
                     <views1:CabinetsViewCell/>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </views:MvxListView>
     </ContentPage.Content>
 </views:MvxContentPage>

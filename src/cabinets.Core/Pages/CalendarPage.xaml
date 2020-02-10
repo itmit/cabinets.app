@@ -7,6 +7,7 @@
              xmlns:calendar="clr-namespace:cabinets.Views"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
+             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.CalendarPage"
              Title="Календарь"
@@ -25,7 +26,7 @@
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <calendar:CalendarView/>
+                <views1:CalendarView/>
                 <StackLayout Margin="15,0">
                     <Label FontSize="12">
                         <Label.FormattedText>

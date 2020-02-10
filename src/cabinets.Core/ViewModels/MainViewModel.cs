@@ -21,7 +21,7 @@ namespace cabinets.Core.ViewModels
 			: base(logProvider, navigationService)
 		{ }
 
-		public void A()
+		public void NavigateToMainPage()
 		{
 			NavigationService.Navigate<MainViewModel>();
 		}

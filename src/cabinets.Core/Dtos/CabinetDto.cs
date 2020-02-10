@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace cabinets.Core.Dtos
 {
@@ -30,6 +32,12 @@ namespace cabinets.Core.Dtos
 
 		public string Photo
 		{
+			get;
+			set;
+		}
+
+		[JsonProperty("photos")]
+		public PictureDto[] DetailPictureSources { 
 			get;
 			set;
 		}

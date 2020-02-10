@@ -10,5 +10,16 @@ namespace cabinets.Core.Services
 		Task<List<Cabinet>> GetAll();
 
 		Task<Cabinet> GetCabinet(Guid guid);
+
+		Task<Cabinet> GetCabinetDetail(Guid guid);
+
+		Task<bool> MakeReservation(Cabinet cabinet, DateTime date, IEnumerable<string> times);
+
+		Dictionary<string, string> Errors
+		{
+			get;
+		}
+
+		Task<string[]> CheckCabinetByDate(Cabinet cabinet, DateTime date);
 	}
 }

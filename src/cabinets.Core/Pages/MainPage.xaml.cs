@@ -32,7 +32,7 @@ namespace cabinets.Core.Pages
 			if (_firstSt)
 			{
 				_firstSt = false;
-				ViewModel.A();
+				ViewModel.NavigateToMainPage();
 				return;
 			}
 

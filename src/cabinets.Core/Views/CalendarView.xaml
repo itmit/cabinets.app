@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:calendar="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
              mc:Ignorable="d"
-             x:Class="cabinets.Views.CalendarView">
+             x:Class="cabinets.Core.Views.CalendarView">
   <ContentView.Content>
       <!--Календарь-->
       <StackLayout>
@@ -23,13 +23,14 @@
                                    WeekdaysTextColor="#31516D"
                                    DatesFontSize="12"
                                    DatesTextColor="#333333"
-                                   BorderWidth="0"
+                                   BorderWidth="1"
                                    BorderColor="Transparent"
                                    DisabledBorderColor="Transparent" 
                                    ShowNumberOfWeek="False" 
                                    StartDay="Monday"
                                    OuterBorderWidth="0"
-                                   IsClippedToBounds="True"/>
+                                   IsClippedToBounds="True"
+                                   SelectedDate="{Binding SelectedDate}"/>
             </StackLayout>
         </StackLayout>
   </ContentView.Content>

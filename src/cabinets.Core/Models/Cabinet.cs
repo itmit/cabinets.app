@@ -4,14 +4,11 @@ namespace cabinets.Core.Models
 {
     public class Cabinet
     {
-        /// <summary>
-        /// Возвращает номер кабинета
-        /// </summary>
-        public int Number 
-        { 
-            get; 
-            set; 
-        }
+		public string[] DetailPictureSources
+		{
+			get;
+			set;
+		}
 
 		public Guid Uuid
 		{

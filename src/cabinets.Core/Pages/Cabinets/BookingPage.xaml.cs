@@ -1,32 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using cabinets.Core.ViewModels.Cabinets;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Pages
+namespace cabinets.Core.Pages.Cabinets
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BookingPage : ContentPage
+    public partial class BookingPage : MvxContentPage<BookingViewModel>
     {
         public BookingPage()
         {
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopToRootAsync();
-        }
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+            if (sender is Frame frame)
+            {
+                if (frame.Content is Label label)
+                {
+					if (ViewModel.SelectedTimes.Any(time => time.Equals(label.Text)))
+					{
+						frame.BackgroundColor = Color.Default;
+						label.TextColor = Color.FromHex("#505050");
+						ViewModel.SelectedTimes.Remove(label.Text);
+					}
+					else
+					{
+						frame.BackgroundColor = Color.FromHex("#31516D");
+						label.TextColor = Color.White;
+						ViewModel.SelectedTimes.Add(label.Text);
+					}
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Price.IsVisible = true;
-            Booking.IsEnabled = true;
-            Booking.Opacity = 1;
+					ViewModel.IsReservationEnabled = ViewModel.SelectedTimes.Count > 0;
+				}
+			}
         }
-    }
+	}
 }

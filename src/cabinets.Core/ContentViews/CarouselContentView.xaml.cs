@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Core.Views
+namespace cabinets.Core.ContentViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalendarView : ContentView
+    public partial class CarouselContentView : ContentView
     {
-        public CalendarView()
+        public CarouselContentView()
         {
             InitializeComponent();
         }

@@ -54,10 +54,10 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                <Label Text="Для индивидуальных и групповых занятий семейной психотерапии, психодиагностики Для индивидуальных и групповых занятий семейной психотерапии, психодиагностики" Style="{StaticResource Label}" Margin="0,0,10,0" MaxLines="2" LineBreakMode="TailTruncation"/>
+                <Label Text="{Binding Description}" Style="{StaticResource Label}" Margin="0,0,10,0" MaxLines="2" LineBreakMode="TailTruncation"/>
             </StackLayout>
-            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20" BackgroundColor="{Binding BoxColor}" Margin="0,0,10,0"/>
-            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8" BackgroundColor="White" Margin="0,17,11,0" Rotation="-45"/>
+            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20" BackgroundColor="{Binding BoxColor, FallbackValue='Red'}" Margin="0,0,10,0"/>
+            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8" BackgroundColor="Transparent" Margin="0,17,11,0" Rotation="-45"/>
         </Grid>
   </ViewCell.View>
 </ViewCell>

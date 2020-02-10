@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
@@ -14,37 +15,28 @@ namespace cabinets.Core.ViewModels.Profile
 {
 	public class ProfileViewModel : MvxNavigationViewModel
 	{
-		private MvxObservableCollection<Cabinet> _bookings;
+		private MvxObservableCollection<Reservation> _bookings;
 		private readonly IUserRepository _userRepository;
 		private User _user;
 		private MvxCommand _logoutCommand;
 		private readonly IAuthService _authService;
+		private readonly IProfileService _profileService;
 
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
-			Bookings = new MvxObservableCollection<Cabinet> {
-				new Cabinet
-				{
-					Number = 1,
-					Date = "01.01.2020"
-				},
-				new Cabinet
-				{
-					Number = 2,
-					Date = "02.01.2020"
-				},
-				new Cabinet
-				{
-					Number = 3,
-					Date = "03.01.2020"
-				}
-
-			};
-
 			User = _userRepository.GetAll()
 						   .Single();
+
+			try
+			{
+				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 		}
 
 		public User User
@@ -53,7 +45,7 @@ namespace cabinets.Core.ViewModels.Profile
 			private set => SetProperty(ref _user, value);
 		}
 
-		public MvxObservableCollection<Cabinet> Bookings
+		public MvxObservableCollection<Reservation> Bookings
 		{
 			get => _bookings;
 			set => _bookings = value;
@@ -75,11 +67,12 @@ namespace cabinets.Core.ViewModels.Profile
 			NavigationService.Navigate<AuthorizationViewModel>();
 		}
 
-		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository, IAuthService authService)
+		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository, IAuthService authService, IProfileService profileService)
 			: base(logProvider, navigationService)
 		{
 			_userRepository = userRepository;
 			_authService = authService;
+			_profileService = profileService;
 		}
 	}
 }
