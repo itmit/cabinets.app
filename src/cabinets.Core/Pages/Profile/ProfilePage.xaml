@@ -9,8 +9,14 @@
              xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Profile.ProfilePage"
-             Title="Профиль"
-             IconImageSource="ic_user">
+             Title="Профиль">
+    <views:MvxContentPage.IconImageSource>
+            <OnPlatform x:TypeArguments="ImageSource">
+            <On Platform="iOS" Value="outline_person_black_24pt_1x.png"/>
+            <On Platform="Android" Value="ic_user.png"/>
+            </OnPlatform>
+    </views:MvxContentPage.IconImageSource>
+
     <ContentPage.Content>
         <!--Страница профиля-->
         <StackLayout>

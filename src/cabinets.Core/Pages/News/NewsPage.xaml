@@ -8,9 +8,15 @@
              xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.News.NewsPage"
-             IconImageSource="ic_filetext"
              d:NavigationPage.HasNavigationBar="True"
              Title="Новости">
+    <views:MvxContentPage.IconImageSource>
+        <OnPlatform x:TypeArguments="ImageSource">
+            <On Platform="iOS" Value="outline_description_black_24pt_1x.png"/>
+            <On Platform="Android" Value="ic_filetext.png"/>
+        </OnPlatform>
+    </views:MvxContentPage.IconImageSource>
+
     <ContentPage.Content>
         <!--Страница новостей-->
         <ListView Margin="15,5" 

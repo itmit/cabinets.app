@@ -11,8 +11,14 @@
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.CalendarPage"
              Title="Календарь"
-             d:NavigationPage.HasNavigationBar="True"
-             IconImageSource="ic_calendar">
+             d:NavigationPage.HasNavigationBar="True">
+    <views:MvxContentPage.IconImageSource>
+        <OnPlatform x:TypeArguments="ImageSource">
+            <On Platform="iOS" Value="baseline_calendar_today_black_24pt_1x.png"/>
+            <On Platform="Android" Value="ic_calendar.png"/>
+        </OnPlatform>
+    </views:MvxContentPage.IconImageSource>
+
     <ContentPage.Content>
         <!--Страница календаря-->
         <ScrollView>
