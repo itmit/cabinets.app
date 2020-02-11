@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -53,13 +54,44 @@ namespace cabinets.Core.Services
 
 				if (data.Success)
 				{
-					return _mapper.Map<List<Reservation>>(data.Data);
+					return data.Data;
 				}
 
 				return null;
 			}
 		}
 
-		public Task<Reservation> GetReservationDetail() => throw new System.NotImplementedException();
+		private const string GetReservationDetailUri = "http://cabinets.itmit-studio.ru/api/user/myReservations/detail";
+
+		public async Task<Reservation> GetReservationDetail(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.PostAsync(GetReservationDetailUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"uuid", uuid.ToString()}
+				}));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<Reservation>>(json);
+
+				if (data.Success)
+				{
+					return data.Data;
+				}
+
+				return null;
+			}
+		}
 	}
 }

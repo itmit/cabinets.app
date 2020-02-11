@@ -21,6 +21,9 @@ namespace cabinets.Core.ViewModels.Profile
 		private MvxCommand _logoutCommand;
 		private readonly IAuthService _authService;
 		private readonly IProfileService _profileService;
+		private Reservation _selectedBooking;
+		private bool _isRefreshing;
+		private MvxCommand _refreshCommand;
 
 		public override async Task Initialize()
 		{
@@ -39,6 +42,35 @@ namespace cabinets.Core.ViewModels.Profile
 			}
 		}
 
+		public IMvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ?? new MvxCommand(Refresh);
+				return _refreshCommand;
+			}
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
+		private async void Refresh()
+		{
+			IsRefreshing = true;
+			try
+			{
+				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+			IsRefreshing = false;
+		}
+
 		public User User
 		{
 			get => _user;
@@ -48,7 +80,7 @@ namespace cabinets.Core.ViewModels.Profile
 		public MvxObservableCollection<Reservation> Bookings
 		{
 			get => _bookings;
-			set => _bookings = value;
+			set => SetProperty(ref _bookings, value);
 		}
 
 		public MvxCommand LogoutCommand
@@ -57,6 +89,22 @@ namespace cabinets.Core.ViewModels.Profile
 			{
 				_logoutCommand = _logoutCommand ?? new MvxCommand(LogoutCommandExecute);
 				return _logoutCommand;
+			}
+		}
+
+		public Reservation SelectedBooking
+		{
+			get => _selectedBooking;
+			set
+			{
+				if (value == null)
+				{
+					return;
+				}
+
+				SetProperty(ref _selectedBooking, value);
+
+				NavigationService.Navigate<MyBookingViewModel, Reservation>(value);
 			}
 		}
 
