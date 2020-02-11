@@ -16,22 +16,46 @@
     <TabbedPage.UnselectedTabColor>
         <Color>#828282</Color>
     </TabbedPage.UnselectedTabColor>
-    <NavigationPage Title="Профиль" IconImageSource="ic_user.png">
+    <NavigationPage Title="Профиль">
+        <NavigationPage.IconImageSource>
+            <OnPlatform x:TypeArguments="ImageSource">
+                <On Platform="iOS" Value="outline_person_black_24pt_1x.png"/>
+                <On Platform="Android" Value="ic_user.png"/>
+            </OnPlatform>
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <page:ProfilePage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Кабинеты" IconImageSource="ic_home.png">
+    <NavigationPage Title="Кабинеты">
+        <NavigationPage.IconImageSource>
+            <OnPlatform x:TypeArguments="ImageSource">
+                <On Platform="iOS" Value="outline_home_black_24pt_1x.png"/>
+                <On Platform="Android" Value="ic_home.png"/>
+            </OnPlatform>
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <page:CabinetsPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Календарь" IconImageSource="ic_calendar.png">
+    <NavigationPage Title="Календарь">
+        <NavigationPage.IconImageSource>
+            <OnPlatform x:TypeArguments="ImageSource">
+                <On Platform="iOS" Value="baseline_calendar_today_black_24pt_1x.png"/>
+                <On Platform="Android" Value="ic_calendar.png"/>
+            </OnPlatform>
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <page:CalendarPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Новости" IconImageSource="ic_filetext.png">
+    <NavigationPage Title="Новости">
+        <NavigationPage.IconImageSource>
+            <OnPlatform x:TypeArguments="ImageSource">
+                <On Platform="iOS" Value="outline_description_black_24pt_1x.png"/>
+                <On Platform="Android" Value="ic_filetext.png"/>
+            </OnPlatform>
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <page:NewsPage/>
         </x:Arguments>

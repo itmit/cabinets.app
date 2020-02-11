@@ -7,6 +7,10 @@
              x:Class="cabinets.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#001324"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
             <Style TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="#F3F3F3"></Setter>
             </Style>
