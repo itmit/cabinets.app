@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="auth:RegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+             xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.Auth.RegistrationPage"
+             Title="Регистрация">
+    <ContentPage.Content>
+        <!--Страница регистрации-->
+        <ScrollView>
+            <StackLayout Margin="20,15" Spacing="0">
+                <Frame Style="{StaticResource FrameEntry}">
+                    <controls:CustomEntry Placeholder="Имя" Text="{Binding FirstName}" Style="{StaticResource EntryReg}"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[FirstName]}"
+                       IsVisible="{Binding ErrorsDictionary[FirstName], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[FirstName], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
+                    <controls:CustomEntry Placeholder="Фамилия" Text="{Binding LastName}" Style="{StaticResource EntryReg}"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[LastName]}"
+                       IsVisible="{Binding ErrorsDictionary[LastName], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[LastName], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}">
+                    <DatePicker Date="{Binding Date}"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[Date]}"
+                       IsVisible="{Binding ErrorsDictionary[Date], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Date], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
+                    <controls:CustomEntry Placeholder="Номер телефона" 
+                                          Keyboard="Numeric"
+                                          Text="{Binding PhoneNumber}" 
+                                          Style="{StaticResource EntryReg}">
+                        <controls:CustomEntry.Behaviors>
+                            <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                        </controls:CustomEntry.Behaviors>
+                    </controls:CustomEntry>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[PhoneNumber]}"
+                       IsVisible="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}">
+                    <controls:CustomEntry Placeholder="E-mail" Keyboard="Email" Text="{Binding Email}" Style="{StaticResource EntryReg}"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[Email]}"
+                       IsVisible="{Binding ErrorsDictionary[Email], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Email], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}" Margin="0,10">
+                    <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" Style="{StaticResource EntryReg}" IsPassword="True"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[Password]}"
+                       IsVisible="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Frame Style="{StaticResource FrameEntry}">
+                    <controls:CustomEntry Placeholder="Повторить пароль" Text="{Binding RepeatPass}" Style="{StaticResource EntryReg}" IsPassword="True"/>
+                </Frame>
+                <Label Text="{Binding ErrorsDictionary[RepeatPass]}"
+                       IsVisible="{Binding ErrorsDictionary[RepeatPass], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[RepeatPass], Converter={StaticResource NullToBoolConverter}}"
+                />
+                <Grid Margin="0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" Color="#31516D" IsChecked="{Binding IsCheckedPolicy}"/>
+                    <Label Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с " TextColor="#505050"/>
+                                    <Span Text="политикой конфиденциальности." TextColor="Blue" TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenPolicyCommand}" NumberOfTapsRequired="1"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <Button Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" IsEnabled="{Binding IsCheckedPolicy}" Command="{Binding RegistrationCommand}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

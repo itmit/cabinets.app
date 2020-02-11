@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:calendar="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Views.CalendarView">
+  <ContentView.Content>
+      <!--Календарь-->
+      <StackLayout>
+            <StackLayout BackgroundColor="White" Margin="0,10">
+                <calendar:Calendar Padding="40,20"
+                                   TitleRightArrowTextColor="#31516D"
+                                   TitleLabelFontSize="16"
+                                   TitleLabelTextColor="#31516D" 
+                                   TitleLeftArrowTextColor="#31516D"
+                                   SelectedBorderWidth="0"
+                                   SelectedTextColor="#FFFFFF"
+                                   SelectedBackgroundColor="#31516D"
+                                   SelectedBorderColor="Transparent"
+                                   WeekdaysFontSize="16"
+                                   WeekdaysTextColor="#31516D"
+                                   DatesFontSize="12"
+                                   DatesTextColor="#333333"
+                                   BorderWidth="1"
+                                   BorderColor="Transparent"
+                                   DisabledBorderColor="Transparent" 
+                                   ShowNumberOfWeek="False" 
+                                   StartDay="Monday"
+                                   OuterBorderWidth="0"
+                                   IsClippedToBounds="True"
+                                   SelectedDate="{Binding SelectedDate}"/>
+            </StackLayout>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

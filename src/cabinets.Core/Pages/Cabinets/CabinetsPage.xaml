@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="cabinets:CabinetsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewCell="clr-namespace:cabinets.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:cabinets="clr-namespace:cabinets.Core.ViewModels.Cabinets;assembly=cabinets.Core"
+             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.Cabinets.CabinetsPage"
+             d:NavigationPage.HasNavigationBar="True"
+             IconImageSource="ic_home"
+             Title="Кабинеты">
+    <ContentPage.Content>
+        <!--Страница кабинеты-->
+        <views:MvxListView Margin="15,5"
+                  HasUnevenRows="True"
+                  IsPullToRefreshEnabled="True"
+                  VerticalOptions="FillAndExpand"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
+                  SeparatorVisibility="None"
+                  VerticalScrollBarVisibility="Never"
+                  ItemsSource="{Binding Cabinets}"
+                  ItemSelected="ListView_OnItemSelected"
+                  SelectedItem="{Binding SelectedCabinet}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <views1:CabinetsViewCell/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </views:MvxListView>
+    </ContentPage.Content>
+</views:MvxContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="news:NewsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewCell="clr-namespace:cabinets.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.News.NewsPage"
+             IconImageSource="ic_filetext"
+             d:NavigationPage.HasNavigationBar="True"
+             Title="Новости">
+    <ContentPage.Content>
+        <!--Страница новостей-->
+        <ListView Margin="15,5" 
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  VerticalScrollBarVisibility="Never"
+                  ItemTapped="ListView_ItemTapped"
+                  SelectedItem="{Binding SelectedNews}"
+                  ItemsSource="{Binding News}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <viewCell:NewsViewCell/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</views:MvxContentPage>

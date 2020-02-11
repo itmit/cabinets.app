@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.ContentViews.CarouselContentView">
+  <ContentView.Content>
+      <!--Наполнение для карусели на детальной странице кабинетов-->
+      <StackLayout>
+            <Frame IsClippedToBounds="True" Padding="0" CornerRadius="10" HorizontalOptions="Start">
+                <Image Source="{Binding .}" WidthRequest="250" HeightRequest="170" Aspect="Fill"/>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

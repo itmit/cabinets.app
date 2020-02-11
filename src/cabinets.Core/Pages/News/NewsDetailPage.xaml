@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="news:NewsDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.News.NewsDetailPage"
+             Title="Новости">
+    <ContentPage.Content>
+        <!--Детальная страница новостей-->
+        <ScrollView>
+            <StackLayout Margin="20,5">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="Label" TargetType="Label">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <forms:CachedImage Source="{Binding News.Image}" Margin="0,5" HorizontalOptions="Center"/>
+                <Label Text="{Binding News.Title}" Style="{StaticResource Label}"/>
+                <Label Text="{Binding News.DetailText}" Style="{StaticResource Label}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

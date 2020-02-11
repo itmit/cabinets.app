@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:CalendarViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewCell="clr-namespace:cabinets.Views"
+             xmlns:calendar="clr-namespace:cabinets.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
+             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.CalendarPage"
+             Title="Календарь"
+             d:NavigationPage.HasNavigationBar="True"
+             IconImageSource="ic_calendar">
+    <ContentPage.Content>
+        <!--Страница календаря-->
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="LabelFrame" TargetType="Label">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="HorizontalOptions" Value="Center"/>
+                            <Setter Property="VerticalOptions" Value="Center"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <views1:CalendarView/>
+                <StackLayout Margin="15,0">
+                    <Label FontSize="12">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Свободные кабинеты "/>
+                                    <Span Text="12 января 2019"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <ListView HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None" HorizontalOptions="Start" WidthRequest="215" HeightRequest="180" ItemTapped="ListView_ItemTapped">
+                        <ListView.ItemsSource>
+                            <x:String>000000</x:String>
+                        </ListView.ItemsSource>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <viewCell:FreeCabinetsViewCell/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout Spacing="0">
+                        <Button x:Name="Booking" Text="Забронировать" Style="{StaticResource ButtonBlur}" IsEnabled="False" Opacity="0.6"/>
+                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" Clicked="Button_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>
