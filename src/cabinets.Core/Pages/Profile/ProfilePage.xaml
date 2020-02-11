@@ -47,7 +47,16 @@
             </StackLayout>
             <StackLayout BackgroundColor="White" Padding="20">
                 <Label Text="Мои бронирования" Style="{StaticResource Label}"></Label>
-                <ListView HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemTapped="ListView_ItemTapped" ItemsSource="{Binding Bookings}">
+                <ListView HasUnevenRows="True"
+                          VerticalScrollBarVisibility="Never"
+                          SelectedItem="{Binding SelectedBooking}"
+                          ItemTapped="ListView_ItemTapped"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
+                          ItemsSource="{Binding Bookings}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <views1:BookingsViewCell/>

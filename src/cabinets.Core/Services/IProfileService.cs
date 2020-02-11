@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 
@@ -8,6 +9,6 @@ namespace cabinets.Core.Services
 	{
 		Task<List<Reservation>> GetReservations();
 
-		Task<Reservation> GetReservationDetail();
+		Task<Reservation> GetReservationDetail(Guid uuid);
 	}
 }

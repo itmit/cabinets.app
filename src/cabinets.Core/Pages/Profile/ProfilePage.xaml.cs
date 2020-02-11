@@ -17,8 +17,8 @@ namespace cabinets.Core.Pages.Profile
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Navigation.PushAsync(new MyBookingPage());
-        }
+		{
+			((ListView) sender).SelectedItem = null;
+		}
     }
 }
