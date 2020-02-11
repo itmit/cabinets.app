@@ -12,7 +12,7 @@
              Title="Регистрация">
     <ContentPage.Content>
         <!--Страница регистрации-->
-        <ScrollView>
+        <ScrollView Margin="0,0,0,10">
             <StackLayout Margin="20,15" Spacing="0">
                 <Frame Style="{StaticResource FrameEntry}">
                     <controls:CustomEntry Placeholder="Имя" Text="{Binding FirstName}" Style="{StaticResource EntryReg}"/>
@@ -29,7 +29,7 @@
                        IsEnabled="{Binding ErrorsDictionary[LastName], Converter={StaticResource NullToBoolConverter}}"
                 />
                 <Frame Style="{StaticResource FrameEntry}">
-                    <DatePicker Date="{Binding Date}"/>
+                    <DatePicker Date="{Binding Date}" FontSize="14" TextColor="#828282"/>
                 </Frame>
                 <Label Text="{Binding ErrorsDictionary[Date]}"
                        IsVisible="{Binding ErrorsDictionary[Date], Converter={StaticResource NullToBoolConverter}}"
@@ -81,14 +81,13 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с " TextColor="#505050"/>
-                                    <Span Text="политикой конфиденциальности." TextColor="Blue" TextDecorations="Underline">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenPolicyCommand}" NumberOfTapsRequired="1"/>
-                                        </Span.GestureRecognizers>
-                                    </Span>
+                                    <Span Text="политикой конфиденциальности." TextColor="Blue" TextDecorations="Underline"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenPolicyCommand}"/>
+                        </Label.GestureRecognizers>
                     </Label>
                 </Grid>
                 <Button Text="Зарегистрироваться" Style="{StaticResource ButtonBlur}" IsEnabled="{Binding IsCheckedPolicy}" Command="{Binding RegistrationCommand}"/>

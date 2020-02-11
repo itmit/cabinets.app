@@ -17,28 +17,28 @@
         <StackLayout Spacing="0" Margin="15,0">
             <Image Source="pic_logo.png" WidthRequest="100" HorizontalOptions="Center" Margin="0,80,0,0"/>
             <Image Source="pic_title.png" WidthRequest="170" HorizontalOptions="Center" Margin="0,10,0,45"/>
-            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10">
-                <controls:CustomEntry Text="{Binding Login}" Placeholder="Логин" Style="{StaticResource EntryAuth}" Keyboard="Numeric">
+
+            <Label Text="{Binding ErrorsDictionary[Login]}"
+                   IsVisible="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
+                   IsEnabled="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
+                   TextColor="White"/>
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
+                <controls:CustomEntry Text="{Binding Login}" Placeholder="Номер телефона" Style="{StaticResource EntryAuth}" Keyboard="Numeric">
                     <controls:CustomEntry.Behaviors>
                         <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
                     </controls:CustomEntry.Behaviors>
                 </controls:CustomEntry>
             </Frame>
-            <Label Text="{Binding ErrorsDictionary[Login]}"
-                   IsVisible="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
-                   IsEnabled="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
-                   TextColor="HotPink"
-                   />
-            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,15">
-                <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" 
-                                      Style="{StaticResource EntryAuth}"/>
-            </Frame>
 
             <Label Text="{Binding ErrorsDictionary[Password]}"
                    IsVisible="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
                    IsEnabled="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
-                   TextColor="HotPink"
-            />
+                   TextColor="White"/>
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,15">
+                <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" 
+                                      Style="{StaticResource EntryAuth}"/>
+            </Frame>
+
             <Button Text="Войти" Style="{StaticResource ButtonBlur}" Margin="0,0,0,100" Command="{Binding AuthorizationCommand}"/>
             <Label Text="Зарегистрироваться" HorizontalOptions="Center" TextColor="#828282">
                 <Label.GestureRecognizers>
