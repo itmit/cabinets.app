@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
+using cabinets.Core.ViewModels.Cabinets;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace cabinets.Core.ViewModels
@@ -17,23 +20,47 @@ namespace cabinets.Core.ViewModels
 
 		private readonly ICabinetsService _cabinetService;
 		private MvxObservableCollection<CalendarDay> _cabinets;
+        private MvxCommand _openBookingComand;
+        private CalendarDay _selectedCabinet;
+        private readonly IMvxNavigationService _navigationService;
 
-		public MvxObservableCollection<CalendarDay> Cabinets
+        public MvxObservableCollection<CalendarDay> Cabinets
 		{
 			get => _cabinets;
 			private set => SetProperty(ref _cabinets, value);
 		}
 
-		public DayViewModel(ICabinetsService cabinetService)
-		{
-			_cabinetService = cabinetService;
-		}
+        public DayViewModel(ICabinetsService cabinetService, IMvxNavigationService navigationService)
+        {
+            _cabinetService = cabinetService;
+            _navigationService = navigationService;
+        }
 
-		public override async Task Initialize()
+        public override async Task Initialize()
 		{
 			await base.Initialize();
-
-			Cabinets = new MvxObservableCollection<CalendarDay>(await _cabinetService.GetBusyCabinetsByDate(_parameter));
+            try
+            {
+                Cabinets = new MvxObservableCollection<CalendarDay>(await _cabinetService.GetBusyCabinetsByDate(_parameter));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 		}
-	}
+
+        public CalendarDay SelectedCabinet
+        { 
+            get => _selectedCabinet; 
+            set
+            {
+                SetProperty(ref _selectedCabinet, value);
+                if (value != null)
+                {
+                    _navigationService.Navigate<BookingViewModel, BookingViewModelAttribute>(new BookingViewModelAttribute(value.Cabinet, _parameter));
+
+                }
+            }
+        }
+    }
 }

@@ -9,35 +9,36 @@
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.DayPage">
     <ContentPage.Content>
-        <ScrollView>
-            <controls:RepeaterView 
-                ItemsSource="{Binding Cabinets}"
-                VerticalOptions="Fill"
-                HorizontalOptions="Fill">
-                <controls:RepeaterView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Cabinet.Name}"/>
-                                <controls:RepeaterView 
-                                    ItemsSource="{Binding Times}"
-                                    VerticalOptions="Fill"
-                                    HorizontalOptions="Fill">
-                                    <controls:RepeaterView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
-                                                    <Label Text="{Binding .}" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                                </Frame>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </controls:RepeaterView.ItemTemplate>
-                                </controls:RepeaterView>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </controls:RepeaterView.ItemTemplate>
-            </controls:RepeaterView>
-        </ScrollView>
+        <ListView
+            HasUnevenRows="True"
+            SelectedItem="{Binding SelectedCabinet}"
+            ItemsSource="{Binding Cabinets}"
+            ItemSelected="ListView_ItemSelected"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="10">
+                            <Label Text="{Binding Cabinet.Name}"/>
+                            <controls:RepeaterView 
+                                ItemsSource="{Binding Times}"
+                                VerticalOptions="Fill"
+                                HorizontalOptions="Fill">
+                                <controls:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
+                                                <Label Text="{Binding .}" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </controls:RepeaterView.ItemTemplate>
+                            </controls:RepeaterView>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </views:MvxContentPage>

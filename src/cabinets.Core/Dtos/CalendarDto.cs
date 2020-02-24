@@ -11,7 +11,7 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public IEnumerable<string> Times
+		public List<string> Times
 		{
 			get;
 			set;

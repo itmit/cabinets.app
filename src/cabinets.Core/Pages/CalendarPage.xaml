@@ -36,16 +36,6 @@
                 <views1:CalendarView/>
 
                 <StackLayout Margin="15,0">
-                    <Label FontSize="12">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Свободные кабинеты "/>
-                                    <Span Text="12 января 2019"/>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
                     <StackLayout Spacing="0">
                         <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
                     </StackLayout>

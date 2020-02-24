@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace cabinets.Core.ViewModels.Cabinets
 {
-	public class BookingViewModel : MvxViewModel<Cabinet, bool>
+	public class BookingViewModel : MvxViewModel<BookingViewModelAttribute, bool>
 	{
 		private Cabinet _cabinet;
 		private DateTime _selectedDate = DateTime.Now;
@@ -28,7 +28,14 @@ namespace cabinets.Core.ViewModels.Cabinets
 		public override async Task Initialize()
 		{
 			await base.Initialize();
-			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
+            try
+            {
+                Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
 		}
 
 		public bool IsReservationEnabled
@@ -55,10 +62,11 @@ namespace cabinets.Core.ViewModels.Cabinets
 			private set => SetProperty(ref _cabinet, value);
 		}
 
-		public override void Prepare(Cabinet parameter)
+		public override void Prepare(BookingViewModelAttribute parameter)
 		{
-			Cabinet = parameter;
-		}
+			Cabinet = parameter.Cabinet;
+            SelectedDate = parameter.Date == null ? DateTime.Now : parameter.Date.Value;
+        }
 
 		public IMvxCommand ReservationCommand
 		{
@@ -137,4 +145,22 @@ namespace cabinets.Core.ViewModels.Cabinets
 			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(cabinet, date));
 		}
 	}
+}
+public class BookingViewModelAttribute
+{
+    public BookingViewModelAttribute(Cabinet cabinet, DateTime? date = null)
+    {
+        Cabinet = cabinet;
+        Date = date;
+    }
+
+    public Cabinet Cabinet
+    {
+        get;
+    }
+
+    public DateTime? Date
+    {
+        get;
+    }
 }

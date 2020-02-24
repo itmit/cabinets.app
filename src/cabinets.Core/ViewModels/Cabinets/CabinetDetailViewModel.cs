@@ -43,7 +43,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 				_openBookingCommand = _openBookingCommand ??
 									  new MvxCommand(async () =>
 									  {
-										  var result = await _navigationService.Navigate<BookingViewModel, Cabinet, bool>(Cabinet);
+										  var result = await _navigationService.Navigate<BookingViewModel, BookingViewModelAttribute, bool>(new BookingViewModelAttribute(Cabinet));
 										  if (result)
 										  {
 											  await _navigationService.Close(this);

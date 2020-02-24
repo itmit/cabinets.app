@@ -42,11 +42,15 @@ namespace cabinets.Core.Services
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<Cabinet, CabinetDto>();
-				cfg.CreateMap<CalendarDay, CalendarDto>();
+
 				cfg.CreateMap<CabinetDto, Cabinet>()
 				   .ForMember(cab => cab.Price, m => m.MapFrom(dto => dto.Price ?? 0))
 				   .ForMember(cab => cab.PhotoSource, m => m.MapFrom(dto => DomainUri + dto.Photo));
-			}));
+
+                cfg.CreateMap<CalendarDto, CalendarDay>()
+                .ForMember(day => day.Times, m => m.MapFrom(dto => dto.Times))
+                .ForMember(day => day.Cabinet, m => m.MapFrom(dto => dto.Cabinet));
+            }));
 		}
 		#endregion
 
@@ -78,7 +82,7 @@ namespace cabinets.Core.Services
 
 				if (data.Success)
 				{
-					return _mapper.Map<IEnumerable<CalendarDay>>(data.Data);
+					return _mapper.Map<CalendarDay[]>(data.Data);
 				}
 
 				return null;
