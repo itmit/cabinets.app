@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:DayViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
+             xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.DayPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <controls:RepeaterView 
+                ItemsSource="{Binding Cabinets}"
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill">
+                <controls:RepeaterView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Cabinet.Name}"/>
+                                <controls:RepeaterView 
+                                    ItemsSource="{Binding Times}"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Fill">
+                                    <controls:RepeaterView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
+                                                    <Label Text="{Binding .}" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </controls:RepeaterView.ItemTemplate>
+                                </controls:RepeaterView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:RepeaterView.ItemTemplate>
+            </controls:RepeaterView>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

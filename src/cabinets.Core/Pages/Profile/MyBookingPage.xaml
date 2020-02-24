@@ -35,6 +35,16 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Цена: "></Span>
+                                <Span Text="{Binding Reservation.Amount}"></Span>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <Grid>
                     <StackLayout x:Name="FirstContentView" IsVisible="True">
                         <Label TextColor="#505050" Text="{Binding Reservation.Cabinet.Name}"/>

@@ -15,16 +15,5 @@ namespace cabinets.Core.Pages
         {
             InitializeComponent();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Booking.IsEnabled = true;
-            Booking.Opacity = 1;
-        }
-    }
+	}
 }
