@@ -93,5 +93,29 @@ namespace cabinets.Core.Services
 				return null;
 			}
 		}
+
+		private const string GetAmountUri = "http://cabinets.itmit-studio.ru/api/user/getAmount";
+		public async Task<int> GetAmount()
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.GetAsync(GetAmountUri);
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return 0;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<AmountDto>>(json);
+
+				return data.Data.Amount ?? 0;
+			}
+		}
 	}
 }

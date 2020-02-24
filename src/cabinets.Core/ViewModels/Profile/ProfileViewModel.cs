@@ -24,6 +24,7 @@ namespace cabinets.Core.ViewModels.Profile
 		private Reservation _selectedBooking;
 		private bool _isRefreshing;
 		private MvxCommand _refreshCommand;
+		private int _amount;
 
 		public override async Task Initialize()
 		{
@@ -32,14 +33,7 @@ namespace cabinets.Core.ViewModels.Profile
 			User = _userRepository.GetAll()
 						   .Single();
 
-			try
-			{
-				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			Refresh();
 		}
 
 		public IMvxCommand RefreshCommand
@@ -57,11 +51,18 @@ namespace cabinets.Core.ViewModels.Profile
 			set => SetProperty(ref _isRefreshing, value);
 		}
 
+		public int Amount
+		{
+			get => _amount;
+			set => SetProperty(ref _amount, value);
+		}
+
 		private async void Refresh()
 		{
 			IsRefreshing = true;
 			try
 			{
+				Amount = await _profileService.GetAmount();
 				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
 			}
 			catch (Exception e)
@@ -70,7 +71,6 @@ namespace cabinets.Core.ViewModels.Profile
 			}
 			IsRefreshing = false;
 		}
-
 		public User User
 		{
 			get => _user;

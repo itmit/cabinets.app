@@ -9,6 +9,7 @@ namespace cabinets.Core.Services
 	{
 		Task<List<Reservation>> GetReservations();
 
+		Task<int> GetAmount();
 		Task<Reservation> GetReservationDetail(Guid uuid);
 	}
 }

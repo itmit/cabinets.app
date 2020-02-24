@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
@@ -11,14 +9,14 @@ using Xamarin.Forms;
 
 namespace cabinets.Core.ViewModels.Cabinets
 {
-	public class BookingViewModel : MvxViewModel<Cabinet>
+	public class BookingViewModel : MvxViewModel<Cabinet, bool>
 	{
 		private Cabinet _cabinet;
 		private DateTime _selectedDate = DateTime.Now;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly ICabinetsService _cabinetsService;
-		private MvxObservableCollection<string> _times;
-		private MvxObservableCollection<string> _selectedTimes = new MvxObservableCollection<string>();
+		private MvxObservableCollection<CabinetTime> _times;
+		private MvxObservableCollection<CabinetTime> _selectedTimes = new MvxObservableCollection<CabinetTime>();
 		private bool _isReservationEnabled;
 
 		public BookingViewModel(ICabinetsService cabinetsService, IMvxNavigationService navigationService)
@@ -30,7 +28,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 		public override async Task Initialize()
 		{
 			await base.Initialize();
-			Times = new MvxObservableCollection<string>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
+			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
 		}
 
 		public bool IsReservationEnabled
@@ -39,13 +37,13 @@ namespace cabinets.Core.ViewModels.Cabinets
 			set => SetProperty(ref _isReservationEnabled, value);
 		}
 
-		public MvxObservableCollection<string> Times
+		public MvxObservableCollection<CabinetTime> Times
 		{
 			get => _times;
 			private set => SetProperty(ref _times, value);
 		}
 
-		public MvxObservableCollection<string> SelectedTimes
+		public MvxObservableCollection<CabinetTime> SelectedTimes
 		{
 			get => _selectedTimes;
 			set => SetProperty(ref _selectedTimes, value);
@@ -128,7 +126,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 			{
 				_backCommand = _backCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Close(this);
+					_navigationService.Close(this, true);
 				});
 				return _backCommand;
 			}
@@ -136,7 +134,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 
 		private async void LoadTimes(Cabinet cabinet, DateTime date)
 		{
-			Times = new MvxObservableCollection<string>(await _cabinetsService.CheckCabinetByDate(cabinet, date));
+			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(cabinet, date));
 		}
 	}
 }

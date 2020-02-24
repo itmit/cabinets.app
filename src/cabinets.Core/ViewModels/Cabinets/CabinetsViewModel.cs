@@ -22,6 +22,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+
 			try
 			{
 				Cabinets = new MvxObservableCollection<Cabinet>(await _cabinetsService.GetAll());

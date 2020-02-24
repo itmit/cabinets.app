@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:cabinets.Views"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:cabinets="clr-namespace:cabinets.Core.ViewModels.Cabinets;assembly=cabinets.Core"
              xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"

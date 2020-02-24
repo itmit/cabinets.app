@@ -50,6 +50,17 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="К оплате: "/>
+                                <Span Text="{Binding Amount}"/>
+                                <Span Text=" руб."/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
             <StackLayout BackgroundColor="White" Padding="20">
                 <Label Text="Мои бронирования" Style="{StaticResource Label}"></Label>

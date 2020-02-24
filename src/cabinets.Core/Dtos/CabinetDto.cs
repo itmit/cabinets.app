@@ -37,7 +37,8 @@ namespace cabinets.Core.Dtos
 		}
 
 		[JsonProperty("photos")]
-		public PictureDto[] DetailPictureSources { 
+		public PictureDto[] DetailPictureSources
+		{
 			get;
 			set;
 		}
@@ -48,7 +49,7 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public int Price
+		public int? Price
 		{
 			get;
 			set;

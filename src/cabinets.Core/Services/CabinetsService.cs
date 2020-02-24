@@ -20,11 +20,10 @@ namespace cabinets.Core.Services
 		#region Consts
 		private const string CheckCabinetByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/selectDate";
 		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
-
 		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/cabinets/index";
-
 		private const string GetCabinetDetailUri = "http://cabinets.itmit-studio.ru/api/cabinets/show";
 		private const string MakeReservationUri = "http://cabinets.itmit-studio.ru/api/cabinets/makeReservation";
+		private const string GetBusyCabinetsByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/getBusyCabinetsByDate";
 		#endregion
 
 		#region Fields
@@ -43,14 +42,50 @@ namespace cabinets.Core.Services
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<Cabinet, CabinetDto>();
+				cfg.CreateMap<CalendarDay, CalendarDto>();
 				cfg.CreateMap<CabinetDto, Cabinet>()
+				   .ForMember(cab => cab.Price, m => m.MapFrom(dto => dto.Price ?? 0))
 				   .ForMember(cab => cab.PhotoSource, m => m.MapFrom(dto => DomainUri + dto.Photo));
 			}));
 		}
 		#endregion
 
 		#region ICabinetsService members
-		public async Task<string[]> CheckCabinetByDate(Cabinet cabinet, DateTime date)
+		public async Task<IEnumerable<CalendarDay>> GetBusyCabinetsByDate(DateTime date)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.PostAsync(GetBusyCabinetsByDateUri,
+													  new FormUrlEncodedContent(new Dictionary<string, string>
+													  {
+														  {
+															  "date", date.ToString("yyyy-MM-dd")
+														  }
+													  }));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<CalendarDto[]>>(json);
+
+				if (data.Success)
+				{
+					return _mapper.Map<IEnumerable<CalendarDay>>(data.Data);
+				}
+
+				return null;
+			}
+		}
+
+		public async Task<CabinetTime[]> CheckCabinetByDate(Cabinet cabinet, DateTime date)
 		{
 			using (var client = new HttpClient())
 			{
@@ -76,7 +111,7 @@ namespace cabinets.Core.Services
 					return null;
 				}
 
-				var data = JsonConvert.DeserializeObject<GeneralDto<string[]>>(json);
+				var data = JsonConvert.DeserializeObject<GeneralDto<CabinetTime[]>>(json);
 
 				if (data.Success)
 				{
@@ -160,18 +195,24 @@ namespace cabinets.Core.Services
 			}
 		}
 
-		public async Task<bool> MakeReservation(Cabinet cabinet, DateTime date, IEnumerable<string> times)
+		public async Task<bool> MakeReservation(Cabinet cabinet, DateTime date, IEnumerable<CabinetTime> times)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
 
+				var cabTimes = new List<string>();
+				foreach (var time in times)
+				{
+					cabTimes.Add(time.Value);
+				}
+
 				var request = JsonConvert.SerializeObject(new ReservationDto
 				{
 					Date = date.ToString("yyyy-MM-dd"),
 					Uuid = cabinet.Uuid,
-					Times = times
+					Times = cabTimes
 				});
 
 				var response = await client.PostAsync(MakeReservationUri, new StringContent(request, Encoding.UTF8, "application/json"));

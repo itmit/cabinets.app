@@ -16,6 +16,12 @@ namespace cabinets.Core.Models
 			set;
 		}
 
+		public int? Amount 
+		{ 
+			get; 
+			set;
+		}
+
 		public Cabinet Cabinet
 		{
 			get;
