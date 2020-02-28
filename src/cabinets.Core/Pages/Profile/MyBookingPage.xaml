@@ -42,6 +42,7 @@
                             <FormattedString.Spans>
                                 <Span Text="Цена: " />
                                 <Span Text="{Binding Reservation.Amount}" />
+                                <Span Text=" руб." />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -66,7 +67,7 @@
                             <Button Text="Редактировать запись" Style="{StaticResource ButtonBlur}"
                                     Clicked="Button_Clicked" />
                             <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10"
-                                    Clicked="Button_Clicked_1" />
+                                    Command="{Binding CancelCommand}" />
                         </StackLayout>
                     </StackLayout>
                     <contentView:EditContentView x:Name="EditContentView" IsVisible="False" />

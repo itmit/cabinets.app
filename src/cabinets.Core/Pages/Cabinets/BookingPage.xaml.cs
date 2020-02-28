@@ -37,7 +37,7 @@ namespace cabinets.Core.Pages.Cabinets
 						label.TextColor = Color.White;
 						ViewModel.SelectedTimes.Add(ViewModel.Times.Single(t => t.Value.Equals(label.Text)));
 					}
-
+					ViewModel.RestatePrice();
 					ViewModel.IsReservationEnabled = ViewModel.SelectedTimes.Count > 0;
 				}
 			}

@@ -22,6 +22,8 @@ namespace cabinets.Core.Services
 		private const string GetReservationDetailUri = "http://cabinets.itmit-studio.ru/api/user/myReservations/detail";
 
 		private const string GetReservationsUri = "http://cabinets.itmit-studio.ru/api/user/myReservations";
+
+		private const string CancelReservationUri = "http://cabinets.itmit-studio.ru/api/cabinets/cancelReservation";
 		#endregion
 
 		#region Fields
@@ -129,6 +131,32 @@ namespace cabinets.Core.Services
 				}
 
 				return null;
+			}
+		}
+
+		public async Task<bool> CancelReservation(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.PostAsync(CancelReservationUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"uuid", uuid.ToString()}
+				}));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return false;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<List<Reservation>>>(json);
+
+				return data.Success;
 			}
 		}
 		#endregion

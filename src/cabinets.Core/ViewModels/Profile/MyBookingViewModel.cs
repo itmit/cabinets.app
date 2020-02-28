@@ -4,11 +4,14 @@ using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace cabinets.Core.ViewModels.Profile
 {
-	public class MyBookingViewModel : MvxViewModel<Reservation>
+	public class MyBookingViewModel : MvxViewModel<Reservation, bool>
 	{
 		#region Data
 		#region Fields
@@ -19,14 +22,17 @@ namespace cabinets.Core.ViewModels.Profile
 		private Reservation _reservation;
 		private User _user;
 		private readonly IUserRepository _userRepository;
+		private MvxCommand _cancelCommand;
+		private readonly IMvxNavigationService _navigationService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public MyBookingViewModel(IProfileService profileService, IUserRepository userRepository)
+		public MyBookingViewModel(IProfileService profileService, IUserRepository userRepository, IMvxNavigationService navigationService)
 		{
 			_profileService = profileService;
 			_userRepository = userRepository;
+			_navigationService = navigationService;
 		}
 		#endregion
 
@@ -41,6 +47,30 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			get => _reservation;
 			private set => SetProperty(ref _reservation, value);
+		}
+
+		public MvxCommand CancelCommand
+		{
+			get
+			{
+				_cancelCommand = _cancelCommand ?? new MvxCommand(CancelCommandExecute);
+				return _cancelCommand;
+			}
+		}
+
+		private async void CancelCommandExecute()
+		{
+			var confirm = await Application.Current.MainPage.DisplayAlert("Внимание",
+																		  "Вы действительно хотите отменить бронирование?", "Да", "Нет");
+
+			if (await _profileService.CancelReservation(_parameter.Uuid) && confirm)
+			{
+				await _navigationService.Close(this, true);
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Бронирование отменено", "Ок");
+				});
+			}
 		}
 
 		public User User

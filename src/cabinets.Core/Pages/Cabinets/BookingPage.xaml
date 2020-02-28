@@ -56,12 +56,12 @@
                             <Label Text="{Binding SelectedDate, StringFormat='{}{0:D}'}" TextColor="#505050"
                                    HorizontalOptions="Center" />
                             <Label Text="Выберите время" TextColor="#505050" HorizontalOptions="Center" />
-                            <Label x:Name="Price" TextColor="#505050" HorizontalOptions="Center">
+                            <Label TextColor="#505050" HorizontalOptions="Center">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <FormattedString.Spans>
-                                            <Span Text="{Binding Cabinet.Price}" />
-                                            <Span Text=" рублей/час" />
+                                            <Span Text="{Binding Price}" />
+                                            <Span Text=" рублей" />
                                         </FormattedString.Spans>
                                     </FormattedString>
                                 </Label.FormattedText>

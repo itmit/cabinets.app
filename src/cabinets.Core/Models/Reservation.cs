@@ -1,10 +1,12 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace cabinets.Core.Models
 {
 	public class Reservation
 	{
 		#region Properties
+		[JsonProperty("amout")]
 		public int? Amount
 		{
 			get;

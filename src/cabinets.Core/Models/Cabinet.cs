@@ -26,6 +26,19 @@ namespace cabinets.Core.Models
 			set;
 		}
 
+
+		public int PriceMorning
+		{
+			get;
+			set;
+		}
+
+		public int PriceEvening
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Возвращает дату
 		/// </summary>

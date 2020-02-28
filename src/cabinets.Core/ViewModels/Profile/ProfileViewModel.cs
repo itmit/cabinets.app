@@ -92,7 +92,15 @@ namespace cabinets.Core.ViewModels.Profile
 
 				SetProperty(ref _selectedBooking, value);
 
-				NavigationService.Navigate<MyBookingViewModel, Reservation>(value);
+				SelectedBookingExecute(value);
+			}
+		}
+
+		public async void SelectedBookingExecute(Reservation reservation)
+		{
+			if (await NavigationService.Navigate<MyBookingViewModel, Reservation, bool>(reservation))
+			{
+				Refresh();
 			}
 		}
 

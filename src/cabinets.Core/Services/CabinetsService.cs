@@ -44,6 +44,8 @@ namespace cabinets.Core.Services
 				cfg.CreateMap<Cabinet, CabinetDto>();
 
 				cfg.CreateMap<CabinetDto, Cabinet>()
+				   .ForMember(cab => cab.PriceMorning, m => m.MapFrom(dto => dto.PriceMorning ?? 0))
+				   .ForMember(cab => cab.PriceEvening, m => m.MapFrom(dto => dto.PriceEvening ?? 0))
 				   .ForMember(cab => cab.Price, m => m.MapFrom(dto => dto.Price ?? 0))
 				   .ForMember(cab => cab.PhotoSource, m => m.MapFrom(dto => DomainUri + dto.Photo));
 

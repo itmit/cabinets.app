@@ -13,6 +13,8 @@ namespace cabinets.Core.Services
 		Task<Reservation> GetReservationDetail(Guid uuid);
 
 		Task<List<Reservation>> GetReservations();
+
+		Task<bool> CancelReservation(Guid uuid);
 		#endregion
 	}
 }

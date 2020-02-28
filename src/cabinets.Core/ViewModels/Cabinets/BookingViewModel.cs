@@ -22,6 +22,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 		private DateTime _selectedDate = DateTime.Now;
 		private MvxObservableCollection<CabinetTime> _selectedTimes = new MvxObservableCollection<CabinetTime>();
 		private MvxObservableCollection<CabinetTime> _times;
+		private int _price;
 		#endregion
 		#endregion
 
@@ -85,10 +86,27 @@ namespace cabinets.Core.ViewModels.Cabinets
 			set => SetProperty(ref _selectedTimes, value);
 		}
 
+		public void RestatePrice()
+		{
+			int price = 0;
+			foreach (var time in SelectedTimes)
+			{
+				price += time.Key < 18 ? Cabinet.PriceMorning : Cabinet.PriceEvening;
+			}
+
+			Price = price;
+		}
+
 		public MvxObservableCollection<CabinetTime> Times
 		{
 			get => _times;
 			private set => SetProperty(ref _times, value);
+		}
+
+		public int Price
+		{
+			get => _price;
+			private set => SetProperty(ref _price, value);
 		}
 		#endregion
 
@@ -109,7 +127,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 		public override void Prepare(BookingViewModelAttribute parameter)
 		{
 			Cabinet = parameter.Cabinet;
-			SelectedDate = parameter.Date == null ? DateTime.Now : parameter.Date.Value;
+			SelectedDate = parameter.Date ?? DateTime.Now;
 		}
 		#endregion
 

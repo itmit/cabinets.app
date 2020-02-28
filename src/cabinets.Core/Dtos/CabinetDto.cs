@@ -54,6 +54,20 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("price_morning")]
+		public int? PriceMorning
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("price_evening")]
+		public int? PriceEvening
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }
