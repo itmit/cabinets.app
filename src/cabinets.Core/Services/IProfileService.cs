@@ -7,9 +7,12 @@ namespace cabinets.Core.Services
 {
 	public interface IProfileService
 	{
-		Task<List<Reservation>> GetReservations();
-
+		#region Overridable
 		Task<int> GetAmount();
+
 		Task<Reservation> GetReservationDetail(Guid uuid);
+
+		Task<List<Reservation>> GetReservations();
+		#endregion
 	}
 }

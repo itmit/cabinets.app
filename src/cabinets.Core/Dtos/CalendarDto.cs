@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using cabinets.Core.Models;
 
 namespace cabinets.Core.Dtos
 {
 	public class CalendarDto
 	{
+		#region Properties
 		public CabinetDto Cabinet
 		{
 			get;
@@ -16,6 +16,6 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
-
+		#endregion
 	}
 }

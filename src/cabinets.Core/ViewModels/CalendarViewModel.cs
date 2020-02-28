@@ -8,18 +8,20 @@ namespace cabinets.Core.ViewModels
 {
 	public class CalendarViewModel : MvxNavigationViewModel
 	{
+		#region Data
+		#region Fields
+		private DateTime? _selectedDate;
+		#endregion
+		#endregion
+
+		#region .ctor
 		public CalendarViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 
-		private DateTime? _selectedDate;
-
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-		}
-
+		#region Properties
 		public DateTime? SelectedDate
 		{
 			get => _selectedDate;
@@ -32,5 +34,13 @@ namespace cabinets.Core.ViewModels
 				}
 			}
 		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+		}
+		#endregion
 	}
 }

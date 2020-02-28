@@ -8,24 +8,28 @@ namespace cabinets.Core.ViewModels.Auth
 {
 	public class TwoButtonViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
+		private readonly IMvxNavigationService _navigationService;
 		private MvxCommand _openCabinetsCommand;
 		private MvxCommand _openCalendarCommand;
+		#endregion
+		#endregion
 
-		private readonly IMvxNavigationService _navigationService;
+		#region .ctor
+		public TwoButtonViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
+		#endregion
 
-		public TwoButtonViewModel(IMvxNavigationService navigationService)
-		{
-			_navigationService = navigationService;
-		}
-
+		#region Properties
 		public MvxCommand OpenCabinetsCommand
 		{
 			get
 			{
-				_openCabinetsCommand = _openCabinetsCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<MainViewModel, Type>(typeof(CabinetsViewModel));
-				});
+				_openCabinetsCommand = _openCabinetsCommand ??
+									   new MvxCommand(() =>
+									   {
+										   _navigationService.Navigate<MainViewModel, Type>(typeof(CabinetsViewModel));
+									   });
 
 				return _openCabinetsCommand;
 			}
@@ -35,13 +39,15 @@ namespace cabinets.Core.ViewModels.Auth
 		{
 			get
 			{
-				_openCalendarCommand = _openCalendarCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<MainViewModel, Type>(typeof(CalendarViewModel));
-				});
+				_openCalendarCommand = _openCalendarCommand ??
+									   new MvxCommand(() =>
+									   {
+										   _navigationService.Navigate<MainViewModel, Type>(typeof(CalendarViewModel));
+									   });
 
 				return _openCalendarCommand;
 			}
 		}
+		#endregion
 	}
 }

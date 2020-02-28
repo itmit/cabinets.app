@@ -3,12 +3,14 @@ using Xamarin.Forms.Xaml;
 
 namespace cabinets.Core.ContentViews
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CarouselContentView : ContentView
-    {
-        public CarouselContentView()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class CarouselContentView : ContentView
+	{
+		#region .ctor
+		public CarouselContentView()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

@@ -10,19 +10,32 @@ namespace cabinets.Core.ViewModels.Profile
 {
 	public class MyBookingViewModel : MvxViewModel<Reservation>
 	{
+		#region Data
+		#region Fields
+		private DateTime _date;
 		private Reservation _parameter;
-		private Reservation _reservation;
-		private User _user;
-
-		public override void Prepare(Reservation parameter)
-		{
-			_parameter = parameter;
-			Date = parameter.Date;
-		}
 
 		private readonly IProfileService _profileService;
+		private Reservation _reservation;
+		private User _user;
 		private readonly IUserRepository _userRepository;
-		private DateTime _date;
+		#endregion
+		#endregion
+
+		#region .ctor
+		public MyBookingViewModel(IProfileService profileService, IUserRepository userRepository)
+		{
+			_profileService = profileService;
+			_userRepository = userRepository;
+		}
+		#endregion
+
+		#region Properties
+		public DateTime Date
+		{
+			get => _date;
+			set => SetProperty(ref _date, value);
+		}
 
 		public Reservation Reservation
 		{
@@ -35,19 +48,9 @@ namespace cabinets.Core.ViewModels.Profile
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
+		#endregion
 
-		public DateTime Date
-		{
-			get => _date;
-			set => SetProperty(ref _date, value);
-		}
-
-		public MyBookingViewModel(IProfileService profileService, IUserRepository userRepository)
-		{
-			_profileService = profileService;
-			_userRepository = userRepository;
-		}
-
+		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
@@ -55,8 +58,13 @@ namespace cabinets.Core.ViewModels.Profile
 			Reservation = await _profileService.GetReservationDetail(_parameter.Uuid);
 			User = _userRepository.GetAll()
 								  .Single();
-
 		}
 
+		public override void Prepare(Reservation parameter)
+		{
+			_parameter = parameter;
+			Date = parameter.Date;
+		}
+		#endregion
 	}
 }

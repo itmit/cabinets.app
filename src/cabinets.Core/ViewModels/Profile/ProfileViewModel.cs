@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
@@ -15,66 +14,40 @@ namespace cabinets.Core.ViewModels.Profile
 {
 	public class ProfileViewModel : MvxNavigationViewModel
 	{
-		private MvxObservableCollection<Reservation> _bookings;
-		private readonly IUserRepository _userRepository;
-		private User _user;
-		private MvxCommand _logoutCommand;
-		private readonly IAuthService _authService;
-		private readonly IProfileService _profileService;
-		private Reservation _selectedBooking;
-		private bool _isRefreshing;
-		private MvxCommand _refreshCommand;
+		#region Data
+		#region Fields
 		private int _amount;
+		private readonly IAuthService _authService;
+		private MvxObservableCollection<Reservation> _bookings;
+		private bool _isRefreshing;
+		private MvxCommand _logoutCommand;
+		private readonly IProfileService _profileService;
+		private MvxCommand _refreshCommand;
+		private Reservation _selectedBooking;
+		private User _user;
+		private readonly IUserRepository _userRepository;
+		#endregion
+		#endregion
 
-		public override async Task Initialize()
+		#region .ctor
+		public ProfileViewModel(IMvxLogProvider logProvider,
+								IMvxNavigationService navigationService,
+								IUserRepository userRepository,
+								IAuthService authService,
+								IProfileService profileService)
+			: base(logProvider, navigationService)
 		{
-			await base.Initialize();
-
-			User = _userRepository.GetAll()
-						   .Single();
-
-			Refresh();
+			_userRepository = userRepository;
+			_authService = authService;
+			_profileService = profileService;
 		}
+		#endregion
 
-		public IMvxCommand RefreshCommand
-		{
-			get
-			{
-				_refreshCommand = _refreshCommand ?? new MvxCommand(Refresh);
-				return _refreshCommand;
-			}
-		}
-
-		public bool IsRefreshing
-		{
-			get => _isRefreshing;
-			set => SetProperty(ref _isRefreshing, value);
-		}
-
+		#region Properties
 		public int Amount
 		{
 			get => _amount;
 			set => SetProperty(ref _amount, value);
-		}
-
-		private async void Refresh()
-		{
-			IsRefreshing = true;
-			try
-			{
-				Amount = await _profileService.GetAmount();
-				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-			IsRefreshing = false;
-		}
-		public User User
-		{
-			get => _user;
-			private set => SetProperty(ref _user, value);
 		}
 
 		public MvxObservableCollection<Reservation> Bookings
@@ -83,12 +56,27 @@ namespace cabinets.Core.ViewModels.Profile
 			set => SetProperty(ref _bookings, value);
 		}
 
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
 		public MvxCommand LogoutCommand
 		{
 			get
 			{
 				_logoutCommand = _logoutCommand ?? new MvxCommand(LogoutCommandExecute);
 				return _logoutCommand;
+			}
+		}
+
+		public IMvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ?? new MvxCommand(Refresh);
+				return _refreshCommand;
 			}
 		}
 
@@ -108,6 +96,26 @@ namespace cabinets.Core.ViewModels.Profile
 			}
 		}
 
+		public User User
+		{
+			get => _user;
+			private set => SetProperty(ref _user, value);
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			User = _userRepository.GetAll()
+								  .Single();
+
+			Refresh();
+		}
+		#endregion
+
+		#region Private
 		private void LogoutCommandExecute()
 		{
 			_authService.Logout(User);
@@ -115,12 +123,21 @@ namespace cabinets.Core.ViewModels.Profile
 			NavigationService.Navigate<AuthorizationViewModel>();
 		}
 
-		public ProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository userRepository, IAuthService authService, IProfileService profileService)
-			: base(logProvider, navigationService)
+		private async void Refresh()
 		{
-			_userRepository = userRepository;
-			_authService = authService;
-			_profileService = profileService;
+			IsRefreshing = true;
+			try
+			{
+				Amount = await _profileService.GetAmount();
+				Bookings = new MvxObservableCollection<Reservation>(await _profileService.GetReservations());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			IsRefreshing = false;
 		}
+		#endregion
 	}
 }

@@ -7,8 +7,10 @@ namespace cabinets.Droid
 {
 	public class Setup : MvxFormsAndroidSetup<CoreApp, App>
 	{
+		#region Overrided
 		protected override IMvxApplication CreateApp() => new CoreApp();
 
 		protected override Application CreateFormsApplication() => new App();
+		#endregion
 	}
 }

@@ -1,31 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="auth:AuthorizationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
-             xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
-             xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
-             mc:Ignorable="d"
-             x:Class="cabinets.Core.Pages.Auth.AuthorizationPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#001324">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
+                      xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+                      xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
+                      mc:Ignorable="d"
+                      x:Class="cabinets.Core.Pages.Auth.AuthorizationPage"
+                      NavigationPage.HasNavigationBar="False"
+                      BackgroundColor="#001324">
     <ContentPage.Content>
         <!-- Страница авторизации. -->
         <StackLayout Spacing="0" Margin="15,0">
-            <Image Source="pic_logo.png" WidthRequest="100" HorizontalOptions="Center" Margin="0,80,0,0"/>
-            <Image Source="pic_title.png" WidthRequest="170" HorizontalOptions="Center" Margin="0,10,0,45"/>
+            <Image Source="pic_logo.png" WidthRequest="100" HorizontalOptions="Center" Margin="0,80,0,0" />
+            <Image Source="pic_title.png" WidthRequest="170" HorizontalOptions="Center" Margin="0,10,0,45" />
 
             <Label Text="{Binding ErrorsDictionary[Login]}"
                    IsVisible="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
                    IsEnabled="{Binding ErrorsDictionary[Login], Converter={StaticResource NullToBoolConverter}}"
-                   TextColor="White"/>
+                   TextColor="White" />
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
-                <controls:CustomEntry Text="{Binding Login}" Placeholder="Номер телефона" Style="{StaticResource EntryAuth}" Keyboard="Numeric">
+                <controls:CustomEntry Text="{Binding Login}" Placeholder="Номер телефона"
+                                      Style="{StaticResource EntryAuth}" Keyboard="Numeric">
                     <controls:CustomEntry.Behaviors>
-                        <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                        <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
                     </controls:CustomEntry.Behaviors>
                 </controls:CustomEntry>
             </Frame>
@@ -33,16 +35,17 @@
             <Label Text="{Binding ErrorsDictionary[Password]}"
                    IsVisible="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
                    IsEnabled="{Binding ErrorsDictionary[Password], Converter={StaticResource NullToBoolConverter}}"
-                   TextColor="White"/>
+                   TextColor="White" />
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,15">
-                <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" 
-                                      Style="{StaticResource EntryAuth}"/>
+                <controls:CustomEntry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True"
+                                      Style="{StaticResource EntryAuth}" />
             </Frame>
 
-            <Button Text="Войти" Style="{StaticResource ButtonBlur}" Margin="0,0,0,100" Command="{Binding AuthorizationCommand}"/>
+            <Button Text="Войти" Style="{StaticResource ButtonBlur}" Margin="0,0,0,100"
+                    Command="{Binding AuthorizationCommand}" />
             <Label Text="Зарегистрироваться" HorizontalOptions="Center" TextColor="#828282">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}" NumberOfTapsRequired="1" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>

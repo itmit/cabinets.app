@@ -2,7 +2,7 @@
 
 namespace cabinets.Core.Controls
 {
-    public class CustomEntry : Entry
-    {
-    }
+	public class CustomEntry : Entry
+	{
+	}
 }

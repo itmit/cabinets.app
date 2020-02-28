@@ -1,21 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="viewModels1:CalendarViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:cabinets.Views"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
-             xmlns:viewModels1="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
-             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
-             mc:Ignorable="d"
-             x:Class="cabinets.Core.Pages.CalendarPage"
-             Title="Календарь"
-             d:NavigationPage.HasNavigationBar="True">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:viewCell="clr-namespace:cabinets.Views"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
+                      xmlns:viewModels1="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
+                      xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+                      mc:Ignorable="d"
+                      x:Class="cabinets.Core.Pages.CalendarPage"
+                      Title="Календарь"
+                      d:NavigationPage.HasNavigationBar="True">
     <views:MvxContentPage.IconImageSource>
         <OnPlatform x:TypeArguments="ImageSource">
-            <On Platform="iOS" Value="baseline_calendar_today_black_24pt_1x.png"/>
-            <On Platform="Android" Value="ic_calendar.png"/>
+            <On Platform="iOS" Value="baseline_calendar_today_black_24pt_1x.png" />
+            <On Platform="Android" Value="ic_calendar.png" />
         </OnPlatform>
     </views:MvxContentPage.IconImageSource>
 
@@ -26,18 +27,18 @@
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style x:Key="LabelFrame" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="HorizontalOptions" Value="Center"/>
-                            <Setter Property="VerticalOptions" Value="Center"/>
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="HorizontalOptions" Value="Center" />
+                            <Setter Property="VerticalOptions" Value="Center" />
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
 
-                <views1:CalendarView/>
+                <views1:CalendarView />
 
                 <StackLayout Margin="15,0">
                     <StackLayout Spacing="0">
-                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10"/>
+                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

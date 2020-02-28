@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace cabinets.Core.Dtos
 {
 	public class AuthDto
 	{
+		#region Properties
 		[JsonProperty("phone")]
 		public string Login
 		{
@@ -18,5 +18,6 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
+		#endregion
 	}
 }

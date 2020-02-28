@@ -12,24 +12,31 @@ using Newtonsoft.Json;
 namespace cabinets.Core.Services
 {
 	/// <summary>
-	/// Представляет 
+	/// Представляет
 	/// </summary>
 	public class AuthService : IAuthService
 	{
+		#region Data
+		#region Consts
 		/// <summary>
 		/// Адрес для авторизации.
 		/// </summary>
 		private const string LoginUri = "http://cabinets.itmit-studio.ru/api/login";
 
-		private const string RegistrationUri = "http://cabinets.itmit-studio.ru/api/register";
-
 		private const string LogoutUri = "http://cabinets.itmit-studio.ru/api/logout";
 
+		private const string RegistrationUri = "http://cabinets.itmit-studio.ru/api/register";
+		#endregion
+
+		#region Fields
 		/// <summary>
-		/// <see cref="IMapper"/> для преобразования ДТО в модели.
+		/// <see cref="IMapper" /> для преобразования ДТО в модели.
 		/// </summary>
 		private readonly IMapper _mapper;
+		#endregion
+		#endregion
 
+		#region .ctor
 		/// <summary>
 		/// Инициализирует новый экземпляр <see cref="AuthService" />.
 		/// </summary>
@@ -50,6 +57,14 @@ namespace cabinets.Core.Services
 				   .ForPath(m => m.Phone, o => o.MapFrom(q => q.Client.Phone));
 			}));
 		}
+		#endregion
+
+		#region IAuthService members
+		public Dictionary<string, string> Errors
+		{
+			get;
+			private set;
+		} = new Dictionary<string, string>();
 
 		/// <summary>
 		/// Проводит авторизацию пользователя.
@@ -95,6 +110,20 @@ namespace cabinets.Core.Services
 			}
 		}
 
+		public async void Logout(User user)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
+
+				var response = await client.PostAsync(LogoutUri, null);
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+			}
+		}
+
 		public async Task<User> Registration(User user, string password, string confirmPassword)
 		{
 			using (var client = new HttpClient())
@@ -132,25 +161,6 @@ namespace cabinets.Core.Services
 				return null;
 			}
 		}
-
-		public Dictionary<string, string> Errors
-		{
-			get;
-			private set;
-		} = new Dictionary<string, string>();
-
-		public async void Logout(User user)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
-
-				var response = await client.PostAsync(LogoutUri, null);
-
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-			}
-		}
+		#endregion
 	}
 }

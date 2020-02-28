@@ -11,56 +11,65 @@ namespace cabinets.Core.ViewModels
 {
 	public class DayViewModel : MvxViewModel<DateTime>
 	{
-		private DateTime _parameter;
-
-		public override void Prepare(DateTime parameter)
-		{
-			_parameter = parameter;
-		}
+		#region Data
+		#region Fields
+		private MvxObservableCollection<CalendarDay> _cabinets;
 
 		private readonly ICabinetsService _cabinetService;
-		private MvxObservableCollection<CalendarDay> _cabinets;
-        private MvxCommand _openBookingComand;
-        private CalendarDay _selectedCabinet;
-        private readonly IMvxNavigationService _navigationService;
+		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openBookingComand;
+		private DateTime _parameter;
+		private CalendarDay _selectedCabinet;
+		#endregion
+		#endregion
 
-        public MvxObservableCollection<CalendarDay> Cabinets
+		#region .ctor
+		public DayViewModel(ICabinetsService cabinetService, IMvxNavigationService navigationService)
+		{
+			_cabinetService = cabinetService;
+			_navigationService = navigationService;
+		}
+		#endregion
+
+		#region Properties
+		public MvxObservableCollection<CalendarDay> Cabinets
 		{
 			get => _cabinets;
 			private set => SetProperty(ref _cabinets, value);
 		}
 
-        public DayViewModel(ICabinetsService cabinetService, IMvxNavigationService navigationService)
-        {
-            _cabinetService = cabinetService;
-            _navigationService = navigationService;
-        }
+		public CalendarDay SelectedCabinet
+		{
+			get => _selectedCabinet;
+			set
+			{
+				SetProperty(ref _selectedCabinet, value);
+				if (value != null)
+				{
+					_navigationService.Navigate<BookingViewModel, BookingViewModelAttribute>(new BookingViewModelAttribute(value.Cabinet, _parameter));
+				}
+			}
+		}
+		#endregion
 
-        public override async Task Initialize()
+		#region Overrided
+		public override async Task Initialize()
 		{
 			await base.Initialize();
-            try
-            {
-                Cabinets = new MvxObservableCollection<CalendarDay>(await _cabinetService.GetBusyCabinetsByDate(_parameter));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+			try
+			{
+				Cabinets = new MvxObservableCollection<CalendarDay>(await _cabinetService.GetBusyCabinetsByDate(_parameter));
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 		}
 
-        public CalendarDay SelectedCabinet
-        { 
-            get => _selectedCabinet; 
-            set
-            {
-                SetProperty(ref _selectedCabinet, value);
-                if (value != null)
-                {
-                    _navigationService.Navigate<BookingViewModel, BookingViewModelAttribute>(new BookingViewModelAttribute(value.Cabinet, _parameter));
-
-                }
-            }
-        }
-    }
+		public override void Prepare(DateTime parameter)
+		{
+			_parameter = parameter;
+		}
+		#endregion
+	}
 }

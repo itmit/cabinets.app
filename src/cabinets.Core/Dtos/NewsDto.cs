@@ -5,19 +5,21 @@ namespace cabinets.Core.Dtos
 {
 	public class NewsDto
 	{
-		public Guid Uuid
+		#region Properties
+		public string Body
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("photos")]
+		public PictureDto[] DetailPictureSources
 		{
 			get;
 			set;
 		}
 
 		public string Head
-		{
-			get;
-			set;
-		}
-
-		public string Body
 		{
 			get;
 			set;
@@ -30,11 +32,11 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("photos")]
-		public PictureDto[] DetailPictureSources
+		public Guid Uuid
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

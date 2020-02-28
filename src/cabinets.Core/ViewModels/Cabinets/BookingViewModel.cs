@@ -11,49 +11,40 @@ namespace cabinets.Core.ViewModels.Cabinets
 {
 	public class BookingViewModel : MvxViewModel<BookingViewModelAttribute, bool>
 	{
+		#region Data
+		#region Fields
+		private MvxCommand _backCommand;
 		private Cabinet _cabinet;
-		private DateTime _selectedDate = DateTime.Now;
-		private readonly IMvxNavigationService _navigationService;
 		private readonly ICabinetsService _cabinetsService;
-		private MvxObservableCollection<CabinetTime> _times;
-		private MvxObservableCollection<CabinetTime> _selectedTimes = new MvxObservableCollection<CabinetTime>();
 		private bool _isReservationEnabled;
+		private readonly IMvxNavigationService _navigationService;
+		private IMvxCommand _reservationCommand;
+		private DateTime _selectedDate = DateTime.Now;
+		private MvxObservableCollection<CabinetTime> _selectedTimes = new MvxObservableCollection<CabinetTime>();
+		private MvxObservableCollection<CabinetTime> _times;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public BookingViewModel(ICabinetsService cabinetsService, IMvxNavigationService navigationService)
 		{
 			_cabinetsService = cabinetsService;
 			_navigationService = navigationService;
 		}
+		#endregion
 
-		public override async Task Initialize()
+		#region Properties
+		public IMvxCommand BackCommand
 		{
-			await base.Initialize();
-            try
-            {
-                Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
-		}
-
-		public bool IsReservationEnabled
-		{
-			get => _isReservationEnabled;
-			set => SetProperty(ref _isReservationEnabled, value);
-		}
-
-		public MvxObservableCollection<CabinetTime> Times
-		{
-			get => _times;
-			private set => SetProperty(ref _times, value);
-		}
-
-		public MvxObservableCollection<CabinetTime> SelectedTimes
-		{
-			get => _selectedTimes;
-			set => SetProperty(ref _selectedTimes, value);
+			get
+			{
+				_backCommand = _backCommand ??
+							   new MvxCommand(() =>
+							   {
+								   _navigationService.Close(this, true);
+							   });
+				return _backCommand;
+			}
 		}
 
 		public Cabinet Cabinet
@@ -62,11 +53,11 @@ namespace cabinets.Core.ViewModels.Cabinets
 			private set => SetProperty(ref _cabinet, value);
 		}
 
-		public override void Prepare(BookingViewModelAttribute parameter)
+		public bool IsReservationEnabled
 		{
-			Cabinet = parameter.Cabinet;
-            SelectedDate = parameter.Date == null ? DateTime.Now : parameter.Date.Value;
-        }
+			get => _isReservationEnabled;
+			set => SetProperty(ref _isReservationEnabled, value);
+		}
 
 		public IMvxCommand ReservationCommand
 		{
@@ -77,10 +68,61 @@ namespace cabinets.Core.ViewModels.Cabinets
 			}
 		}
 
+		public DateTime SelectedDate
+		{
+			get => _selectedDate;
+			set
+			{
+				SetProperty(ref _selectedDate, value);
+
+				LoadTimes(Cabinet, value);
+			}
+		}
+
+		public MvxObservableCollection<CabinetTime> SelectedTimes
+		{
+			get => _selectedTimes;
+			set => SetProperty(ref _selectedTimes, value);
+		}
+
+		public MvxObservableCollection<CabinetTime> Times
+		{
+			get => _times;
+			private set => SetProperty(ref _times, value);
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+			try
+			{
+				Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(Cabinet, SelectedDate));
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+
+		public override void Prepare(BookingViewModelAttribute parameter)
+		{
+			Cabinet = parameter.Cabinet;
+			SelectedDate = parameter.Date == null ? DateTime.Now : parameter.Date.Value;
+		}
+		#endregion
+
+		#region Private
+		private async void LoadTimes(Cabinet cabinet, DateTime date)
+		{
+			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(cabinet, date));
+		}
+
 		private async void Reservation()
 		{
 			IsReservationEnabled = false;
-			bool result = false;
+			var result = false;
 			try
 			{
 				result = await _cabinetsService.MakeReservation(Cabinet, SelectedDate, SelectedTimes);
@@ -89,6 +131,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 			{
 				Console.WriteLine(e);
 			}
+
 			IsReservationEnabled = SelectedTimes.Count > 0;
 			if (result)
 			{
@@ -113,54 +156,29 @@ namespace cabinets.Core.ViewModels.Cabinets
 				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера.", "Ок");
 			});
 		}
-
-		public DateTime SelectedDate
-		{
-			get => _selectedDate;
-			set
-			{
-				SetProperty(ref _selectedDate, value);
-
-				LoadTimes(Cabinet, value);
-			}
-		}
-
-		private MvxCommand _backCommand;
-		private IMvxCommand _reservationCommand;
-
-		public IMvxCommand BackCommand
-		{
-			get
-			{
-				_backCommand = _backCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Close(this, true);
-				});
-				return _backCommand;
-			}
-		}
-
-		private async void LoadTimes(Cabinet cabinet, DateTime date)
-		{
-			Times = new MvxObservableCollection<CabinetTime>(await _cabinetsService.CheckCabinetByDate(cabinet, date));
-		}
+		#endregion
 	}
 }
+
 public class BookingViewModelAttribute
 {
-    public BookingViewModelAttribute(Cabinet cabinet, DateTime? date = null)
-    {
-        Cabinet = cabinet;
-        Date = date;
-    }
+	#region .ctor
+	public BookingViewModelAttribute(Cabinet cabinet, DateTime? date = null)
+	{
+		Cabinet = cabinet;
+		Date = date;
+	}
+	#endregion
 
-    public Cabinet Cabinet
-    {
-        get;
-    }
+	#region Properties
+	public Cabinet Cabinet
+	{
+		get;
+	}
 
-    public DateTime? Date
-    {
-        get;
-    }
+	public DateTime? Date
+	{
+		get;
+	}
+	#endregion
 }

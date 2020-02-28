@@ -15,18 +15,26 @@ namespace cabinets.Core.Services
 {
 	public class NewsService : INewsService
 	{
-		private readonly AccessToken _token;
-		private readonly Mapper _mapper;
+		#region Data
+		#region Consts
+		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
 
 		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/news/index";
 		private const string GetNewsDetailUri = "http://cabinets.itmit-studio.ru/api/news/show";
+		#endregion
 
-		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
+		#region Fields
+		private readonly Mapper _mapper;
+		private readonly AccessToken _token;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public NewsService(IUserRepository userRepository)
 		{
 			_token = userRepository.GetAll()
-								   .Single().AccessToken;
+								   .Single()
+								   .AccessToken;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<News, NewsDto>()
@@ -40,6 +48,14 @@ namespace cabinets.Core.Services
 				   .ForMember(news => news.DetailText, m => m.MapFrom(dto => dto.Body))
 				   .ForMember(news => news.Image, m => m.MapFrom(dto => DomainUri + dto.PreviewPicture));
 			}));
+		}
+		#endregion
+
+		#region INewsService members
+		public Dictionary<string, string> Errors
+		{
+			get;
+			private set;
 		}
 
 		public async Task<List<News>> GetAll()
@@ -56,9 +72,11 @@ namespace cabinets.Core.Services
 
 				if (string.IsNullOrEmpty(json))
 				{
-					Errors = new Dictionary<string, string>()
+					Errors = new Dictionary<string, string>
 					{
-						{"Fatal", "Нет ответа от сервера"}
+						{
+							"Fatal", "Нет ответа от сервера"
+						}
 					};
 					return null;
 				}
@@ -79,12 +97,6 @@ namespace cabinets.Core.Services
 				return null;
 			}
 		}
-		
-		public Dictionary<string, string> Errors
-		{
-			get;
-			private set;
-		}
 
 		public async Task<News> GetNews(Guid guid)
 		{
@@ -93,10 +105,13 @@ namespace cabinets.Core.Services
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
 
-				var response = await client.PostAsync(GetNewsDetailUri, new FormUrlEncodedContent(new Dictionary<string, string>
-				{
-					{"uuid", guid.ToString()}
-				}));
+				var response = await client.PostAsync(GetNewsDetailUri,
+													  new FormUrlEncodedContent(new Dictionary<string, string>
+													  {
+														  {
+															  "uuid", guid.ToString()
+														  }
+													  }));
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
 
@@ -104,7 +119,9 @@ namespace cabinets.Core.Services
 				{
 					Errors = new Dictionary<string, string>
 					{
-						{"Fatal", "Нет ответа от сервера"}
+						{
+							"Fatal", "Нет ответа от сервера"
+						}
 					};
 					return null;
 				}
@@ -113,11 +130,14 @@ namespace cabinets.Core.Services
 
 				if (data.Success)
 				{
-					string[] pictures = new string[data.Data.DetailPictureSources.Length];
-					for (int i = 0; i < data.Data.DetailPictureSources.Length; i++)
+					var pictures = new string[data.Data.DetailPictureSources.Length];
+					for (var i = 0; i < data.Data.DetailPictureSources.Length; i++)
 					{
-						pictures[i] = DomainUri + data.Data.DetailPictureSources[i].Picture;
+						pictures[i] = DomainUri +
+									  data.Data.DetailPictureSources[i]
+										  .Picture;
 					}
+
 					var news = _mapper.Map<News>(data.Data);
 					news.DetailPictureSources = pictures;
 					return news;
@@ -132,5 +152,6 @@ namespace cabinets.Core.Services
 				return null;
 			}
 		}
+		#endregion
 	}
 }

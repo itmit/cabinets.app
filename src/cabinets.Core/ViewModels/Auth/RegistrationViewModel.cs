@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
@@ -13,50 +12,39 @@ namespace cabinets.Core.ViewModels.Auth
 {
 	public class RegistrationViewModel : MvxViewModel
 	{
-		private string _firstName;
-		private string _lastName;
-		private DateTime _date = new DateTime(2000, 1, 1);
-		private string _phoneNumber;
-		private string _email;
-		private string _password;
-		private string _repeatPass;
+		#region Data
+		#region Fields
 		private readonly IAuthService _authService;
-		private MvxCommand _registrationCommand;
-		private readonly IMvxNavigationService _navigationService;
-		private readonly IUserRepository _userRepository;
-		private MvxCommand _openPolicyCommand;
-		private bool _isCheckedPolicy;
+		private DateTime _date = new DateTime(2000, 1, 1);
+		private string _email;
 		private Dictionary<string, string> _errorsDictionary = new Dictionary<string, string>();
+		private string _firstName;
+		private bool _isCheckedPolicy;
+		private string _lastName;
+		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openPolicyCommand;
+		private string _password;
+		private string _phoneNumber;
+		private MvxCommand _registrationCommand;
+		private string _repeatPass;
+		private readonly IUserRepository _userRepository;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public RegistrationViewModel(IAuthService authService, IMvxNavigationService navigationService, IUserRepository userRepository)
 		{
 			_authService = authService;
 			_navigationService = navigationService;
 			_userRepository = userRepository;
 		}
+		#endregion
 
-		public string FirstName
-		{
-			get => _firstName;
-			set => SetProperty(ref _firstName, value);
-		}
-
-		public string LastName
-		{
-			get => _lastName;
-			set => SetProperty(ref _lastName, value);
-		}
-
+		#region Properties
 		public DateTime Date
 		{
 			get => _date;
 			set => SetProperty(ref _date, value);
-		}
-
-		public string PhoneNumber
-		{
-			get => _phoneNumber;
-			set => SetProperty(ref _phoneNumber, value);
 		}
 
 		public string Email
@@ -65,16 +53,53 @@ namespace cabinets.Core.ViewModels.Auth
 			set => SetProperty(ref _email, value);
 		}
 
+		public Dictionary<string, string> ErrorsDictionary
+		{
+			get => _errorsDictionary;
+			set => SetProperty(ref _errorsDictionary, value);
+		}
+
+		public string FirstName
+		{
+			get => _firstName;
+			set => SetProperty(ref _firstName, value);
+		}
+
+		public bool IsCheckedPolicy
+		{
+			get => _isCheckedPolicy;
+			set => SetProperty(ref _isCheckedPolicy, value);
+		}
+
+		public string LastName
+		{
+			get => _lastName;
+			set => SetProperty(ref _lastName, value);
+		}
+
+		public MvxCommand OpenPolicyCommand
+		{
+			get
+			{
+				_openPolicyCommand = _openPolicyCommand ??
+									 new MvxCommand(() =>
+									 {
+										 _navigationService.Navigate<PolicyViewModel>();
+									 });
+				return _openPolicyCommand;
+			}
+		}
+
 		public string Password
 		{
 			get => _password;
 			set => SetProperty(ref _password, value);
 		}
 
-		public string RepeatPass
+		public string PhoneNumber
 		{
-			get => _repeatPass;
-			set => SetProperty(ref _repeatPass, value);
+			get => _phoneNumber;
+			set => SetProperty(ref _phoneNumber, value);
 		}
 
 		public IMvxCommand RegistrationCommand
@@ -86,9 +111,17 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 		}
 
+		public string RepeatPass
+		{
+			get => _repeatPass;
+			set => SetProperty(ref _repeatPass, value);
+		}
+		#endregion
+
+		#region Private
 		private async void RegistrationCommandExecute()
 		{
-			bool needRaise = false;
+			var needRaise = false;
 			var firstName = FirstName?.Trim();
 			if (string.IsNullOrEmpty(firstName))
 			{
@@ -115,6 +148,7 @@ namespace cabinets.Core.ViewModels.Auth
 				ErrorsDictionary[nameof(Password)] = "Поле пароль не заполнено.";
 				needRaise = true;
 			}
+
 			var confirmPass = RepeatPass?.Trim();
 			if (string.IsNullOrEmpty(confirmPass))
 			{
@@ -128,7 +162,7 @@ namespace cabinets.Core.ViewModels.Auth
 				return;
 			}
 
-			User user = new User
+			var user = new User
 			{
 				Birthday = Date,
 				Email = Email,
@@ -162,33 +196,10 @@ namespace cabinets.Core.ViewModels.Auth
 				await RaisePropertyChanged(nameof(ErrorsDictionary));
 				return;
 			}
+
 			_userRepository.Add(user);
 			await _navigationService.Navigate<TwoButtonViewModel>();
 		}
-
-		public MvxCommand OpenPolicyCommand
-		{
-			get
-			{
-				_openPolicyCommand = _openPolicyCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<PolicyViewModel>();
-				});
-				return _openPolicyCommand;
-			}
-		}
-
-		public bool IsCheckedPolicy
-		{
-			get => _isCheckedPolicy;
-			set => SetProperty(ref _isCheckedPolicy, value);
-			
-		}
-
-		public Dictionary<string, string> ErrorsDictionary
-		{
-			get => _errorsDictionary;
-			set => SetProperty(ref _errorsDictionary, value);
-		}
+		#endregion
 	}
 }

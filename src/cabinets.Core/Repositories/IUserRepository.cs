@@ -5,6 +5,7 @@ namespace cabinets.Core.Repositories
 {
 	public interface IUserRepository
 	{
+		#region Overridable
 		void Add(User user);
 
 		IEnumerable<User> GetAll();
@@ -12,5 +13,6 @@ namespace cabinets.Core.Repositories
 		void Remove(User user);
 
 		void Update(User user);
+		#endregion
 	}
 }

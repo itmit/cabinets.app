@@ -1,33 +1,26 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace cabinets.Core.Dtos
 {
 	public class RegisterDto
 	{
+		#region Properties
+		[JsonProperty("birthday")]
+		public string Birthday
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("email")]
 		public string Email
 		{
 			get;
 			set;
 		}
-		
+
 		[JsonProperty("name")]
 		public string Name
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("phone")]
-		public string Phone
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("birthday")]
-		public string Birthday
 		{
 			get;
 			set;
@@ -46,5 +39,13 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("phone")]
+		public string Phone
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

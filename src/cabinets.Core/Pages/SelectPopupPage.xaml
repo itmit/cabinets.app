@@ -1,12 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage 
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             HasSystemPadding="False"
-             HasKeyboardOffset="False"
-             x:Class="cabinets.Pages.SelectPopupPage">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    HasSystemPadding="False"
+    HasKeyboardOffset="False"
+    x:Class="cabinets.Pages.SelectPopupPage">
     <!--Всплывающее окно появляется при нажатии на кнопку отменить запись-->
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -18,13 +19,17 @@
             DurationOut="300"
             EasingIn="SinOut"
             EasingOut="SinIn"
-            HasBackgroundAnimation="True"/>
+            HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
-    <StackLayout BackgroundColor="White" WidthRequest="300" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center" Padding="15,30" Spacing="20">
-        <Label Text="Вы действительно хотите&#10;отменить запись?" TextColor="#505050" FontSize="16" HorizontalTextAlignment="Center"/>
+    <StackLayout BackgroundColor="White" WidthRequest="300" HeightRequest="100" VerticalOptions="Center"
+                 HorizontalOptions="Center" Padding="15,30" Spacing="20">
+        <Label Text="Вы действительно хотите&#10;отменить запись?" TextColor="#505050" FontSize="16"
+               HorizontalTextAlignment="Center" />
         <StackLayout Orientation="Horizontal">
-            <Button Text="Отменить" Style="{StaticResource ButtonTransparent}" HorizontalOptions="Start" WidthRequest="130" Clicked="Button_Clicked"/>
-            <Button Text="Нет" Style="{StaticResource ButtonBlur}" HorizontalOptions="EndAndExpand" WidthRequest="130" Clicked="Button_Clicked_1"/>
+            <Button Text="Отменить" Style="{StaticResource ButtonTransparent}" HorizontalOptions="Start"
+                    WidthRequest="130" Clicked="Button_Clicked" />
+            <Button Text="Нет" Style="{StaticResource ButtonBlur}" HorizontalOptions="EndAndExpand" WidthRequest="130"
+                    Clicked="Button_Clicked_1" />
         </StackLayout>
     </StackLayout>
 </pages:PopupPage>

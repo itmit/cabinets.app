@@ -2,42 +2,10 @@
 
 namespace cabinets.Core.Models
 {
-    public class User
-    {
-        /// <summary>
-        /// Возвращает полное имя пользователя
-        /// </summary>
-        public string Name
-        {
-            get;
-            set;
-		}
-
-        /// <summary>
-        /// Возвращает номер телефона пользователя
-        /// </summary>
-        public string Phone
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Возвращает электронную почту пользователя
-        /// </summary>
-        public string Email
-        {
-            get;
-            set;
-        }
-
-        public AccessToken AccessToken
-		{
-			get;
-			set;
-		}
-
-        public Guid Guid
+	public class User
+	{
+		#region Properties
+		public AccessToken AccessToken
 		{
 			get;
 			set;
@@ -48,5 +16,39 @@ namespace cabinets.Core.Models
 			get;
 			set;
 		}
-    }
+
+		/// <summary>
+		/// Возвращает электронную почту пользователя
+		/// </summary>
+		public string Email
+		{
+			get;
+			set;
+		}
+
+		public Guid Guid
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Возвращает полное имя пользователя
+		/// </summary>
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Возвращает номер телефона пользователя
+		/// </summary>
+		public string Phone
+		{
+			get;
+			set;
+		}
+		#endregion
+	}
 }

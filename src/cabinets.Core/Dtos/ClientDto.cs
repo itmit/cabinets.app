@@ -1,11 +1,23 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace cabinets.Core.Dtos
 {
 	public class ClientDto
 	{
+		#region Properties
+		public DateTime? Birthday
+		{
+			get;
+			set;
+		}
+
+		public string Email
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("uuid")]
 		public Guid Guid
 		{
@@ -19,22 +31,11 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public DateTime? Birthday
-		{
-			get;
-			set;
-		}
-
 		public string Phone
 		{
 			get;
 			set;
 		}
-
-		public string Email
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

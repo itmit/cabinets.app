@@ -21,9 +21,9 @@ namespace cabinets.Core.Services
 		private const string CheckCabinetByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/selectDate";
 		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
 		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/cabinets/index";
+		private const string GetBusyCabinetsByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/getBusyCabinetsByDate";
 		private const string GetCabinetDetailUri = "http://cabinets.itmit-studio.ru/api/cabinets/show";
 		private const string MakeReservationUri = "http://cabinets.itmit-studio.ru/api/cabinets/makeReservation";
-		private const string GetBusyCabinetsByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/getBusyCabinetsByDate";
 		#endregion
 
 		#region Fields
@@ -47,48 +47,14 @@ namespace cabinets.Core.Services
 				   .ForMember(cab => cab.Price, m => m.MapFrom(dto => dto.Price ?? 0))
 				   .ForMember(cab => cab.PhotoSource, m => m.MapFrom(dto => DomainUri + dto.Photo));
 
-                cfg.CreateMap<CalendarDto, CalendarDay>()
-                .ForMember(day => day.Times, m => m.MapFrom(dto => dto.Times))
-                .ForMember(day => day.Cabinet, m => m.MapFrom(dto => dto.Cabinet));
-            }));
+				cfg.CreateMap<CalendarDto, CalendarDay>()
+				   .ForMember(day => day.Times, m => m.MapFrom(dto => dto.Times))
+				   .ForMember(day => day.Cabinet, m => m.MapFrom(dto => dto.Cabinet));
+			}));
 		}
 		#endregion
 
 		#region ICabinetsService members
-		public async Task<IEnumerable<CalendarDay>> GetBusyCabinetsByDate(DateTime date)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
-
-				var response = await client.PostAsync(GetBusyCabinetsByDateUri,
-													  new FormUrlEncodedContent(new Dictionary<string, string>
-													  {
-														  {
-															  "date", date.ToString("yyyy-MM-dd")
-														  }
-													  }));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<GeneralDto<CalendarDto[]>>(json);
-
-				if (data.Success)
-				{
-					return _mapper.Map<CalendarDay[]>(data.Data);
-				}
-
-				return null;
-			}
-		}
-
 		public async Task<CabinetTime[]> CheckCabinetByDate(Cabinet cabinet, DateTime date)
 		{
 			using (var client = new HttpClient())
@@ -126,6 +92,11 @@ namespace cabinets.Core.Services
 			}
 		}
 
+		public Dictionary<string, string> Errors
+		{
+			get;
+		} = new Dictionary<string, string>();
+
 		public async Task<List<Cabinet>> GetAll()
 		{
 			using (var client = new HttpClient())
@@ -148,6 +119,40 @@ namespace cabinets.Core.Services
 				if (data.Success)
 				{
 					return _mapper.Map<List<Cabinet>>(data.Data);
+				}
+
+				return null;
+			}
+		}
+
+		public async Task<IEnumerable<CalendarDay>> GetBusyCabinetsByDate(DateTime date)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.PostAsync(GetBusyCabinetsByDateUri,
+													  new FormUrlEncodedContent(new Dictionary<string, string>
+													  {
+														  {
+															  "date", date.ToString("yyyy-MM-dd")
+														  }
+													  }));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<GeneralDto<CalendarDto[]>>(json);
+
+				if (data.Success)
+				{
+					return _mapper.Map<CalendarDay[]>(data.Data);
 				}
 
 				return null;
@@ -240,12 +245,6 @@ namespace cabinets.Core.Services
 				return false;
 			}
 		}
-
-		public Dictionary<string, string> Errors
-		{
-			get;
-			private set;
-		} = new Dictionary<string, string>();
 		#endregion
 	}
 }

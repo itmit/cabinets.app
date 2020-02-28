@@ -1,25 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="news:NewsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:cabinets.Views"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
-             mc:Ignorable="d"
-             x:Class="cabinets.Core.Pages.News.NewsPage"
-             d:NavigationPage.HasNavigationBar="True"
-             Title="Новости">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:viewCell="clr-namespace:cabinets.Views"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
+                      mc:Ignorable="d"
+                      x:Class="cabinets.Core.Pages.News.NewsPage"
+                      d:NavigationPage.HasNavigationBar="True"
+                      Title="Новости">
     <views:MvxContentPage.IconImageSource>
         <OnPlatform x:TypeArguments="ImageSource">
-            <On Platform="iOS" Value="outline_description_black_24pt_1x.png"/>
-            <On Platform="Android" Value="ic_filetext.png"/>
+            <On Platform="iOS" Value="outline_description_black_24pt_1x.png" />
+            <On Platform="Android" Value="ic_filetext.png" />
         </OnPlatform>
     </views:MvxContentPage.IconImageSource>
 
     <ContentPage.Content>
         <!--Страница новостей-->
-        <ListView Margin="15,5" 
+        <ListView Margin="15,5"
                   HasUnevenRows="True"
                   SeparatorVisibility="None"
                   VerticalScrollBarVisibility="Never"
@@ -28,7 +29,7 @@
                   ItemsSource="{Binding News}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <viewCell:NewsViewCell/>
+                    <viewCell:NewsViewCell />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

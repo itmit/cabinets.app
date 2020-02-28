@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<views:MvxViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<views:MvxViewCell xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,9 +10,9 @@
     <ViewCell.View>
         <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
             </Frame.GestureRecognizers>
-            <Label Text="{Binding Value}" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="{Binding Value}" TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center" />
         </Frame>
     </ViewCell.View>
 </views:MvxViewCell>

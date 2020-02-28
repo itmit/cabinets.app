@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms;
+﻿using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
 namespace cabinets.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NoSavePopupPage : PopupPage
-    {
-        public NoSavePopupPage()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class NoSavePopupPage : PopupPage
+	{
+		#region .ctor
+		public NoSavePopupPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

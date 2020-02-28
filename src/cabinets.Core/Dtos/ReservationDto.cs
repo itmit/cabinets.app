@@ -6,13 +6,7 @@ namespace cabinets.Core.Dtos
 {
 	public class ReservationDto
 	{
-		[JsonProperty("uuid")]
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		[JsonProperty("date")]
 		public string Date
 		{
@@ -21,10 +15,18 @@ namespace cabinets.Core.Dtos
 		}
 
 		[JsonProperty("times")]
-		public IEnumerable<string>Times
+		public IEnumerable<string> Times
 		{
 			get;
 			set;
 		}
+
+		[JsonProperty("uuid")]
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

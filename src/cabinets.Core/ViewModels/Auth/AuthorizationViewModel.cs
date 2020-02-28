@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using cabinets.Core.Models;
-using cabinets.Core.Pages;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
-using cabinets.Core.Views;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -15,29 +13,36 @@ namespace cabinets.Core.ViewModels.Auth
 {
 	public class AuthorizationViewModel : MvxNavigationViewModel
 	{
+		#region Data
+		#region Fields
 		private MvxCommand _authorizationCommand;
-		private MvxCommand _openRegistrationCommand;
 		private readonly IAuthService _authService;
+		private MvxCommand _openRegistrationCommand;
 		private readonly IUserRepository _userRepository;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IUserRepository userRepository)
 			: base(logProvider, navigationService)
 		{
 			_authService = authService;
 			_userRepository = userRepository;
 		}
+		#endregion
+
+		#region Properties
+		public Dictionary<string, string> ErrorsDictionary
+		{
+			get;
+			set;
+		} = new Dictionary<string, string>();
 
 		public string Login
 		{
 			get;
 			set;
 		}
-
-		public Dictionary<string, string> ErrorsDictionary
-		{
-			get;
-			set;
-		} = new Dictionary<string, string>();
 
 		public string Password
 		{
@@ -54,9 +59,24 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 		}
 
+		public IMvxCommand OpenRegistrationCommand
+		{
+			get
+			{
+				_openRegistrationCommand = _openRegistrationCommand ??
+										   new MvxCommand(() =>
+										   {
+											   NavigationService.Navigate<RegistrationViewModel>();
+										   });
+				return _openRegistrationCommand;
+			}
+		}
+		#endregion
+
+		#region Private
 		private async void AuthorizationCommandExecute()
 		{
-			bool needRaise = false;
+			var needRaise = false;
 			var login = Login?.Trim();
 			if (string.IsNullOrEmpty(login))
 			{
@@ -105,21 +125,11 @@ namespace cabinets.Core.ViewModels.Auth
 				await RaisePropertyChanged(nameof(ErrorsDictionary));
 				return;
 			}
+
 			_userRepository.Add(user);
 
 			await NavigationService.Navigate<MainViewModel>();
 		}
-
-		public IMvxCommand OpenRegistrationCommand
-		{
-			get
-			{
-				_openRegistrationCommand = _openRegistrationCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<RegistrationViewModel>();
-				});
-				return _openRegistrationCommand;
-			}
-		}
+		#endregion
 	}
 }

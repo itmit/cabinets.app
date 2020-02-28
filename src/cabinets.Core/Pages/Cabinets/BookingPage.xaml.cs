@@ -10,11 +10,14 @@ namespace cabinets.Core.Pages.Cabinets
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BookingPage : MvxContentPage<BookingViewModel>
 	{
+		#region .ctor
 		public BookingPage()
 		{
 			InitializeComponent();
 		}
+		#endregion
 
+		#region Private
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
 			if (sender is Frame frame)
@@ -39,5 +42,6 @@ namespace cabinets.Core.Pages.Cabinets
 				}
 			}
 		}
+		#endregion
 	}
 }

@@ -1,24 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="cabinets.Views.FreeCabinetsViewCell">
-  <ViewCell.View>
-      <!--Ячейка представления для списка свободных кабинетов в календаре-->
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          x:Class="cabinets.Views.FreeCabinetsViewCell">
+    <ViewCell.View>
+        <!--Ячейка представления для списка свободных кабинетов в календаре-->
         <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
             <Label TextColor="#505050" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>
-                            <Span Text="12.00 - 13.00"/>
-                            <Span Text=" Кабинет "/>
-                            <Span Text="2"/>
+                            <Span Text="12.00 - 13.00" />
+                            <Span Text=" Кабинет " />
+                            <Span Text="2" />
                         </FormattedString.Spans>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
         </Frame>
-  </ViewCell.View>
+    </ViewCell.View>
 </ViewCell>

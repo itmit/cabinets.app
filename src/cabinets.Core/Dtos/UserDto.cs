@@ -5,6 +5,7 @@ namespace cabinets.Core.Dtos
 {
 	public class UserDto
 	{
+		#region Properties
 		[JsonProperty("access_token")]
 		public string Body
 		{
@@ -12,8 +13,7 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("token_type")]
-		public string Type
+		public ClientDto Client
 		{
 			get;
 			set;
@@ -26,10 +26,12 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public ClientDto Client
+		[JsonProperty("token_type")]
+		public string Type
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

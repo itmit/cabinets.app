@@ -7,11 +7,23 @@ namespace cabinets.Core.Dtos
 	/// </summary>
 	public class GeneralDto<T>
 	{
-
+		#region Properties
 		/// <summary>
 		/// Возвращает или устанавливает данные возвращаемые от сервиса.
 		/// </summary>
 		public T Data
+		{
+			get;
+			set;
+		}
+
+		public string Error
+		{
+			get;
+			set;
+		}
+
+		public Dictionary<string, string> Errors
 		{
 			get;
 			set;
@@ -34,17 +46,6 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		} = false;
-
-		public Dictionary<string, string> Errors
-		{
-			get;
-			set;
-		}
-
-		public string Error
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

@@ -36,7 +36,7 @@ namespace cabinets.Core.Repositories
 		}
 		#endregion
 
-		#region Public
+		#region IUserRepository members
 		public void Add(User user)
 		{
 			using (var realm = Realm.GetInstance())
@@ -44,7 +44,7 @@ namespace cabinets.Core.Repositories
 				var userRealm = _mapper.Map<UserRealmObject>(user);
 				using (var transaction = realm.BeginWrite())
 				{
-					realm.Add(userRealm, true);
+					realm.Add((RealmObject) userRealm, true);
 					transaction.Commit();
 				}
 			}

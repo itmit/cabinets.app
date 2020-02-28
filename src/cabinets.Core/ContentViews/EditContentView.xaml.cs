@@ -1,24 +1,27 @@
-﻿using cabinets.Pages;
+﻿using System;
+using cabinets.Pages;
 using Rg.Plugins.Popup.Extensions;
-using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace cabinets.ContentViews
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditContentView : ContentView
-    {
-        public EditContentView()
-        {
-            InitializeComponent();
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class EditContentView : ContentView
+	{
+		#region .ctor
+		public EditContentView()
+		{
+			InitializeComponent();
+		}
+		#endregion
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            var popupPage = new SavePopupPage();
-            Navigation.PushPopupAsync(popupPage);
-        }
-    }
+		#region Private
+		private void Button_Clicked(object sender, EventArgs e)
+		{
+			var popupPage = new SavePopupPage();
+			Navigation.PushPopupAsync(popupPage);
+		}
+		#endregion
+	}
 }

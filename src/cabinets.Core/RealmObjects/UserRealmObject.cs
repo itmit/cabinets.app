@@ -5,13 +5,35 @@ namespace cabinets.Core.RealmObjects
 {
 	public class UserRealmObject : RealmObject
 	{
+		#region Properties
+		public AccessTokenRealmObject AccessToken
+		{
+			get;
+			set;
+		}
+
+		public DateTimeOffset Birthday
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Возвращает электронную почту пользователя
+		/// </summary>
+		public string Email
+		{
+			get;
+			set;
+		}
+
 		[PrimaryKey]
 		public string Guid
 		{
 			get;
 			set;
 		} = System.Guid.NewGuid()
-				.ToString();
+				  .ToString();
 
 		/// <summary>
 		/// Возвращает полное имя пользователя
@@ -30,27 +52,6 @@ namespace cabinets.Core.RealmObjects
 			get;
 			set;
 		}
-
-		/// <summary>
-		/// Возвращает электронную почту пользователя
-		/// </summary>
-		public string Email
-		{
-			get;
-			set;
-		}
-
-
-		public DateTimeOffset Birthday
-		{
-			get;
-			set;
-		}
-
-		public AccessTokenRealmObject AccessToken
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

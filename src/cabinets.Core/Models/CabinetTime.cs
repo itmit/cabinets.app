@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace cabinets.Core.Models
 {
 	public class CabinetTime
 	{
+		#region Properties
 		[JsonProperty("key")]
 		public int Key
 		{
@@ -18,5 +18,6 @@ namespace cabinets.Core.Models
 			get;
 			set;
 		}
+		#endregion
 	}
 }

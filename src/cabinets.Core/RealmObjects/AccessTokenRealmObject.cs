@@ -5,19 +5,11 @@ namespace cabinets.Core.RealmObjects
 {
 	public class AccessTokenRealmObject : RealmObject
 	{
+		#region Properties
 		/// <summary>
 		/// Возвращает или устанавливает тело token.
 		/// </summary>
 		public string Body
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Возвращает или устанавливает тип token.
-		/// </summary>
-		public string Type
 		{
 			get;
 			set;
@@ -31,5 +23,15 @@ namespace cabinets.Core.RealmObjects
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Возвращает или устанавливает тип token.
+		/// </summary>
+		public string Type
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

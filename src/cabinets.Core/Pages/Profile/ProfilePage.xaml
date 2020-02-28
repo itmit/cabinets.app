@@ -1,20 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="profile:ProfileViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:cabinets.Views"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:profile="clr-namespace:cabinets.Core.ViewModels.Profile;assembly=cabinets.Core"
-             xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
-             mc:Ignorable="d"
-             x:Class="cabinets.Core.Pages.Profile.ProfilePage"
-             Title="Профиль">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:viewCell="clr-namespace:cabinets.Views"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:profile="clr-namespace:cabinets.Core.ViewModels.Profile;assembly=cabinets.Core"
+                      xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
+                      mc:Ignorable="d"
+                      x:Class="cabinets.Core.Pages.Profile.ProfilePage"
+                      Title="Профиль">
     <views:MvxContentPage.IconImageSource>
-            <OnPlatform x:TypeArguments="ImageSource">
-            <On Platform="iOS" Value="outline_person_black_24pt_1x.png"/>
-            <On Platform="Android" Value="ic_user.png"/>
-            </OnPlatform>
+        <OnPlatform x:TypeArguments="ImageSource">
+            <On Platform="iOS" Value="outline_person_black_24pt_1x.png" />
+            <On Platform="Android" Value="ic_user.png" />
+        </OnPlatform>
     </views:MvxContentPage.IconImageSource>
 
     <ContentPage.Content>
@@ -23,19 +24,19 @@
             <StackLayout.Resources>
                 <ResourceDictionary>
                     <Style x:Key="Label" TargetType="Label">
-                        <Setter Property="FontSize" Value="16"/>
-                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="TextColor" Value="#505050" />
                     </Style>
                 </ResourceDictionary>
             </StackLayout.Resources>
             <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                <Label Text="{Binding User.Name}" Style="{StaticResource Label}"/>
+                <Label Text="{Binding User.Name}" Style="{StaticResource Label}" />
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Телефон: "/>
-                                <Span Text="{Binding User.Phone}"/>
+                                <Span Text="Телефон: " />
+                                <Span Text="{Binding User.Phone}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -44,8 +45,8 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="E-mail: "/>
-                                <Span Text="{Binding User.Email}"/>
+                                <Span Text="E-mail: " />
+                                <Span Text="{Binding User.Email}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -54,16 +55,16 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="К оплате: "/>
-                                <Span Text="{Binding Amount}"/>
-                                <Span Text=" руб."/>
+                                <Span Text="К оплате: " />
+                                <Span Text="{Binding Amount}" />
+                                <Span Text=" руб." />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
             </StackLayout>
             <StackLayout BackgroundColor="White" Padding="20">
-                <Label Text="Мои бронирования" Style="{StaticResource Label}"></Label>
+                <Label Text="Мои бронирования" Style="{StaticResource Label}" />
                 <ListView HasUnevenRows="True"
                           VerticalScrollBarVisibility="Never"
                           SelectedItem="{Binding SelectedBooking}"
@@ -76,13 +77,13 @@
                           ItemsSource="{Binding Bookings}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <views1:BookingsViewCell/>
+                            <views1:BookingsViewCell />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
 
-            <Button Text="Выход" Command="{Binding LogoutCommand}"/>
+            <Button Text="Выход" Command="{Binding LogoutCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="cabinets.Core.Views.BookingsViewCell">
-  <ViewCell.View>
-      <!--Ячейка представления для списка мои бронирования в профиле-->
-      <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="#505050" HorizontalOptions="Start"/>
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          x:Class="cabinets.Core.Views.BookingsViewCell">
+    <ViewCell.View>
+        <!--Ячейка представления для списка мои бронирования в профиле-->
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="#505050" HorizontalOptions="Start" />
             <Label TextColor="#505050" HorizontalOptions="EndAndExpand"
-                   FontSize="10" VerticalOptions="Center" Text="{Binding Cabinet.Name}"/>
-                <Image Source="ic_shape.png"
-                       WidthRequest="8"
-                       HeightRequest="12" HorizontalOptions="End" VerticalOptions="Center"/>
+                   FontSize="10" VerticalOptions="Center" Text="{Binding Cabinet.Name}" />
+            <Image Source="ic_shape.png"
+                   WidthRequest="8"
+                   HeightRequest="12" HorizontalOptions="End" VerticalOptions="Center" />
         </StackLayout>
-  </ViewCell.View>
+    </ViewCell.View>
 </ViewCell>

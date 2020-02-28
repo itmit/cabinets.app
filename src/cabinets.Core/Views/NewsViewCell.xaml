@@ -1,25 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="cabinets.Views.NewsViewCell">
-  <ViewCell.View>
-      <!--Ячейка представления для списка новостей-->
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          x:Class="cabinets.Views.NewsViewCell">
+    <ViewCell.View>
+        <!--Ячейка представления для списка новостей-->
         <Grid BackgroundColor="White" ColumnSpacing="15" Margin="0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Margin="5" Source="{Binding Image}" WidthRequest="75" HeightRequest="75"></Image>
+            <Image Grid.Column="0" Margin="5" Source="{Binding Image}" WidthRequest="75" HeightRequest="75" />
             <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Title}" FontSize="12" TextColor="#505050"></Label>
-                    <Label Text="{Binding Date}" FontSize="10" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"></Label>
+                    <Label Text="{Binding Title}" FontSize="12" TextColor="#505050" />
+                    <Label Text="{Binding Date}" FontSize="10" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" />
                 </StackLayout>
-                <Label Text="{Binding DetailText}" FontSize="10" TextColor="#505050" Margin="0,0,25,0" MaxLines="4" LineBreakMode="TailTruncation"></Label>
+                <Label Text="{Binding DetailText}" FontSize="10" TextColor="#505050" Margin="0,0,25,0" MaxLines="4"
+                       LineBreakMode="TailTruncation" />
             </StackLayout>
         </Grid>
-  </ViewCell.View>
+    </ViewCell.View>
 </ViewCell>

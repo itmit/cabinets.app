@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace cabinets.Core.Dtos
 {
 	public class CabinetDto
 	{
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
-		public string Name
+		#region Properties
+		public float Area
 		{
 			get;
 			set;
@@ -24,13 +18,7 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public float Area
-		{
-			get;
-			set;
-		}
-
-		public string Photo
+		public string Description
 		{
 			get;
 			set;
@@ -43,7 +31,13 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public string Description
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		public string Photo
 		{
 			get;
 			set;
@@ -54,5 +48,12 @@ namespace cabinets.Core.Dtos
 			get;
 			set;
 		}
+
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

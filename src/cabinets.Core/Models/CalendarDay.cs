@@ -4,6 +4,7 @@ namespace cabinets.Core.Models
 {
 	public class CalendarDay
 	{
+		#region Properties
 		public Cabinet Cabinet
 		{
 			get;
@@ -15,5 +16,6 @@ namespace cabinets.Core.Models
 			get;
 			set;
 		}
+		#endregion
 	}
 }

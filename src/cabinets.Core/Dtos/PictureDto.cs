@@ -2,15 +2,18 @@
 {
 	public class PictureDto
 	{
-		public string Picture
-		{
-			get;
-			set;
-		}
+		#region Properties
 		public string Photo
 		{
 			get;
 			set;
 		}
+
+		public string Picture
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }
