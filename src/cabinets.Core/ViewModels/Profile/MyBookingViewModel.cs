@@ -24,6 +24,7 @@ namespace cabinets.Core.ViewModels.Profile
 		private readonly IUserRepository _userRepository;
 		private MvxCommand _cancelCommand;
 		private readonly IMvxNavigationService _navigationService;
+		private string _status;
 		#endregion
 		#endregion
 
@@ -41,6 +42,12 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			get => _date;
 			set => SetProperty(ref _date, value);
+		}
+
+		public string Status
+		{
+			get => _status;
+			set => SetProperty(ref _status, value);
 		}
 
 		public Reservation Reservation
@@ -86,6 +93,7 @@ namespace cabinets.Core.ViewModels.Profile
 			await base.Initialize();
 
 			Reservation = await _profileService.GetReservationDetail(_parameter.Uuid);
+			Status = Reservation.IsPaid ? "Оплачено" : "Не оплачено";
 			User = _userRepository.GetAll()
 								  .Single();
 		}

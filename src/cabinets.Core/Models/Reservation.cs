@@ -6,7 +6,7 @@ namespace cabinets.Core.Models
 	public class Reservation
 	{
 		#region Properties
-		[JsonProperty("amout")]
+		[JsonProperty("amount")]
 		public int? Amount
 		{
 			get;
@@ -14,6 +14,13 @@ namespace cabinets.Core.Models
 		}
 
 		public Cabinet Cabinet
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("is_paid")]
+		public bool IsPaid
 		{
 			get;
 			set;

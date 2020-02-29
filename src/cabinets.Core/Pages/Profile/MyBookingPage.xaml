@@ -47,6 +47,16 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Статус: " />
+                                <Span Text="{Binding Status}" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <Grid>
                     <StackLayout x:Name="FirstContentView" IsVisible="True">
                         <Label TextColor="#505050" Text="{Binding Reservation.Cabinet.Name}" />
@@ -64,8 +74,6 @@
                         </controls:RepeaterView>
 
                         <StackLayout Spacing="0" Margin="0,10">
-                            <Button Text="Редактировать запись" Style="{StaticResource ButtonBlur}"
-                                    Clicked="Button_Clicked" />
                             <Button Text="Отменить запись" Style="{StaticResource ButtonTransparent}" Margin="0,10"
                                     Command="{Binding CancelCommand}" />
                         </StackLayout>

@@ -11,7 +11,7 @@
         <StackLayout Orientation="Horizontal">
             <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="#505050" HorizontalOptions="Start" />
             <Label TextColor="#505050" HorizontalOptions="EndAndExpand"
-                   FontSize="10" VerticalOptions="Center" Text="{Binding Cabinet.Name}" />
+                   FontSize="14" VerticalOptions="Center" Text="{Binding Cabinet.Name}" />
             <Image Source="ic_shape.png"
                    WidthRequest="8"
                    HeightRequest="12" HorizontalOptions="End" VerticalOptions="Center" />
