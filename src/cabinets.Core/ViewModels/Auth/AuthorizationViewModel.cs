@@ -109,19 +109,19 @@ namespace cabinets.Core.ViewModels.Auth
 
 			if (user == null)
 			{
-				if (_authService.Errors == null)
+				var errors = new Dictionary<string, string>();
+				foreach (var detail in _authService.Errors)
 				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+					errors[detail.Key] = string.Join("&#10;", detail.Value);
+				}
+
+				if (_authService.Errors.ContainsKey("Fatal"))
+				{
+					await Application.Current.MainPage.DisplayAlert("Внимание", errors["Fatal"], "Ок");
 					return;
 				}
 
-				if (_authService.Errors.ContainsKey("Fatal") && !string.IsNullOrEmpty(_authService.Errors["Fatal"]))
-				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", _authService.Errors["Fatal"], "Ок");
-					return;
-				}
-
-				ErrorsDictionary = _authService.Errors;
+				ErrorsDictionary = errors;
 				await RaisePropertyChanged(nameof(ErrorsDictionary));
 				return;
 			}

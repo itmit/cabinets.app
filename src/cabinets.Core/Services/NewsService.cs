@@ -52,12 +52,6 @@ namespace cabinets.Core.Services
 		#endregion
 
 		#region INewsService members
-		public Dictionary<string, string> Errors
-		{
-			get;
-			private set;
-		}
-
 		public async Task<List<News>> GetAll()
 		{
 			using (var client = new HttpClient())
@@ -72,12 +66,6 @@ namespace cabinets.Core.Services
 
 				if (string.IsNullOrEmpty(json))
 				{
-					Errors = new Dictionary<string, string>
-					{
-						{
-							"Fatal", "Нет ответа от сервера"
-						}
-					};
 					return null;
 				}
 
@@ -88,12 +76,6 @@ namespace cabinets.Core.Services
 					return _mapper.Map<List<News>>(data.Data);
 				}
 
-				if (!string.IsNullOrEmpty(data.Error))
-				{
-					Errors["Fatal"] = data.Error;
-				}
-
-				Errors = data.Errors;
 				return null;
 			}
 		}
@@ -117,12 +99,6 @@ namespace cabinets.Core.Services
 
 				if (string.IsNullOrEmpty(json))
 				{
-					Errors = new Dictionary<string, string>
-					{
-						{
-							"Fatal", "Нет ответа от сервера"
-						}
-					};
 					return null;
 				}
 
@@ -143,12 +119,6 @@ namespace cabinets.Core.Services
 					return news;
 				}
 
-				if (!string.IsNullOrEmpty(data.Error))
-				{
-					Errors["Fatal"] = data.Error;
-				}
-
-				Errors = data.Errors;
 				return null;
 			}
 		}

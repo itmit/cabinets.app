@@ -23,11 +23,11 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
-		public Dictionary<string, string> Errors
+		public Dictionary<string, string[]> Errors
 		{
 			get;
 			set;
-		}
+		} = new Dictionary<string, string[]>();
 
 		/// <summary>
 		/// Возвращает или устанавливает возвращаемое сообщение сообщение.

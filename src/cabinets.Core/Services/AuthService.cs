@@ -60,11 +60,11 @@ namespace cabinets.Core.Services
 		#endregion
 
 		#region IAuthService members
-		public Dictionary<string, string> Errors
+		public Dictionary<string, string[]> Errors
 		{
 			get;
 			private set;
-		} = new Dictionary<string, string>();
+		} = new Dictionary<string, string[]>();
 
 		/// <summary>
 		/// Проводит авторизацию пользователя.
@@ -104,7 +104,10 @@ namespace cabinets.Core.Services
 				}
 
 				Errors = jsonData.Errors;
-				Errors["Fatal"] = jsonData.Error;
+				if (!string.IsNullOrEmpty(jsonData.Error))
+				{
+					Errors.Add("Fatal", new[] { jsonData.Error });
+				}
 
 				return null;
 			}
@@ -156,7 +159,10 @@ namespace cabinets.Core.Services
 				}
 
 				Errors = jsonData.Errors;
-				Errors["Fatal"] = jsonData.Error;
+				if (!string.IsNullOrEmpty(jsonData.Error))
+				{
+					Errors.Add("Fatal", new[] { jsonData.Error });
+				}
 
 				return null;
 			}

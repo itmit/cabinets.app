@@ -10,7 +10,7 @@ namespace cabinets.Core.Services
 	public interface IAuthService
 	{
 		#region Properties
-		Dictionary<string, string> Errors
+		Dictionary<string, string[]> Errors
 		{
 			get;
 		}

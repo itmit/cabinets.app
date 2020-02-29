@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
@@ -178,21 +179,22 @@ namespace cabinets.Core.ViewModels.Auth
 				Console.WriteLine(e);
 			}
 
-			if (user == null)
+			if (user?.AccessToken == null)
 			{
-				if (_authService.Errors == null)
+				var errors = new Dictionary<string, string>();
+				TextInfo ti = new CultureInfo("en-US", false).TextInfo;
+				foreach (var detail in _authService.Errors)
 				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+					errors[ti.ToTitleCase(detail.Key)] = string.Join("&#10;", detail.Value);
+				}
+
+				if (_authService.Errors.ContainsKey("Fatal") && !string.IsNullOrEmpty(errors["Fatal"]))
+				{
+					await Application.Current.MainPage.DisplayAlert("Внимание", errors["Fatal"], "Ок");
 					return;
 				}
 
-				if (_authService.Errors.ContainsKey("Fatal") && !string.IsNullOrEmpty(_authService.Errors["Fatal"]))
-				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", _authService.Errors["Fatal"], "Ок");
-					return;
-				}
-
-				ErrorsDictionary = _authService.Errors;
+				ErrorsDictionary = errors;
 				await RaisePropertyChanged(nameof(ErrorsDictionary));
 				return;
 			}

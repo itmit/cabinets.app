@@ -7,13 +7,6 @@ namespace cabinets.Core.Services
 {
 	public interface INewsService
 	{
-		#region Properties
-		Dictionary<string, string> Errors
-		{
-			get;
-		}
-		#endregion
-
 		#region Overridable
 		Task<List<News>> GetAll();
 
