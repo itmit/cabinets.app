@@ -2,6 +2,7 @@
 using cabinets.Core.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
@@ -9,7 +10,7 @@ namespace cabinets.Core.Pages
 {
 	// Learn more about making custom code visible in the Xamarin.Forms previewer
 	// by visiting https://aka.ms/xamarinforms-previewer
-	[MvxTabbedPagePresentation(TabbedPosition.Root, NoHistory = true, Animated = false)]
+	[MvxTabbedPagePresentation(TabbedPosition.Root, NoHistory = true, Animated = false, WrapInNavigationPage = false)]
 	[DesignTimeVisible(false)]
 	public partial class MainPage : MvxTabbedPage<MainViewModel>
 	{
@@ -36,19 +37,14 @@ namespace cabinets.Core.Pages
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-
-			if (_firstSt)
+			CurrentPage = Children[ViewModel.FirstPageIndex];
+			for (int i = 0; i < Children.Count; i++)
 			{
-				_firstSt = false;
-				ViewModel.NavigateToMainPage();
-				return;
-			}
-
-			if (_firstTime)
-			{
-				_firstTime = false;
-				ViewModel.ShowInitialViewModelsCommand.ExecuteAsync();
-				CurrentPage = Children[ViewModel.FirstPageIndex];
+				Children[i] = new MvxNavigationPage(Children[i])
+				{
+					Title = Children[i].Title,
+					IconImageSource = Children[i].IconImageSource
+				};
 			}
 		}
 		#endregion

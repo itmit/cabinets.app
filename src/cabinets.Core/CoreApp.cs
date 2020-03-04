@@ -3,6 +3,7 @@ using cabinets.Core.Repositories;
 using cabinets.Core.ViewModels;
 using cabinets.Core.ViewModels.Auth;
 using MvvmCross;
+using MvvmCross.Forms.Presenters;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Realms;

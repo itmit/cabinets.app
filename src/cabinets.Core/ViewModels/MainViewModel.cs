@@ -35,6 +35,12 @@ namespace cabinets.Core.ViewModels
 			private set;
 		}
 
+		public override void ViewAppearing()
+		{
+			base.ViewAppearing();
+			ShowInitialViewModelsCommand.ExecuteAsync();
+		}
+
 		public IMvxAsyncCommand ShowInitialViewModelsCommand
 		{
 			get

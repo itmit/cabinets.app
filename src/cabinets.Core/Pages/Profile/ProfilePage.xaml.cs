@@ -1,4 +1,6 @@
-﻿using cabinets.Core.ViewModels.Profile;
+﻿using System;
+using cabinets.Core.Pages.Auth;
+using cabinets.Core.ViewModels.Profile;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -23,5 +25,10 @@ namespace cabinets.Core.Pages.Profile
 			((ListView) sender).SelectedItem = null;
 		}
 		#endregion
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			var a = Application.Current;
+		}
 	}
 }
