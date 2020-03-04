@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace cabinets.Core.ViewModels
 {
@@ -32,6 +34,24 @@ namespace cabinets.Core.ViewModels
 				{
 					NavigationService.Navigate<DayViewModel, DateTime>(value.Value);
 				}
+			}
+		}
+
+		private MvxCommand _openCabinetsCommand;
+
+		public MvxCommand OpenCabinetsCommand
+		{
+			get
+			{
+				_openCabinetsCommand = _openCabinetsCommand ?? new MvxCommand(() =>
+				{
+					if (Application.Current.MainPage is TabbedPage tabbedPage)
+					{
+						tabbedPage.CurrentPage = tabbedPage.Children[1];
+						(tabbedPage.Children[1] as NavigationPage)?.PopToRootAsync();
+					}
+				});
+				return _openCabinetsCommand;
 			}
 		}
 		#endregion

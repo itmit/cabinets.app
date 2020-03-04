@@ -38,7 +38,7 @@
 
                 <StackLayout Margin="15,0">
                     <StackLayout Spacing="0">
-                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" />
+                        <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10" Command="{Binding OpenCabinetsCommand}"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

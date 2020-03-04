@@ -42,7 +42,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 				_backCommand = _backCommand ??
 							   new MvxCommand(() =>
 							   {
-								   _navigationService.Close(this, true);
+								   (Application.Current.MainPage as TabbedPage)?.CurrentPage.Navigation.PopToRootAsync();
 							   });
 				return _backCommand;
 			}

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross.Forms;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Logging;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
@@ -18,18 +21,90 @@ namespace cabinets.Core
 		{
 		}
 
-		public override async Task<bool> ShowContentPage(Type view, MvxContentPagePresentationAttribute attribute, MvxViewModelRequest request)
+		public override TPage GetPageOfType<TPage>(Page rootPage = null)
 		{
-			var page = await CloseAndCreatePage(view, request, attribute);
-			if (FormsApplication.MainPage is TabbedPage tabbedPage 
-				&& tabbedPage.CurrentPage is NavigationPage navigationPage)
+			if (rootPage == null)
 			{
-				await PushOrReplacePage(navigationPage, page, attribute);
+				rootPage = FormsApplication.MainPage;
+			}
+
+			if (rootPage is TPage page)
+			{
+				return page;
+			}
+
+			if (rootPage is TabbedPage tabbedPage)
+			{
+				var currentPage = GetPageOfType<TPage>(tabbedPage.CurrentPage);
+				return currentPage;
+			}
+
+			return base.GetPageOfType<TPage>(rootPage);
+		}
+
+		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute) 
+		{
+			if ((FormsApplication.MainPage as TabbedPage)?.CurrentPage is NavigationPage root)
+			{
+				return FindAndCloseViewFromViewModel(viewModel, root, attribute);
+			}
+			return base.CloseContentPage(viewModel, attribute);
+		}
+
+		public override NavigationPage TopNavigationPage(Page rootPage = null)
+		{
+			if (rootPage == null)
+			{
+				rootPage = FormsApplication.MainPage;
+			}
+
+			if (rootPage is TabbedPage tabbedPage)
+			{
+				if (tabbedPage.CurrentPage != null)
+				{
+					var navTabbedPage = TopNavigationPage(tabbedPage.CurrentPage);
+					if (navTabbedPage != null)
+					{
+						return navTabbedPage;
+					}
+				}
+			}
+
+			return base.TopNavigationPage(rootPage);
+		}
+
+		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)
+		{
+			if (attribute.Position == TabbedPosition.Tab)
+			{
+				var page = await CloseAndCreatePage(view, request, attribute);
+				var tabHost = GetPageOfType<TabbedPage>();
+				if (tabHost == null)
+				{
+					tabHost = new TabbedPage();
+					await PushOrReplacePage(FormsApplication.MainPage, tabHost, attribute);
+				}
+
+				if (tabHost.Children.Any(p => (p as NavigationPage)?.RootPage.GetType() == page.GetType()))
+				{
+					return true;
+				}
+
+				if (attribute.WrapInNavigationPage)
+				{
+					tabHost.Children.Add(new NavigationPage(page)
+					{
+						Title = page.Title,
+						IconImageSource = page.IconImageSource
+					});
+					return true;
+				}
+
+				tabHost.Children.Add(page);
 				return true;
 			}
 
-			await PushOrReplacePage(FormsApplication.MainPage, page, attribute);
-			return true;
+			return await base.ShowTabbedPage(view, attribute, request);
 		}
 	}
 }

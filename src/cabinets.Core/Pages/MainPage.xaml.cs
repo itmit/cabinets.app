@@ -38,14 +38,6 @@ namespace cabinets.Core.Pages
 		{
 			base.OnAppearing();
 			CurrentPage = Children[ViewModel.FirstPageIndex];
-			for (int i = 0; i < Children.Count; i++)
-			{
-				Children[i] = new MvxNavigationPage(Children[i])
-				{
-					Title = Children[i].Title,
-					IconImageSource = Children[i].IconImageSource
-				};
-			}
 		}
 		#endregion
 	}

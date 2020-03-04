@@ -32,9 +32,6 @@
                         </ResourceDictionary>
                     </StackLayout.Resources>
                     <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </StackLayout.GestureRecognizers>
                         <Label Text="{Binding User.Name}" Style="{StaticResource Label}" />
                         <Label>
                             <Label.FormattedText>

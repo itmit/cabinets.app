@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Core.Pages.Profile
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(NoHistory = true, Animated = false)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, WrapInNavigationPage = true)]
 	public partial class ProfilePage : MvxContentPage<ProfileViewModel>
 	{
 		#region .ctor
@@ -25,10 +25,5 @@ namespace cabinets.Core.Pages.Profile
 			((ListView) sender).SelectedItem = null;
 		}
 		#endregion
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			var a = Application.Current;
-		}
 	}
 }

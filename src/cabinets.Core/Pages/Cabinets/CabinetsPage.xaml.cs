@@ -7,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Core.Pages.Cabinets
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(NoHistory = true, Animated = false)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab)]
 	public partial class CabinetsPage : MvxContentPage<CabinetsViewModel>
 	{
 		#region .ctor
