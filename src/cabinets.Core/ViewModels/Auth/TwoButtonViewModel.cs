@@ -1,5 +1,6 @@
 ﻿using System;
 using cabinets.Core.ViewModels.Cabinets;
+using cabinets.Core.ViewModels.Calendar;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;

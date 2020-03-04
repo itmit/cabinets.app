@@ -1,9 +1,10 @@
 ﻿using cabinets.Core.ViewModels;
+using cabinets.Core.ViewModels.Calendar;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace cabinets.Core.Pages
+namespace cabinets.Core.Pages.Calendar
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DayPage : MvxContentPage<DayViewModel>

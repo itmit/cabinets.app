@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using cabinets.Core.ViewModels.Cabinets;
+using cabinets.Core.ViewModels.Calendar;
 using cabinets.Core.ViewModels.News;
 using cabinets.Core.ViewModels.Profile;
 using MvvmCross.Commands;

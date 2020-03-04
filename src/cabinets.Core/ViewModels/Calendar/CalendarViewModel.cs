@@ -6,7 +6,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
-namespace cabinets.Core.ViewModels
+namespace cabinets.Core.ViewModels.Calendar
 {
 	public class CalendarViewModel : MvxNavigationViewModel
 	{

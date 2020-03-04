@@ -7,7 +7,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace cabinets.Core.ViewModels
+namespace cabinets.Core.ViewModels.Calendar
 {
 	public class DayViewModel : MvxViewModel<DateTime>
 	{
@@ -17,7 +17,6 @@ namespace cabinets.Core.ViewModels
 
 		private readonly ICabinetsService _cabinetService;
 		private readonly IMvxNavigationService _navigationService;
-		private MvxCommand _openBookingComand;
 		private DateTime _parameter;
 		private CalendarDay _selectedCabinet;
 		#endregion
