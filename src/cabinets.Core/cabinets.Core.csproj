@@ -31,6 +31,9 @@
     <Compile Update="Pages\SelectPopupPage.xaml.cs">
       <DependentUpon>SelectPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\BookingLayout.xaml.cs">
+      <DependentUpon>BookingLayout.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -88,7 +91,7 @@
     <EmbeddedResource Update="Pages\Auth\TwoButtonPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BookingsViewCell.xaml">
+    <EmbeddedResource Update="Views\BookingLayout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CabinetsViewCell.xaml">

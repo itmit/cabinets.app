@@ -99,6 +99,11 @@ namespace cabinets.Core.Services
 			get;
 		} = new Dictionary<string, string>();
 
+		/// <summary>
+		/// Происходит после обновлений списка избранных.
+		/// </summary>
+		public event EventHandler MakeReservationSuccesed;
+
 		public async Task<List<Cabinet>> GetAll()
 		{
 			using (var client = new HttpClient())
@@ -240,6 +245,7 @@ namespace cabinets.Core.Services
 
 				if (data.Success)
 				{
+					MakeReservationSuccesed?.Invoke(this, EventArgs.Empty);
 					return true;
 				}
 

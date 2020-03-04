@@ -23,7 +23,7 @@ namespace cabinets.Core.ViewModels.Profile
 		private MvxCommand _logoutCommand;
 		private readonly IProfileService _profileService;
 		private MvxCommand _refreshCommand;
-		private Reservation _selectedBooking;
+		private Reservation _selectedReservation;
 		private User _user;
 		private readonly IUserRepository _userRepository;
 		#endregion
@@ -34,12 +34,19 @@ namespace cabinets.Core.ViewModels.Profile
 								IMvxNavigationService navigationService,
 								IUserRepository userRepository,
 								IAuthService authService,
-								IProfileService profileService)
+								IProfileService profileService,
+								ICabinetsService cabinetsService)
 			: base(logProvider, navigationService)
 		{
 			_userRepository = userRepository;
 			_authService = authService;
 			_profileService = profileService;
+			cabinetsService.MakeReservationSuccesed += CabinetsServiceOnMakeReservationSuccesed;
+		}
+
+		private void CabinetsServiceOnMakeReservationSuccesed(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 
@@ -80,9 +87,9 @@ namespace cabinets.Core.ViewModels.Profile
 			}
 		}
 
-		public Reservation SelectedBooking
+		public Reservation SelectedReservation
 		{
-			get => _selectedBooking;
+			get => _selectedReservation;
 			set
 			{
 				if (value == null)
@@ -90,7 +97,7 @@ namespace cabinets.Core.ViewModels.Profile
 					return;
 				}
 
-				SetProperty(ref _selectedBooking, value);
+				SetProperty(ref _selectedReservation, value);
 
 				SelectedBookingExecute(value);
 			}

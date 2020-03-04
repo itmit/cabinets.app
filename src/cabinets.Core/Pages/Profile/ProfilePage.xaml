@@ -72,18 +72,12 @@
                              VerticalOptions="FillAndExpand"
                              BindableLayout.ItemsSource="{Binding Bookings}">
                             <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <StackLayout Orientation="Horizontal" Margin="0,15">
-                                            <Label FontSize="16" Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="#505050" HorizontalOptions="Start" />
-                                            <Label TextColor="#505050" HorizontalOptions="EndAndExpand"
-                                                   FontSize="16" VerticalOptions="Center" Text="{Binding Cabinet.Name}" />
-                                            <Image Source="ic_shape.png"
-                                                   WidthRequest="8"
-                                                   HeightRequest="12" HorizontalOptions="End" VerticalOptions="Center" />
-                                        </StackLayout>
-                                        <BoxView BackgroundColor="DarkGray" HeightRequest="1" HorizontalOptions="Fill"/>
-                                    </StackLayout>
+                                <DataTemplate x:Name="DataTemplatee">
+                                    <views1:BookingLayout>
+                                        <views1:BookingLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                        </views1:BookingLayout.GestureRecognizers>
+                                    </views1:BookingLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>

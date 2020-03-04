@@ -14,6 +14,11 @@ namespace cabinets.Core.Services
 		}
 		#endregion
 
+		/// <summary>
+		/// Происходит после обновлений списка избранных.
+		/// </summary>
+		event EventHandler MakeReservationSuccesed;
+
 		#region Overridable
 		Task<CabinetTime[]> CheckCabinetByDate(Cabinet cabinet, DateTime date);
 

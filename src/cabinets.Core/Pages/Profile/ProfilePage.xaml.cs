@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using cabinets.Core.Models;
 using cabinets.Core.Pages.Auth;
 using cabinets.Core.ViewModels.Profile;
+using cabinets.Core.Views;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -19,11 +23,9 @@ namespace cabinets.Core.Pages.Profile
 		}
 		#endregion
 
-		#region Private
-		private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			((ListView) sender).SelectedItem = null;
+			ViewModel.SelectedReservation = (sender as View)?.BindingContext as Reservation;
 		}
-		#endregion
 	}
 }

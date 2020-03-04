@@ -1,13 +1,14 @@
-﻿using Xamarin.Forms;
+﻿using MvvmCross.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace cabinets.Core.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BookingsViewCell : ViewCell
+	public partial class BookingLayout : StackLayout
 	{
 		#region .ctor
-		public BookingsViewCell()
+		public BookingLayout()
 		{
 			InitializeComponent();
 		}
