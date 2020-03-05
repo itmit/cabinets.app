@@ -9,6 +9,7 @@ using AutoMapper;
 using cabinets.Core.Dtos;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace cabinets.Core.Services
@@ -25,16 +26,12 @@ namespace cabinets.Core.Services
 
 		#region Fields
 		private readonly Mapper _mapper;
-		private readonly AccessToken _token;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public NewsService(IUserRepository userRepository)
+		public NewsService()
 		{
-			_token = userRepository.GetAll()
-								   .Single()
-								   .AccessToken;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<News, NewsDto>()
@@ -56,8 +53,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.GetAsync(GetAllUri);
 
@@ -84,8 +84,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(GetNewsDetailUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>

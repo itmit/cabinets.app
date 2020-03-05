@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentView x:TypeArguments="calendar:DayCalendarViewModel" xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:calendar="clr-namespace:cabinets.Core.ViewModels.Calendar;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Views.DayCalendarView">
+    <ContentView.Content>
+        <ScrollView>
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Times}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding .}" Margin="25, 15, 5, 15" HorizontalTextAlignment="End"/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <BoxView BackgroundColor="DarkGray" VerticalOptions="Fill" Width="1"/>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</views:MvxContentView>

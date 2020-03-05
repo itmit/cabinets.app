@@ -83,7 +83,7 @@
                         </StackLayout>
                     </StackLayout>
 
-                    <Button Text="Выход" Command="{Binding LogoutCommand}" />
+                    <Button Text="Выход" Command="{Binding LogoutCommand}" Style="{StaticResource ButtonTransparent}" Margin="15,0"/>
                 </StackLayout>
             </ScrollView>
         </RefreshView>

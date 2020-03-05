@@ -8,40 +8,71 @@
                       xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
                       xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
                       xmlns:calendar="clr-namespace:cabinets.Core.ViewModels.Calendar;assembly=cabinets.Core"
+                      xmlns:views1="clr-namespace:cabinets.Core.Views"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.Calendar.DayPage">
+                      x:Class="cabinets.Core.Pages.Calendar.DayPage"
+                      Title="{Binding DateTime, StringFormat='{0:dd.MM.yyyy}'}">
     <ContentPage.Content>
-        <ListView
-            HasUnevenRows="True"
-            SelectedItem="{Binding SelectedCabinet}"
-            ItemsSource="{Binding Cabinets}"
-            ItemSelected="ListView_ItemSelected"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Margin="10">
-                            <Label Text="{Binding Cabinet.Name}" />
-                            <controls:RepeaterView
-                                ItemsSource="{Binding Times}"
-                                VerticalOptions="Fill"
-                                HorizontalOptions="Fill">
-                                <controls:RepeaterView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Frame Style="{StaticResource FrameLabel}" Margin="0,5">
-                                                <Label Text="{Binding .}" TextColor="#505050"
-                                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                                            </Frame>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </controls:RepeaterView.ItemTemplate>
-                            </controls:RepeaterView>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ScrollView>
+            <Grid ColumnSpacing="0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout HorizontalOptions="Fill" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" BindableLayout.ItemsSource="{Binding Times}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="Fill">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding .}" Margin="10, 15, 0, 15" FontSize="14" VerticalTextAlignment="Center" />
+                                <BoxView Grid.Column="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" VerticalOptions="Fill" Orientation="Horizontal" HorizontalOptions="End">
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" VerticalOptions="Fill" />
+                </StackLayout>
+
+                <Grid Grid.Column="1"
+                      RowDefinitions="{Binding Rows}"
+                      Margin="0, 23, 0, 0"
+                      ColumnSpacing="0"
+                      BindableLayout.ItemsSource="{Binding Events}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Grid.Column="{Binding Width}" 
+                                   Grid.ColumnSpan="1" 
+                                   Grid.Row="{Binding IndexStart}" 
+                                   Grid.RowSpan="{Binding Height}" 
+                                   CornerRadius="10" 
+                                   BackgroundColor="{Binding Cabinet.Colour}" 
+                                   VerticalOptions="Fill" 
+                                   HorizontalOptions="Fill">
+                                <Label Text="{Binding Cabinet.Name}"/>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </Grid>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

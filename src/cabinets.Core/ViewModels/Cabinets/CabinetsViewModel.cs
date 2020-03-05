@@ -70,14 +70,17 @@ namespace cabinets.Core.ViewModels.Cabinets
 		{
 			await base.Initialize();
 
-			try
+			await Task.Run(async () =>
 			{
-				Cabinets = new MvxObservableCollection<Cabinet>(await _cabinetsService.GetAll());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+				try
+				{
+					Cabinets = new MvxObservableCollection<Cabinet>(await _cabinetsService.GetAll());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+			});
 		}
 		#endregion
 
@@ -96,6 +99,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 			}
 			catch (Exception e)
 			{
+				IsRefreshing = false;
 				Console.WriteLine(e);
 			}
 

@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <views:MvxContentPage x:TypeArguments="cabinets:BookingViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -70,8 +69,7 @@
                     </Grid>
                     <StackLayout Spacing="0">
                         <Button Text="Забронировать" Style="{StaticResource ButtonBlur}"
-                                IsEnabled="{Binding IsReservationEnabled}" Command="{Binding ReservationCommand}"
-                                Opacity="0.6" />
+                                IsEnabled="{Binding IsReservationEnabled}" Command="{Binding ReservationCommand}"/>
                         <Button Text="К списку кабинетов" Style="{StaticResource ButtonTransparent}" Margin="0,10"
                                 Command="{Binding BackCommand}" />
                     </StackLayout>

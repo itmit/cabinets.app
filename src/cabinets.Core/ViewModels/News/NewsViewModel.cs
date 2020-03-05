@@ -57,14 +57,17 @@ namespace cabinets.Core.ViewModels.News
 		{
 			await base.Initialize();
 
-			try
+			await Task.Run(async () =>
 			{
-				News = new MvxObservableCollection<Models.News>(await _newsService.GetAll());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+				try
+				{
+					News = new MvxObservableCollection<Models.News>(await _newsService.GetAll());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+			});
 		}
 		#endregion
 

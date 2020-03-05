@@ -1,4 +1,5 @@
-﻿using cabinets.Core.ViewModels;
+﻿using System;
+using cabinets.Core.ViewModels;
 using cabinets.Core.ViewModels.Calendar;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -16,11 +17,9 @@ namespace cabinets.Core.Pages.Calendar
 		}
 		#endregion
 
-		#region Private
-		private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			((ListView) sender).SelectedItem = null;
+			var a = ViewModel.Events;
 		}
-		#endregion
 	}
 }

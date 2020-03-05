@@ -14,7 +14,7 @@ namespace cabinets.Core.Models
 		/// <summary>
 		/// Возвращает цвет флажка
 		/// </summary>
-		public string BoxColor
+		public string Colour
 		{
 			get;
 			set;

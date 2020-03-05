@@ -37,6 +37,12 @@ namespace cabinets.Core.Dtos
 			set;
 		}
 
+		public string Colour
+		{
+			get;
+			set;
+		}
+
 		public string Photo
 		{
 			get;

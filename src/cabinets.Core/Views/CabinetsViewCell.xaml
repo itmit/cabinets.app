@@ -60,7 +60,7 @@
                        LineBreakMode="TailTruncation" />
             </StackLayout>
             <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20"
-                     BackgroundColor="{Binding BoxColor, FallbackValue='Red'}" Margin="0,0,10,0" />
+                     BackgroundColor="{Binding Colour}" Margin="0,0,10,0" />
             <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8"
                      BackgroundColor="Transparent" Margin="0,17,11,0" Rotation="-45" />
         </Grid>

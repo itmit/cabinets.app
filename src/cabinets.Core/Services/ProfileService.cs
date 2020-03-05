@@ -9,6 +9,7 @@ using AutoMapper;
 using cabinets.Core.Dtos;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace cabinets.Core.Services
@@ -28,16 +29,12 @@ namespace cabinets.Core.Services
 
 		#region Fields
 		private Mapper _mapper;
-		private readonly AccessToken _token;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public ProfileService(IUserRepository userRepository)
+		public ProfileService()
 		{
-			_token = userRepository.GetAll()
-								   .Single()
-								   .AccessToken;
 
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
@@ -53,8 +50,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.GetAsync(GetAmountUri);
 
@@ -76,8 +76,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(GetReservationDetailUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
@@ -110,8 +113,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.GetAsync(GetReservationsUri);
 
@@ -138,8 +144,11 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = Mvx.IoCProvider.Resolve<IUserRepository>()
+							   .GetAll()
+							   .Single().AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(CancelReservationUri, new FormUrlEncodedContent(new Dictionary<string, string>
 				{

@@ -41,12 +41,12 @@ namespace cabinets.Core.ViewModels.Profile
 			_userRepository = userRepository;
 			_authService = authService;
 			_profileService = profileService;
-			cabinetsService.MakeReservationSuccesed += CabinetsServiceOnMakeReservationSuccesed;
+			cabinetsService.MakeReservationSuccesed += CabinetsServiceOnMakeReservationSucceed;
 		}
 
-		private void CabinetsServiceOnMakeReservationSuccesed(object sender, EventArgs e)
+		private void CabinetsServiceOnMakeReservationSucceed(object sender, EventArgs e)
 		{
-			throw new NotImplementedException();
+			Refresh();
 		}
 		#endregion
 
@@ -125,8 +125,7 @@ namespace cabinets.Core.ViewModels.Profile
 
 			User = _userRepository.GetAll()
 								  .Single();
-
-			Refresh();
+			await Task.Run(Refresh);
 		}
 		#endregion
 
