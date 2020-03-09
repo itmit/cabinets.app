@@ -5,10 +5,7 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
-                      xmlns:viewModels="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
                       xmlns:calendar="clr-namespace:cabinets.Core.ViewModels.Calendar;assembly=cabinets.Core"
-                      xmlns:views1="clr-namespace:cabinets.Core.Views"
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Calendar.DayPage"
                       Title="{Binding DateTime, StringFormat='{0:dd.MM.yyyy}'}">
@@ -44,7 +41,6 @@
                 </StackLayout>
 
                 <Grid Grid.Column="1"
-                      RowDefinitions="{Binding Rows}"
                       Margin="0, 23, 0, 0"
                       ColumnSpacing="0"
                       BindableLayout.ItemsSource="{Binding Events}">
@@ -57,6 +53,46 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Frame Grid.Column="{Binding Width}" 
@@ -71,6 +107,120 @@
                             </Frame>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
+                    -->
+
+                    <Frame Grid.Column="0" 
+                           Grid.Row="0" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="1" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="2" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="3" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="4" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="5" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="6" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="7" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="8" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="9" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="10" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="0" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="0" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkRed" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
+                    <Frame Grid.Column="0" 
+                           Grid.Row="0" 
+                           CornerRadius="10" 
+                           BackgroundColor="DarkBlue" 
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="Fill">
+                        <Label Text="1 cabinet"/>
+                    </Frame>
                 </Grid>
             </Grid>
         </ScrollView>

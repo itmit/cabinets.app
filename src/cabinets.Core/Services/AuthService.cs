@@ -45,7 +45,7 @@ namespace cabinets.Core.Services
 		/// </summary>
 		public AuthService(IUserRepository userRepository)
 		{
-			User = userRepository.GetAll().Single();
+			User = userRepository.GetAll().SingleOrDefault();
 
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{

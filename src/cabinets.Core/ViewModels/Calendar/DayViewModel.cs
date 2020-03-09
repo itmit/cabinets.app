@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
 using cabinets.Core.ViewModels.Cabinets;
-using MvvmCross;
-using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;

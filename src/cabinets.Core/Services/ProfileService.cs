@@ -16,7 +16,7 @@ namespace cabinets.Core.Services
 {
 	public class ProfileService : IProfileService
 	{
-		private readonly AccessToken _token;
+		private readonly IAuthService _authService;
 
 		#region Data
 		#region Consts
@@ -33,7 +33,7 @@ namespace cabinets.Core.Services
 		#region .ctor
 		public ProfileService(IAuthService authService)
 		{
-			_token = authService.User.AccessToken;
+			_authService = authService;
 		}
 		#endregion
 
@@ -42,8 +42,9 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = _authService.User.AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.GetAsync(GetAmountUri);
 
@@ -65,8 +66,9 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = _authService.User.AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(GetReservationDetailUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
@@ -100,7 +102,7 @@ namespace cabinets.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_authService.User.AccessToken.Type} {_authService.User.AccessToken.Body}");
 
 				var response = await client.GetAsync(GetReservationsUri);
 
@@ -127,8 +129,9 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = _authService.User.AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(CancelReservationUri, new FormUrlEncodedContent(new Dictionary<string, string>
 				{

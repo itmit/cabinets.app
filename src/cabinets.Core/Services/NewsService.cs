@@ -26,14 +26,14 @@ namespace cabinets.Core.Services
 
 		#region Fields
 		private readonly Mapper _mapper;
-		private readonly AccessToken _token;
+		private readonly IAuthService _authService;
 		#endregion
 		#endregion
 
 		#region .ctor
 		public NewsService(IAuthService authService)
 		{
-			_token = authService.User.AccessToken;
+			_authService = authService;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<News, NewsDto>()
@@ -55,8 +55,9 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = _authService.User.AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.GetAsync(GetAllUri);
 
@@ -83,8 +84,9 @@ namespace cabinets.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
+				var token = _authService.User.AccessToken;
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
 				var response = await client.PostAsync(GetNewsDetailUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
