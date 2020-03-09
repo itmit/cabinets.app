@@ -65,16 +65,11 @@ namespace cabinets.Core.ViewModels.Calendar
 			await base.Initialize();
 
 			var times = new MvxObservableCollection<string>();
-			var rows = new MvxObservableCollection<RowDefinition>();
 			for (int i = 7; i < 24; i++)
 			{
 				times.Add($"{i}:00");
 				times.Add($"{i}:30");
-				rows.Add(new RowDefinition());
-				rows.Add(new RowDefinition());
 			}
-
-			Rows = rows;
 			Times = times;
 
 			try
@@ -146,12 +141,6 @@ namespace cabinets.Core.ViewModels.Calendar
 		{
 			_parameter = parameter;
 			DateTime = parameter;
-		}
-
-		public MvxObservableCollection<RowDefinition> Rows
-		{
-			get => _rows;
-			private set => SetProperty(ref _rows, value);
 		}
 		#endregion
 	}
