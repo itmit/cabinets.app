@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -7,12 +8,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using cabinets.Core.Dtos;
 using cabinets.Core.Models;
+using cabinets.Core.Repositories;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace cabinets.Core.Services
 {
 	/// <summary>
-	/// Представляет
+	/// Представляет сервис для авторизации пользователей.
 	/// </summary>
 	public class AuthService : IAuthService
 	{
@@ -40,8 +43,10 @@ namespace cabinets.Core.Services
 		/// <summary>
 		/// Инициализирует новый экземпляр <see cref="AuthService" />.
 		/// </summary>
-		public AuthService()
+		public AuthService(IUserRepository userRepository)
 		{
+			User = userRepository.GetAll().Single();
+
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<AccessToken, UserDto>();
@@ -65,6 +70,12 @@ namespace cabinets.Core.Services
 			get;
 			private set;
 		} = new Dictionary<string, string[]>();
+
+		public User User
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>
 		/// Проводит авторизацию пользователя.
@@ -100,7 +111,8 @@ namespace cabinets.Core.Services
 
 				if (jsonData.Success)
 				{
-					return await Task.FromResult(_mapper.Map<User>(jsonData.Data));
+					User = await Task.FromResult(_mapper.Map<User>(jsonData.Data));
+					return User;
 				}
 
 				Errors = jsonData.Errors;
@@ -124,6 +136,11 @@ namespace cabinets.Core.Services
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					User = null;
+				}
 			}
 		}
 
@@ -154,8 +171,8 @@ namespace cabinets.Core.Services
 
 				if (jsonData.Success)
 				{
-					user = await Task.FromResult(_mapper.Map<User>(jsonData.Data));
-					return user;
+					User = await Task.FromResult(_mapper.Map<User>(jsonData.Data));
+					return User;
 				}
 
 				Errors = jsonData.Errors;

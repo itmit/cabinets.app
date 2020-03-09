@@ -40,6 +40,8 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			_userRepository = userRepository;
 			_authService = authService;
+
+			User = _authService.User;
 			_profileService = profileService;
 			cabinetsService.MakeReservationSuccesed += CabinetsServiceOnMakeReservationSucceed;
 		}
@@ -123,8 +125,6 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			await base.Initialize();
 
-			User = _userRepository.GetAll()
-								  .Single();
 			await Task.Run(Refresh);
 		}
 		#endregion

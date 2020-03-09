@@ -21,7 +21,6 @@ namespace cabinets.Core.ViewModels.Profile
 		private readonly IProfileService _profileService;
 		private Reservation _reservation;
 		private User _user;
-		private readonly IUserRepository _userRepository;
 		private MvxCommand _cancelCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private string _status;
@@ -29,10 +28,10 @@ namespace cabinets.Core.ViewModels.Profile
 		#endregion
 
 		#region .ctor
-		public MyBookingViewModel(IProfileService profileService, IUserRepository userRepository, IMvxNavigationService navigationService)
+		public MyBookingViewModel(IProfileService profileService, IAuthService authService, IMvxNavigationService navigationService)
 		{
 			_profileService = profileService;
-			_userRepository = userRepository;
+			User = authService.User;
 			_navigationService = navigationService;
 		}
 		#endregion
@@ -94,8 +93,6 @@ namespace cabinets.Core.ViewModels.Profile
 
 			Reservation = await _profileService.GetReservationDetail(_parameter.Uuid);
 			Status = Reservation.IsPaid ? "Оплачено" : "Не оплачено";
-			User = _userRepository.GetAll()
-								  .Single();
 		}
 
 		public override void Prepare(Reservation parameter)

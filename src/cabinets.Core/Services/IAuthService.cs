@@ -14,6 +14,11 @@ namespace cabinets.Core.Services
 		{
 			get;
 		}
+
+		User User
+		{
+			get;
+		}
 		#endregion
 
 		#region Overridable

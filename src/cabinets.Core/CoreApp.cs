@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using cabinets.Core.Repositories;
+using cabinets.Core.Services;
 using cabinets.Core.ViewModels;
 using cabinets.Core.ViewModels.Auth;
 using MvvmCross;
@@ -28,10 +29,7 @@ namespace cabinets.Core
 
 			RealmConfiguration.DefaultConfiguration.SchemaVersion = 2;
 
-			var userRepository = Mvx.IoCProvider.Resolve<IUserRepository>();
-
-			var user = userRepository.GetAll()
-									 .SingleOrDefault();
+			var user = Mvx.IoCProvider.Resolve<IAuthService>().User;
 
 			if (user?.AccessToken == null)
 			{
