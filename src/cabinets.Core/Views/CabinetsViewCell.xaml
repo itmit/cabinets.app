@@ -8,61 +8,59 @@
           x:Class="cabinets.Core.Views.CabinetsViewCell">
     <ViewCell.View>
         <!--Ячейка представления для списка на странице выбрать кабинет-->
-        <Grid BackgroundColor="White" ColumnSpacing="10" Margin="0,5">
-            <Grid.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="Label" TargetType="Label">
-                        <Setter Property="TextColor" Value="#505050" />
-                        <Setter Property="FontSize" Value="10" />
-                    </Style>
-                    <Style x:Key="BoxView" TargetType="BoxView">
-                        <Setter Property="Grid.Column" Value="1" />
-                        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
-                        <Setter Property="VerticalOptions" Value="Start" />
-                    </Style>
-                </ResourceDictionary>
-            </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Frame IsClippedToBounds="True" Padding="0" CornerRadius="1" HasShadow="False">
-                <Image Source="{Binding PhotoSource}" Grid.Column="0" VerticalOptions="Center"
+        <Frame Padding="5,0,10,0" Margin="0,5,0,0" HeightRequest="80">
+            <Grid BackgroundColor="White" ColumnSpacing="10">
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="BoxView" TargetType="BoxView">
+                            <Setter Property="Grid.Column" Value="1" />
+                            <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                            <Setter Property="VerticalOptions" Value="Start" />
+                        </Style>
+                    </ResourceDictionary>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Frame IsClippedToBounds="True" Padding="0" CornerRadius="1" HasShadow="False">
+                    <Image Source="{Binding PhotoSource}" Grid.Column="0" VerticalOptions="Center"
                        HorizontalOptions="Center" Margin="5" />
-            </Frame>
-            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
-                <Label Text="{Binding Name}" TextColor="#505050" />
-                <StackLayout Orientation="Horizontal" Margin="0,0,10,0">
-                    <Label Style="{StaticResource Label}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Вместимость: до " />
-                                    <Span Text="{Binding Capacity}" />
-                                    <Span Text=" чел" />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label Style="{StaticResource Label}" HorizontalOptions="EndAndExpand">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Площадь: " />
-                                    <Span Text="{Binding Area}" />
-                                    <Span Text="м²" />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-                <Label Text="{Binding Description}" Style="{StaticResource Label}" Margin="0,0,10,0" MaxLines="2"
+                </Frame>
+                <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                    <Label Text="{Binding Name}" TextColor="#505050" />
+                    <StackLayout Orientation="Horizontal" Margin="0,0,10,0">
+                        <Label FontSize="Micro">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Вместимость: до " />
+                                        <Span Text="{Binding Capacity}" />
+                                        <Span Text=" чел" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="EndAndExpand" FontSize="Micro">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Площадь: " />
+                                        <Span Text="{Binding Area}" />
+                                        <Span Text="м²" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                    <Label Text="{Binding Description}" FontSize="Micro" Margin="0,0,10,0" MaxLines="2"
                        LineBreakMode="TailTruncation" />
-            </StackLayout>
-            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20"
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxView}" WidthRequest="10" HeightRequest="20"
                      BackgroundColor="{Binding Colour}" Margin="0,0,10,0" />
-            <BoxView Grid.Column="0" Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8"
-                     BackgroundColor="Transparent" Margin="0,17,11,0" Rotation="-45" />
-        </Grid>
+                <BoxView Style="{StaticResource BoxView}" WidthRequest="8" HeightRequest="8"
+                     BackgroundColor="White" Margin="0,17,11,0" Rotation="-45" />
+            </Grid>
+        </Frame>
     </ViewCell.View>
 </ViewCell>

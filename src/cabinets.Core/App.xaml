@@ -9,35 +9,45 @@
              x:Class="cabinets.Core.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--Стиль для верхнего бара-->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#001324" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            <!--Стиль для всех страниц-->
             <Style TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="#F3F3F3" />
             </Style>
-            <Style x:Key="ButtonBlur" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#31516D" />
+            <Style x:Key="BaseButton" TargetType ="Button">
                 <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+            </Style>
+            <!--Стиль для синих кнопок-->
+            <Style x:Key="ButtonBlur" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+                <Setter Property="BackgroundColor" Value="#31516D" />
                 <Setter Property="TextColor" Value="#FFFFFF" />
             </Style>
-            <Style x:Key="ButtonTransparent" TargetType="Button">
+            <!--Стиль для прозрачных кнопок-->
+            <Style x:Key="ButtonTransparent" TargetType="Button" BasedOn="{StaticResource BaseButton}">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="#31516D" />
-                <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="BorderColor" Value="#31516D" />
                 <Setter Property="BorderWidth" Value="1" />
             </Style>
-            <Style x:Key="EntryAuth" TargetType="Entry">
+            <Style x:Key="BaseEntry" TargetType="Entry">
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
                 <Setter Property="PlaceholderColor" Value="#828282" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <!--Стиль для полей ввода на странице авторизации-->
+            <Style x:Key="EntryAuth" TargetType="Entry" BasedOn="{StaticResource BaseEntry}">
                 <Setter Property="TextColor" Value="#828282" />
-                <Setter Property="FontSize" Value="14" />
             </Style>
-            <Style x:Key="EntryReg" TargetType="Entry">
-                <Setter Property="PlaceholderColor" Value="#828282" />
+            <!--Стиль для полей ввода на странице регистрации-->
+            <Style x:Key="EntryReg" TargetType="Entry" BasedOn="{StaticResource BaseEntry}">
                 <Setter Property="TextColor" Value="#000000" />
-                <Setter Property="FontSize" Value="14" />
             </Style>
+            <!--Стиль для рамки вокруг поллей ввода-->
             <Style x:Key="FrameEntry" TargetType="Frame">
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="CornerRadius" Value="2" />
@@ -53,6 +63,15 @@
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="Lato-Bold.ttf#Lato-Bold"/>
+                <Setter Property="FontSize" Value="Large"/>
             </Style>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         </ResourceDictionary>

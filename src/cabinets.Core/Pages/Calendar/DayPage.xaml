@@ -7,8 +7,12 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:calendar="clr-namespace:cabinets.Core.ViewModels.Calendar;assembly=cabinets.Core"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.Calendar.DayPage"
-                      Title="{Binding DateTime, StringFormat='{0:dd.MM.yyyy}'}">
+                      x:Class="cabinets.Core.Pages.Calendar.DayPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding DateTime, StringFormat='{0:dd.MM.yyyy}'}" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <ScrollView>
             <Grid ColumnSpacing="0">

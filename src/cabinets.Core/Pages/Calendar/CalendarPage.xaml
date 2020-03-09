@@ -4,16 +4,17 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:viewCell="clr-namespace:cabinets.Views"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
-                      xmlns:viewModels1="clr-namespace:cabinets.Core.ViewModels;assembly=cabinets.Core"
-                      xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
                       xmlns:calendar="clr-namespace:cabinets.Core.ViewModels.Calendar;assembly=cabinets.Core"
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Calendar.CalendarPage"
-                      Title="Календарь"
-                      d:NavigationPage.HasNavigationBar="True">
+                      Title="Календарь">
+
+    <NavigationPage.TitleView>
+        <Label Text="Календарь" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <views:MvxContentPage.IconImageSource>
         <OnPlatform x:TypeArguments="ImageSource">
             <On Platform="iOS" Value="baseline_calendar_today_black_24pt_1x.png" />
@@ -25,16 +26,6 @@
         <!--Страница календаря-->
         <ScrollView>
             <StackLayout>
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="LabelFrame" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050" />
-                            <Setter Property="HorizontalOptions" Value="Center" />
-                            <Setter Property="VerticalOptions" Value="Center" />
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
-
                 <views1:CalendarView />
 
                 <StackLayout Margin="15,0">
