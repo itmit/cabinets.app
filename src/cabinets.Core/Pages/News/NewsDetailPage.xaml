@@ -7,20 +7,15 @@
                       xmlns:news="clr-namespace:cabinets.Core.ViewModels.News;assembly=cabinets.Core"
                       xmlns:contentViews="clr-namespace:cabinets.Core.ContentViews;assembly=cabinets.Core"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.News.NewsDetailPage"
-                      Title="Новости">
+                      x:Class="cabinets.Core.Pages.News.NewsDetailPage">
+    <NavigationPage.TitleView>
+        <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--Детальная страница новостей-->
         <ScrollView>
             <StackLayout Margin="20,5">
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="Label" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050" />
-                            <Setter Property="FontSize" Value="12" />
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
                 <CarouselView HeightRequest="170" ItemsSource="{Binding News.DetailPictureSources}">
                     <CarouselView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="70" />
@@ -31,8 +26,8 @@
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
-                <Label Text="{Binding News.Title}" Style="{StaticResource Label}" />
-                <Label Text="{Binding News.DetailText}" Style="{StaticResource Label}" />
+                <Label Text="{Binding News.Title}" FontSize="Caption" />
+                <Label Text="{Binding News.DetailText}" FontSize="Caption" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

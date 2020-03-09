@@ -9,13 +9,16 @@
                       xmlns:profile="clr-namespace:cabinets.Core.ViewModels.Profile;assembly=cabinets.Core"
                       xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.Profile.MyBookingPage"
-                      Title="Мои бронирования">
+                      x:Class="cabinets.Core.Pages.Profile.MyBookingPage">
+<NavigationPage.TitleView>
+        <Label Text="Мои бронирования" Style="{StaticResource TitleLabel}"/>
+</NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--Страница мои бронирования-->
         <ScrollView>
             <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                <Label Text="{Binding User.Name}" FontSize="16" TextColor="#505050" />
+                <Label Text="{Binding User.Name}" FontSize="Body" TextColor="#505050" />
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>

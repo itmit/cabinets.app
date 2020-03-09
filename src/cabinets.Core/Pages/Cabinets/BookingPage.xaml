@@ -7,24 +7,18 @@
                       xmlns:cabinets="clr-namespace:cabinets.Core.ViewModels.Cabinets;assembly=cabinets.Core"
                       xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.Cabinets.BookingPage"
-                      Title="{Binding Cabinet.Name}">
+                      x:Class="cabinets.Core.Pages.Cabinets.BookingPage">
+<NavigationPage.TitleView>
+        <Label Text="{Binding Cabinet.Name}" Style="{StaticResource TitleLabel}"/>
+</NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--Страница кабинета с календарем-->
         <ScrollView>
             <StackLayout>
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="LabelFrame" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050" />
-                            <Setter Property="HorizontalOptions" Value="Center" />
-                            <Setter Property="VerticalOptions" Value="Center" />
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
                 <views1:CalendarView />
                 <StackLayout Margin="15,0">
-                    <Label FontSize="12" Text="Свободное время" />
+                    <Label FontSize="Caption" Text="Свободное время" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="140" />

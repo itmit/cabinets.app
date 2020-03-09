@@ -10,6 +10,10 @@
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Profile.ProfilePage"
                       Title="Профиль">
+    <NavigationPage.TitleView>
+        <Label Text="Профиль" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <views:MvxContentPage.IconImageSource>
         <OnPlatform x:TypeArguments="ImageSource">
             <On Platform="iOS" Value="outline_person_black_24pt_1x.png" />
@@ -23,16 +27,8 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <ScrollView>
                 <StackLayout>
-                    <StackLayout.Resources>
-                        <ResourceDictionary>
-                            <Style x:Key="Label" TargetType="Label">
-                                <Setter Property="FontSize" Value="18" />
-                                <Setter Property="TextColor" Value="#505050" />
-                            </Style>
-                        </ResourceDictionary>
-                    </StackLayout.Resources>
                     <StackLayout Margin="0,10" BackgroundColor="#ffffff" Padding="20">
-                        <Label Text="{Binding User.Name}" Style="{StaticResource Label}" />
+                        <Label Text="{Binding User.Name}" FontSize="Body" TextColor="#505050"/>
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>
@@ -66,7 +62,7 @@
                         </Label>
                     </StackLayout>
                     <StackLayout BackgroundColor="White" Padding="20">
-                        <Label Text="Мои бронирования" Style="{StaticResource Label}" />
+                        <Label Text="Мои бронирования" FontSize="Body" TextColor="#505050"/>
                         <!--SelectedItem="{Binding SelectedBooking}"-->
                         <StackLayout HorizontalOptions="FillAndExpand"
                              VerticalOptions="FillAndExpand"

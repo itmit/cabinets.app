@@ -9,8 +9,11 @@
                       xmlns:views1="clr-namespace:cabinets.Core.Views;assembly=cabinets.Core"
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Cabinets.CabinetsPage"
-                      d:NavigationPage.HasNavigationBar="True"
                       Title="Кабинеты">
+    <NavigationPage.TitleView>
+        <Label Text="Кабинеты" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <views:MvxContentPage.IconImageSource>
         <OnPlatform x:TypeArguments="ImageSource">
             <On Platform="iOS" Value="outline_home_black_24pt_1x.png" />
