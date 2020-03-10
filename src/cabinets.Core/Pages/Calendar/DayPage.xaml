@@ -52,14 +52,6 @@
                       RowSpacing="1"
                       BindableLayout.ItemsSource="{Binding Events}"
                       ColumnSpacing="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -108,7 +100,7 @@
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Frame Grid.Column="{Binding Width}"
+                            <Frame WidthRequest="{Binding Width}"
                                    Grid.ColumnSpan="1"
                                    Grid.Row="{Binding IndexStart}" 
                                    Grid.RowSpan="{Binding Height}"

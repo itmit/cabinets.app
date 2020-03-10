@@ -29,6 +29,8 @@ namespace cabinets.Core.Services
 		private const string LogoutUri = "http://cabinets.itmit-studio.ru/api/logout";
 
 		private const string RegistrationUri = "http://cabinets.itmit-studio.ru/api/register";
+
+		private const string SendDeviceTokenUri = "http://cabinets.itmit-studio.ru/api/user/updateDeviceToken";
 		#endregion
 
 		#region Fields
@@ -125,8 +127,10 @@ namespace cabinets.Core.Services
 			}
 		}
 
-		public async void Logout(User user)
+		public async void Logout(User user = null)
 		{
+			user = user ?? User;
+
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -182,6 +186,30 @@ namespace cabinets.Core.Services
 				}
 
 				return null;
+			}
+		}
+
+		public async Task<bool> SendDeviceToken(string token)
+		{
+			if (User?.AccessToken == null)
+			{
+				return false;
+			}
+
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{User.AccessToken.Type} {User.AccessToken.Body}");
+
+				var response = await client.PostAsync(SendDeviceTokenUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"device_token", token}
+				}));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				return response.IsSuccessStatusCode;
 			}
 		}
 		#endregion

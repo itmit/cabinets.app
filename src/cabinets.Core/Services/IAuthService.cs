@@ -33,6 +33,8 @@ namespace cabinets.Core.Services
 		void Logout(User user);
 
 		Task<User> Registration(User user, string password, string confirmPassword);
+
+		Task<bool> SendDeviceToken(string token);
 		#endregion
 	}
 }
