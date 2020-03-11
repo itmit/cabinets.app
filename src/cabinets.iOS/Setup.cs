@@ -1,18 +1,25 @@
-﻿
-using cabinets.Core;
+﻿using cabinets.Core;
+using cabinets.Core.Services;
+using cabinets.iOS.Services;
 using MvvmCross.Forms.Platforms.Ios.Core;
-using MvvmCross.Forms.Presenters;
-using MvvmCross.Platforms.Ios.Presenters;
+using MvvmCross.IoC;
+using MvvmCross.Platforms.Ios.Core;
 using MvvmCross.ViewModels;
-using UIKit;
-using Xamarin.Forms;
 
 namespace cabinets.iOS
 {
-	public class Setup : MvxFormsIosSetup<CoreApp, App>
+	public class Setup : MvxFormsIosSetup
 	{
-		protected override IMvxApplication CreateApp() =>  new CoreApp();
+		protected override IMvxApplication CreateApp() => new CoreApp();
 
 		protected override Xamarin.Forms.Application CreateFormsApplication() => new App();
+
+		protected override IMvxIoCProvider CreateIocProvider()
+		{
+			var provider = base.CreateIocProvider();
+			provider.RegisterType<IFireBaseService, IosFireBaseService>();
+			provider.RegisterType<ISubscribeTopicFireBase, SubscribeTopicFireBase>();
+			return provider;
+		}
 	}
 }

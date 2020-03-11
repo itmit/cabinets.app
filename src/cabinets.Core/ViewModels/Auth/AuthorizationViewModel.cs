@@ -19,13 +19,15 @@ namespace cabinets.Core.ViewModels.Auth
 		private readonly IAuthService _authService;
 		private MvxCommand _openRegistrationCommand;
 		private readonly IUserRepository _userRepository;
+		private readonly IFireBaseService _fireBaseService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IUserRepository userRepository)
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IUserRepository userRepository, IFireBaseService fireBaseService)
 			: base(logProvider, navigationService)
 		{
+			_fireBaseService = fireBaseService;
 			_authService = authService;
 			_userRepository = userRepository;
 		}
@@ -127,6 +129,7 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 
 			_userRepository.Add(user);
+			_fireBaseService.DeleteInstance();
 
 			await NavigationService.Navigate<MainViewModel>();
 		}

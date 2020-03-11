@@ -65,7 +65,11 @@
     <Compile Include="CustomEntry.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\IosFireBaseService.cs" />
+    <Compile Include="Services\SubscribeTopicFireBase.cs" />
+    <Compile Include="Setup.cs" />
     <None Include="Entitlements.plist" />
+    <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\Lato-Regular.ttf" />
@@ -167,11 +171,18 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging">
+      <Version>4.1.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.142-pre1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\cabinets.Core\cabinets.Core.csproj">
+      <Project>{F73D128F-7360-400D-B1B9-9C64934DE205}</Project>
+      <Name>cabinets.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\cabinets\cabinets.csproj">
       <Project>{D41FF7E5-87E4-49FD-A1E1-639502E22CE0}</Project>
       <Name>cabinets</Name>

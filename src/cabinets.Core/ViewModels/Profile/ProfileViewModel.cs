@@ -26,6 +26,7 @@ namespace cabinets.Core.ViewModels.Profile
 		private Reservation _selectedReservation;
 		private User _user;
 		private readonly IUserRepository _userRepository;
+		private readonly IFireBaseService _fireBaseService;
 		#endregion
 		#endregion
 
@@ -35,12 +36,13 @@ namespace cabinets.Core.ViewModels.Profile
 								IUserRepository userRepository,
 								IAuthService authService,
 								IProfileService profileService,
-								ICabinetsService cabinetsService)
+								ICabinetsService cabinetsService,
+								IFireBaseService fireBaseService)
 			: base(logProvider, navigationService)
 		{
 			_userRepository = userRepository;
 			_authService = authService;
-
+			_fireBaseService = fireBaseService;
 			User = _authService.User;
 			_profileService = profileService;
 			cabinetsService.MakeReservationSuccesed += CabinetsServiceOnMakeReservationSucceed;
@@ -133,6 +135,7 @@ namespace cabinets.Core.ViewModels.Profile
 		private void LogoutCommandExecute()
 		{
 			_authService.Logout(User);
+			_fireBaseService.DeleteInstance();
 			_userRepository.Remove(User);
 			NavigationService.Navigate<AuthorizationViewModel>();
 		}

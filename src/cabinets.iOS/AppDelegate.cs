@@ -1,7 +1,11 @@
-﻿using FFImageLoading.Forms.Platform;
+﻿using System;
+using FFImageLoading.Forms.Platform;
+using Firebase.CloudMessaging;
 using Foundation;
+using MvvmCross.Forms.Platforms.Ios.Core;
 using Rg.Plugins.Popup;
 using UIKit;
+using UserNotifications;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -11,8 +15,13 @@ namespace cabinets.iOS
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register("AppDelegate")]
-	public class AppDelegate : FormsApplicationDelegate
+	public class AppDelegate : MvxFormsApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
 	{
+		public void DidRefreshRegistrationToken(Messaging messaging, string fcmToken)
+		{
+			System.Diagnostics.Debug.WriteLine($"FCM Token: {fcmToken}");
+		}
+
 		#region Overrided
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -26,6 +35,32 @@ namespace cabinets.iOS
 			Popup.Init();
 			Forms.Init();
 			CachedImageRenderer.Init();
+
+			// Register your app for remote notifications.
+			if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+			{
+				// iOS 10 or later
+				var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+				UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (granted, error) => {
+					Console.WriteLine(granted);
+				});
+
+				// For iOS 10 display notification (sent via APNS)
+				UNUserNotificationCenter.Current.Delegate = this;
+
+				// For iOS 10 data message (sent via FCM)
+				Messaging.SharedInstance.Delegate = this;
+			}
+			else
+			{
+				// iOS 9 or before
+				var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound;
+				var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
+				UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+			}
+
+			UIApplication.SharedApplication.RegisterForRemoteNotifications();
+
 			return base.FinishedLaunching(app, options);
 		}
 		#endregion
