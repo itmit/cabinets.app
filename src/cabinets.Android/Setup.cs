@@ -21,6 +21,7 @@ namespace cabinets.Droid
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFireBaseService, AndroidFireBaseService>();
+			provider.RegisterType<ISubscribeTopicFireBase, SubscribeTopicFireBase>();
 			return provider;
 		}
 
