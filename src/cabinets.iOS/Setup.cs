@@ -20,7 +20,6 @@ namespace cabinets.iOS
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFireBaseService, IosFireBaseService>();
-			provider.RegisterType<ISubscribeTopicFireBase, SubscribeTopicFireBase>();
 			return provider;
 		}
 

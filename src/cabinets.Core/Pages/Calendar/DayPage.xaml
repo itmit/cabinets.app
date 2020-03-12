@@ -16,9 +16,6 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid ColumnSpacing="0">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                </Grid.GestureRecognizers>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="*"/>
@@ -48,7 +45,8 @@
                       BindableLayout.ItemsSource="{Binding Events}"
                 -->
                 <Grid Grid.Column="1"
-                      Margin="0, 22, 0, 0"
+                      Margin="0, 22, 5, 0"
+                      x:Name="Grid"
                       RowSpacing="1"
                       BindableLayout.ItemsSource="{Binding Events}"
                       ColumnSpacing="1">
@@ -100,17 +98,18 @@
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Frame WidthRequest="{Binding Width}"
-                                   Grid.ColumnSpan="1"
-                                   Grid.Row="{Binding IndexStart}" 
-                                   Grid.RowSpan="{Binding Height}"
-                                   Padding="0"
-                                   Margin="0,0,0,1"
-                                   BackgroundColor="{Binding Cabinet.Colour}"
-                                   VerticalOptions="Fill"
-                                   HorizontalOptions="Fill">
-                                <Label Text="{Binding Cabinet.Name}"/>
-                            </Frame>
+                            <StackLayout Orientation="Horizontal"
+                                         WidthRequest="{Binding Width}"
+                                         Grid.Row="{Binding IndexStart}"
+                                         Grid.RowSpan="{Binding Height}">
+                                <StackLayout WidthRequest="{Binding LeftMargin}"/>
+                                <Frame Padding="0"
+                                       Margin="0,0,0,1"
+                                       BackgroundColor="{Binding Cabinet.Colour}"
+                                       HorizontalOptions="FillAndExpand">
+                                    <Label Margin="5" Text="{Binding Cabinet.Name}"/>
+                                </Frame>
+                            </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </Grid>

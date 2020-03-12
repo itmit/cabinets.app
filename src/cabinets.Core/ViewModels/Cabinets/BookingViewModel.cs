@@ -94,7 +94,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 				price += time.Key < 18 ? Cabinet.PriceMorning : Cabinet.PriceEvening;
 			}
 
-			Price = price / 100;
+			Price = price;
 		}
 
 		public MvxObservableCollection<CabinetTime> Times

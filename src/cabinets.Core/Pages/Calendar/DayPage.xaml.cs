@@ -17,9 +17,13 @@ namespace cabinets.Core.Pages.Calendar
 		}
 		#endregion
 
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		/// <remarks>To be added.</remarks>
+		protected override void OnAppearing()
 		{
-			var a = ViewModel.Events;
+			base.OnAppearing();
+
+			ViewModel.CalendarWidth = Grid.Width;
 		}
 	}
 }
