@@ -129,6 +129,7 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 
 			_userRepository.Add(user);
+			_fireBaseService.SubscribeToAllTopic();
 			_fireBaseService.DeleteInstance();
 
 			await NavigationService.Navigate<MainViewModel>();

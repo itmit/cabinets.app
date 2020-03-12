@@ -5,5 +5,9 @@
 		void CreateInstance();
 
 		void DeleteInstance();
+
+		void SubscribeToAllTopic();
+		
+		void UnsubscribeToAllTopic();
 	}
 }

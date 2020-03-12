@@ -16,5 +16,19 @@ namespace cabinets.iOS.Services
 			Messaging.SharedInstance.DeleteFcmToken("IosFireBaseService", null);
 			Debug.WriteLine(Messaging.SharedInstance.FcmToken);
 		}
+
+		public void SubscribeToAllTopic()
+		{
+			Messaging.SharedInstance.Subscribe(AllTopicName);
+
+		}
+
+		private const string AllTopicName = "all";
+
+		public void UnsubscribeToAllTopic()
+		{
+			Messaging.SharedInstance.Unsubscribe(AllTopicName);
+
+		}
 	}
 }

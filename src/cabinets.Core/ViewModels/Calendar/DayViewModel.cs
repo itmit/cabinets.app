@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
@@ -24,9 +25,9 @@ namespace cabinets.Core.ViewModels.Calendar
 		public DateTime DateTime { get => _dateTime; private set => SetProperty(ref _dateTime, value); }
 
 		private CalendarDay _selectedCabinet;
-		private MvxObservableCollection<RowDefinition> _rows;
 		private MvxObservableCollection<string> _times;
 		private MvxObservableCollection<CalendarEventModel> _events;
+		private double _calendarWidth;
 		#endregion
 		#endregion
 
@@ -96,17 +97,36 @@ namespace cabinets.Core.ViewModels.Calendar
 					indexes.Add(Times.IndexOf(cabTime));
 				}
 
+				var eventTimes = new List<string>
+				{
+					Times[indexes[0]]
+				};
+
+				if (indexes.Count == 1)
+				{
+					events.Add(new CalendarEventModel
+					{
+						Cabinet = cabinet.Cabinet,
+						Height = 1,
+						IndexStart = indexes[0],
+						Times = eventTimes,
+						LeftMargin = 0
+					});
+					continue;
+				}
+
 				int minIndex = indexes[0];
 				int height = 1;
-				var eventTimes = new List<string>();
-
 				for (int i = 1; i < indexes.Count; i++)
 				{
-					if (indexes[i] == indexes[i - 1] + 1 && i != indexes.Count - 1)
+					if (indexes[i] == indexes[i - 1] + 1)
 					{
 						eventTimes.Add(Times[indexes[i]]);
 						height++;
-						continue;
+						if (i != indexes.Count - 1)
+						{
+							continue;
+						}
 					}
 
 					events.Add(new CalendarEventModel
@@ -114,14 +134,31 @@ namespace cabinets.Core.ViewModels.Calendar
 						Cabinet = cabinet.Cabinet,
 						Height = height,
 						IndexStart = minIndex,
-						Times = eventTimes,
-						Width = events.Count + 1
-
+						Times = eventTimes
 					});
 					eventTimes = new List<string>();
 					height = 1;
 				}
 			}
+
+			int index = 0;
+			events = new MvxObservableCollection<CalendarEventModel>(events.OrderBy(e => e.IndexStart));
+			foreach (var model in events)
+			{
+				model.LeftMargin = events.Count(e => model.IndexStart > e.IndexStart && model.IndexStart < e.IndexStart + e.Height) * 20;
+
+				var c = events.Count(e => e.IndexStart == model.IndexStart);
+				if (c > 0)
+				{
+					model.Width = CalendarWidth / events.Count(e => e.IndexStart == model.IndexStart);
+					model.LeftMargin += model.Width * index; 
+					index++;
+					continue;
+				}
+
+				index = 0;
+			}
+
 			Events = events;
 		}
 
@@ -137,6 +174,34 @@ namespace cabinets.Core.ViewModels.Calendar
 			set => SetProperty(ref _times, value);
 		}
 
+		public double CalendarWidth
+		{
+			get => _calendarWidth;
+			set 
+			{
+				int index = 0;
+				var events = Events;
+				foreach (var model in events)
+				{
+					model.LeftMargin = events.Count(e => model.IndexStart > e.IndexStart && model.IndexStart < e.IndexStart + e.Height) * 20;
+
+					var c = events.Count(e => e.IndexStart == model.IndexStart);
+					if (c > 1)
+					{
+						model.Width = value / c;
+						model.LeftMargin += model.Width * index;
+						index++;
+						continue;
+					}
+
+					index = 0;
+				}
+
+				Events = events;
+				_calendarWidth = value;
+			}
+		}
+
 		public override void Prepare(DateTime parameter)
 		{
 			_parameter = parameter;
@@ -145,8 +210,10 @@ namespace cabinets.Core.ViewModels.Calendar
 		#endregion
 	}
 
-	public class CalendarEventModel
+	public class CalendarEventModel : MvxViewModel
 	{
+		private double _leftMargin;
+
 		public Cabinet Cabinet
 		{
 			get;
@@ -171,10 +238,16 @@ namespace cabinets.Core.ViewModels.Calendar
 			set;
 		}
 
-		public int Width
+		public double Width
 		{
 			get;
 			set;
+		}
+
+		public double LeftMargin
+		{
+			get => _leftMargin;
+			set => SetProperty(ref _leftMargin, value);
 		}
 	}
 }

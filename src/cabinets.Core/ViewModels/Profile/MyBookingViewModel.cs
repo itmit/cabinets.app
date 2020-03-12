@@ -68,14 +68,26 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			var confirm = await Application.Current.MainPage.DisplayAlert("Внимание",
 																		  "Вы действительно хотите отменить бронирование?", "Да", "Нет");
-
-			if (await _profileService.CancelReservation(_parameter.Uuid) && confirm)
+			if (confirm)
 			{
-				await _navigationService.Close(this, true);
-				Device.BeginInvokeOnMainThread(() =>
+				bool isCanceled = false;
+				try
 				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Бронирование отменено", "Ок");
-				});
+					isCanceled = await _profileService.CancelReservation(_parameter.Uuid);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+
+				if (isCanceled)
+				{
+					await _navigationService.Close(this, true);
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Внимание", "Бронирование отменено", "Ок");
+					});
+				}
 			}
 		}
 

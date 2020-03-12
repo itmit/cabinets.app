@@ -136,6 +136,7 @@ namespace cabinets.Core.ViewModels.Profile
 		{
 			_authService.Logout(User);
 			_fireBaseService.DeleteInstance();
+			_fireBaseService.UnsubscribeToAllTopic();
 			_userRepository.Remove(User);
 			NavigationService.Navigate<AuthorizationViewModel>();
 		}
