@@ -35,6 +35,7 @@ namespace cabinets.iOS
 			Popup.Init();
 			Forms.Init();
 			CachedImageRenderer.Init();
+			Firebase.Core.App.Configure();
 
 			// Register your app for remote notifications.
 			if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
@@ -50,6 +51,11 @@ namespace cabinets.iOS
 
 				// For iOS 10 data message (sent via FCM)
 				Messaging.SharedInstance.Delegate = this;
+
+				UNUserNotificationCenter.Current.GetNotificationSettings((settings) =>
+				{
+					var alertsAllowed = (settings.AlertSetting == UNNotificationSetting.Enabled);
+				});
 			}
 			else
 			{
@@ -61,7 +67,7 @@ namespace cabinets.iOS
 
 			UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
-			return base.FinishedLaunching(app, options);
+			return true;
 		}
 		#endregion
 	}

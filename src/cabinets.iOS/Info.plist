@@ -53,5 +53,9 @@
 	<string>Camera usage description</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo usage description</string>
+	<key>Required background modes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
