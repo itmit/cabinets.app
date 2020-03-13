@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Core.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TimeViewCell : MvxViewCell
+	public partial class TimeViewCell : ViewCell
 	{
 		#region .ctor
 		public TimeViewCell()
@@ -21,7 +21,6 @@ namespace cabinets.Core.Views
 			if (sender is Frame frame)
 			{
 				frame.BackgroundColor = Color.FromHex("#31516D");
-				var temp = ViewModel;
 			}
 		}
 		#endregion

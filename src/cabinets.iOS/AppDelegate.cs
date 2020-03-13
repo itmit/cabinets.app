@@ -49,7 +49,7 @@ namespace cabinets.iOS
 				UNUserNotificationCenter.Current.Delegate = this;
 
 				// For iOS 10 data message (sent via FCM)
-				Messaging.SharedInstance.Delegate = this;
+				// Messaging.SharedInstance.Delegate = this;
 			}
 			else
 			{
