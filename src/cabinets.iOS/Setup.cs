@@ -15,14 +15,13 @@ namespace cabinets.iOS
 		protected override IMvxApplication CreateApp() => new CoreApp();
 
 		protected override Xamarin.Forms.Application CreateFormsApplication() => new App();
-
+		
 		protected override IMvxIoCProvider CreateIocProvider()
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFireBaseService, IosFireBaseService>();
 			return provider;
 		}
-
 
 		protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)
 		{

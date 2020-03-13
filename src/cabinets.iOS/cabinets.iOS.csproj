@@ -69,10 +69,10 @@
     <Compile Include="Setup.cs" />
     <None Include="Entitlements.plist" />
     <BundleResource Include="GoogleService-Info.plist" />
-    <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\Lato-Regular.ttf" />
     <BundleResource Include="Resources\Lato-Bold.ttf" />
+    <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">

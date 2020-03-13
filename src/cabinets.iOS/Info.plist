@@ -36,33 +36,16 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Calendar usage description</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location usage description</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location usage description</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera usage description</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo usage description</string>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeDescription</key>
-			<string>UTI Declaration 1</string>
-		</dict>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
 </dict>
 </plist>
