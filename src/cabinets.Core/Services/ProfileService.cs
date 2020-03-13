@@ -20,13 +20,13 @@ namespace cabinets.Core.Services
 
 		#region Data
 		#region Consts
-		private const string GetAmountUri = "http://cabinets.itmit-studio.ru/api/user/getAmount";
+		private const string GetAmountUri = "http://lk.arendapsy.ru/api/user/getAmount";
 
-		private const string GetReservationDetailUri = "http://cabinets.itmit-studio.ru/api/user/myReservations/detail";
+		private const string GetReservationDetailUri = "http://lk.arendapsy.ru/api/user/myReservations/detail";
 
-		private const string GetReservationsUri = "http://cabinets.itmit-studio.ru/api/user/myReservations";
+		private const string GetReservationsUri = "http://lk.arendapsy.ru/api/user/myReservations";
 
-		private const string CancelReservationUri = "http://cabinets.itmit-studio.ru/api/cabinets/cancelReservation";
+		private const string CancelReservationUri = "http://lk.arendapsy.ru/api/cabinets/cancelReservation";
 		#endregion
 		#endregion
 

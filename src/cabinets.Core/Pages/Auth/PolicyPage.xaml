@@ -8,8 +8,11 @@
                       xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Auth.PolicyPage">
+    <NavigationPage.IconColor>
+        <Color>#001324</Color>
+    </NavigationPage.IconColor>
     <NavigationPage.TitleView>
-        <Label Text="Политика" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Политика" Style="{StaticResource TitleLabel}" TextColor="#001324"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

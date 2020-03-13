@@ -8,11 +8,13 @@
                       xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
                       xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
                       mc:Ignorable="d"
-                      x:Class="cabinets.Core.Pages.Auth.RegistrationPage"
-                      NavigationPage.BarBackgroundColor="#001324">
+                      x:Class="cabinets.Core.Pages.Auth.RegistrationPage">
 
+    <NavigationPage.IconColor>
+        <Color>#001324</Color>
+    </NavigationPage.IconColor>
     <NavigationPage.TitleView>
-        <Label Text="Регистрация" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}" TextColor="#001324"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
