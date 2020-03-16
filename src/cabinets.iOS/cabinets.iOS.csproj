@@ -68,10 +68,10 @@
     <Compile Include="Services\IosFireBaseService.cs" />
     <Compile Include="Setup.cs" />
     <None Include="Entitlements.plist" />
-    <BundleResource Include="GoogleService-Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\Lato-Regular.ttf" />
     <BundleResource Include="Resources\Lato-Bold.ttf" />
+    <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>

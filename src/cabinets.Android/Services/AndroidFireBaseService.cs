@@ -15,7 +15,7 @@ namespace cabinets.Droid.Services
 		{
 			Task.Run(() =>
 			{
-				FirebaseInstanceId.Instance.GetInstanceId();
+				FirebaseInstanceId.Instance.DeleteInstanceId();
 			});
 		}
 

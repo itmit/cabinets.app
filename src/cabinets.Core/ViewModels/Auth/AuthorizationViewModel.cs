@@ -132,7 +132,7 @@ namespace cabinets.Core.ViewModels.Auth
 			try
 			{
 				_fireBaseService.SubscribeToAllTopic();
-				_fireBaseService.DeleteInstance();
+				_fireBaseService.CreateInstance();
 			}
 			catch (Exception e)
 			{
