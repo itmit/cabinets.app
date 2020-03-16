@@ -8,7 +8,7 @@
           x:Class="cabinets.Views.NewsViewCell">
     <ViewCell.View>
         <!--Ячейка представления для списка новостей-->
-        <Frame Padding="5" Margin="0,5,0,0" HeightRequest="85">
+        <Frame Padding="5" Margin="0,5,0,0" HeightRequest="85" HasShadow="False">
             <Grid BackgroundColor="White" ColumnSpacing="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

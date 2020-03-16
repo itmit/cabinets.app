@@ -24,13 +24,13 @@ namespace cabinets.Core.Services
 		/// <summary>
 		/// Адрес для авторизации.
 		/// </summary>
-		private const string LoginUri = "http://cabinets.itmit-studio.ru/api/login";
+		private const string LoginUri = "http://lk.arendapsy.ru/api/login";
 
-		private const string LogoutUri = "http://cabinets.itmit-studio.ru/api/logout";
+		private const string LogoutUri = "http://lk.arendapsy.ru/api/logout";
 
-		private const string RegistrationUri = "http://cabinets.itmit-studio.ru/api/register";
+		private const string RegistrationUri = "http://lk.arendapsy.ru/api/register";
 
-		private const string SendDeviceTokenUri = "http://cabinets.itmit-studio.ru/api/user/updateDeviceToken";
+		private const string SendDeviceTokenUri = "http://lk.arendapsy.ru/api/user/updateDeviceToken";
 		#endregion
 
 		#region Fields

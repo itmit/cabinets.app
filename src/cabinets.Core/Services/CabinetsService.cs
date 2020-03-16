@@ -19,12 +19,12 @@ namespace cabinets.Core.Services
 	{
 		#region Data
 		#region Consts
-		private const string CheckCabinetByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/selectDate";
-		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
-		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/cabinets/index";
-		private const string GetBusyCabinetsByDateUri = "http://cabinets.itmit-studio.ru/api/cabinets/getBusyCabinetsByDate";
-		private const string GetCabinetDetailUri = "http://cabinets.itmit-studio.ru/api/cabinets/show";
-		private const string MakeReservationUri = "http://cabinets.itmit-studio.ru/api/cabinets/makeReservation";
+		private const string CheckCabinetByDateUri = "http://lk.arendapsy.ru/api/cabinets/selectDate";
+		private const string DomainUri = "http://lk.arendapsy.ru/";
+		private const string GetAllUri = "http://lk.arendapsy.ru/api/cabinets/index";
+		private const string GetBusyCabinetsByDateUri = "http://lk.arendapsy.ru/api/cabinets/getBusyCabinetsByDate";
+		private const string GetCabinetDetailUri = "http://lk.arendapsy.ru/api/cabinets/show";
+		private const string MakeReservationUri = "http://lk.arendapsy.ru/api/cabinets/makeReservation";
 		#endregion
 
 		#region Fields

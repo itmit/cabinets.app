@@ -47,7 +47,7 @@
             <Style x:Key="EntryReg" TargetType="Entry" BasedOn="{StaticResource BaseEntry}">
                 <Setter Property="TextColor" Value="#000000" />
             </Style>
-            <!--Стиль для рамки вокруг поллей ввода-->
+            <!--Стиль для рамки вокруг полей ввода-->
             <Style x:Key="FrameEntry" TargetType="Frame">
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="CornerRadius" Value="2" />
@@ -72,6 +72,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontFamily" Value="Lato-Bold.ttf#Lato-Bold"/>
                 <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         </ResourceDictionary>

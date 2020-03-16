@@ -18,10 +18,10 @@ namespace cabinets.Core.Services
 	{
 		#region Data
 		#region Consts
-		private const string DomainUri = "http://cabinets.itmit-studio.ru/";
+		private const string DomainUri = "http://lk.arendapsy.ru/";
 
-		private const string GetAllUri = "http://cabinets.itmit-studio.ru/api/news/index";
-		private const string GetNewsDetailUri = "http://cabinets.itmit-studio.ru/api/news/show";
+		private const string GetAllUri = "http://lk.arendapsy.ru/api/news/index";
+		private const string GetNewsDetailUri = "http://lk.arendapsy.ru/api/news/show";
 		#endregion
 
 		#region Fields
