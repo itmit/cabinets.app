@@ -82,21 +82,35 @@ namespace cabinets.Core.ViewModels.Calendar
 				Console.WriteLine(e);
 			}
 
+			var cabinetGroups = Cabinets.GroupBy(day => day.Cabinet.Uuid);
+			var cabs = new MvxObservableCollection<CalendarDay>();
+			foreach (var cab in cabinetGroups)
+			{
+				var a = cab.SelectMany(c => c.Times).ToList();
+				var b = cab.First().Cabinet;
+				cabs.Add(new CalendarDay()
+				{
+					Times = a,
+					Cabinet = b
+				});
+			}
+
 			var events = new MvxObservableCollection<CalendarEventModel>();
 
-			foreach (var cabinet in Cabinets)
+			foreach (var cabinet in cabs)
 			{
 				var cabTimes = new List<string>();
 				foreach (var time in cabinet.Times)
 				{
 					cabTimes.Add(time.Split('-')[0]);
 				}
-				var indexes = new List<int>();
+				var intList = new List<int>();
 				foreach (var cabTime in cabTimes)
 				{
-					indexes.Add(Times.IndexOf(cabTime));
+					intList.Add(Times.IndexOf(cabTime));
 				}
 
+				var indexes = intList.OrderBy(i => i).ToList();
 				var eventTimes = new List<string>
 				{
 					Times[indexes[0]]
@@ -136,6 +150,7 @@ namespace cabinets.Core.ViewModels.Calendar
 						IndexStart = minIndex,
 						Times = eventTimes
 					});
+					minIndex = indexes[i];
 					eventTimes = new List<string>();
 					height = 1;
 				}
@@ -179,26 +194,30 @@ namespace cabinets.Core.ViewModels.Calendar
 			get => _calendarWidth;
 			set 
 			{
-				int index = 0;
-				var events = Events;
-				foreach (var model in events)
-				{
-					model.LeftMargin = events.Count(e => model.IndexStart > e.IndexStart && model.IndexStart < e.IndexStart + e.Height) * 20;
+				_calendarWidth = value;
 
-					var c = events.Count(e => e.IndexStart == model.IndexStart);
-					if (c > 1)
+				if (Events != null)
+				{
+					int index = 0;
+					var events = Events;
+					foreach (var model in events)
 					{
-						model.Width = value / c;
-						model.LeftMargin += model.Width * index;
-						index++;
-						continue;
+						model.LeftMargin = events.Count(e => model.IndexStart > e.IndexStart && model.IndexStart < e.IndexStart + e.Height) * 20;
+
+						var c = events.Count(e => e.IndexStart == model.IndexStart);
+						if (c > 1)
+						{
+							model.Width = value / c;
+							model.LeftMargin += model.Width * index;
+							index++;
+							continue;
+						}
+
+						index = 0;
 					}
 
-					index = 0;
+					Events = events;
 				}
-
-				Events = events;
-				_calendarWidth = value;
 			}
 		}
 

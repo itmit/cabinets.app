@@ -39,15 +39,8 @@ namespace cabinets.Core.ViewModels.News
 			get => _selectedNews;
 			set
 			{
-				if (value == null)
-				{
-					return;
-				}
-
-				if (SetProperty(ref _selectedNews, value))
-				{
-					OpenDetailPage(value);
-				}
+				SetProperty(ref _selectedNews, value);
+				OpenDetailPage(value);
 			}
 		}
 		#endregion

@@ -6,6 +6,7 @@
                       xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
+                      xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Auth.RegistrationPage">
 
