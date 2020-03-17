@@ -4,11 +4,18 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           xmlns:d="http://xamarin.com/schemas/2014/forms/design"
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:system="clr-namespace:System;assembly=netstandard"
           mc:Ignorable="d"
           x:Class="cabinets.Views.NewsViewCell">
     <ViewCell.View>
         <!--Ячейка представления для списка новостей-->
-        <Frame Padding="5" Margin="0,5,0,0" HeightRequest="85" HasShadow="False">
+        <Frame Padding="5" Margin="0,5,0,0" HeightRequest="85">
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="system:Boolean">
+                    <On Platform="iOS" Value="False"/>
+                    <On Platform="Android" Value="True"/>
+                </OnPlatform>
+            </Frame.HasShadow>
             <Grid BackgroundColor="White" ColumnSpacing="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
