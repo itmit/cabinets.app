@@ -20,15 +20,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>8.1</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.itmit.cabinets</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
-	<string>cabinets</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDisplayName</key>
@@ -36,26 +34,30 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleName</key>
+	<string>Arendapsy</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Calendar usage description</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location usage description</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location usage description</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera usage description</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo usage description</string>
-	<key>Required background modes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
+	<key>NSLocationUsageDescription</key>
+	<string>Location usage description</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location usage description</string>
 </dict>
 </plist>

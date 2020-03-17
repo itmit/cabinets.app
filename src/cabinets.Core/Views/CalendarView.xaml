@@ -31,6 +31,7 @@
                                    StartDay="Monday"
                                    OuterBorderWidth="0"
                                    IsClippedToBounds="True"
+                                   SpecialDates="{Binding SpecialDates}"
                                    SelectedDate="{Binding SelectedDate}" />
             </StackLayout>
         </StackLayout>

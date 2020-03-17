@@ -21,7 +21,7 @@ namespace cabinets.iOS
 		{
 			System.Diagnostics.Debug.WriteLine($"FCM Token: {fcmToken}");
 		}
-
+		
 		#region Overrided
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -46,16 +46,9 @@ namespace cabinets.iOS
 					Console.WriteLine(granted);
 				});
 
-				// For iOS 10 display notification (sent via APNS)
 				UNUserNotificationCenter.Current.Delegate = this;
 
-				// For iOS 10 data message (sent via FCM)
 				Messaging.SharedInstance.Delegate = this;
-
-				UNUserNotificationCenter.Current.GetNotificationSettings((settings) =>
-				{
-					var alertsAllowed = (settings.AlertSetting == UNNotificationSetting.Enabled);
-				});
 			}
 			else
 			{
@@ -64,10 +57,9 @@ namespace cabinets.iOS
 				var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
 				UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
 			}
-
 			UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
-			return true;
+			return base.FinishedLaunching(app, options);
 		}
 		#endregion
 	}

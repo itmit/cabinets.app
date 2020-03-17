@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Android.Gms.Extensions;
+using Android.OS;
 using cabinets.Core.Services;
 using cabinets.Droid.Services;
 using Firebase.Iid;
@@ -13,9 +15,11 @@ namespace cabinets.Droid.Services
 	{
 		public void CreateInstance()
 		{
+			var temp = FirebaseInstanceId.Instance.Id;
+			Console.WriteLine(temp);
 			Task.Run(() =>
 			{
-				FirebaseInstanceId.Instance.GetInstanceId();
+				FirebaseInstanceId.Instance.DeleteInstanceId();
 			});
 		}
 
