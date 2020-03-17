@@ -10,8 +10,11 @@
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Auth.RegistrationPage">
 
+    <NavigationPage.IconColor>
+        <Color>#001324</Color>
+    </NavigationPage.IconColor>
     <NavigationPage.TitleView>
-        <Label Text="Регистрация" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}" TextColor="#001324"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
