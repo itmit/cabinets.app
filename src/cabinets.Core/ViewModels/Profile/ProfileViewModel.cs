@@ -137,8 +137,8 @@ namespace cabinets.Core.ViewModels.Profile
 			_authService.Logout(User);
 			try
 			{
-				_fireBaseService.DeleteInstance();
 				_fireBaseService.UnsubscribeToAllTopic();
+				_fireBaseService.DeleteInstance();
 			}
 			catch (Exception e)
 			{
