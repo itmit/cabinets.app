@@ -52,13 +52,6 @@ namespace cabinets.Droid
 			base.OnNewToken(p0);
 			Log.Debug(Tag, "Refreshed token: " + p0);
 			Debug.WriteLine(p0);
-			SendRegistrationToServer(p0);
-		}
-
-		void SendRegistrationToServer(string token)
-		{
-			Mvx.IoCProvider.Resolve<IAuthService>()
-			   .SendDeviceToken(token);
 		}
 	}
 }

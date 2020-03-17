@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using cabinets.Core.Helpers;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
@@ -131,8 +133,11 @@ namespace cabinets.Core.ViewModels.Auth
 			_userRepository.Add(user);
 			try
 			{
-				_fireBaseService.CreateInstance();
-				_fireBaseService.SubscribeToAllTopic();
+				string token = await _fireBaseService.CreateToken(Secrets.SenderId);
+				if (await _authService.SendDeviceToken(token))
+				{
+					_fireBaseService.SubscribeToAllTopic();
+				}
 			}
 			catch (Exception e)
 			{

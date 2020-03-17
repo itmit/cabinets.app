@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using cabinets.Core.Helpers;
 using cabinets.Core.Models;
 using cabinets.Core.Repositories;
 using cabinets.Core.Services;
@@ -138,7 +139,7 @@ namespace cabinets.Core.ViewModels.Profile
 			try
 			{
 				_fireBaseService.UnsubscribeToAllTopic();
-				_fireBaseService.DeleteInstance();
+				_fireBaseService.DeleteInstance(Secrets.SenderId);
 			}
 			catch (Exception e)
 			{

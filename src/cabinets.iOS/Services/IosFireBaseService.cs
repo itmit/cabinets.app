@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using cabinets.Core.Services;
 using Firebase.CloudMessaging;
 using Foundation;
@@ -8,21 +9,22 @@ namespace cabinets.iOS.Services
 {
 	public class IosFireBaseService : IFireBaseService
 	{
-		public void CreateInstance()
-		{
-			Messaging.SharedInstance.RetrieveFcmToken("IosFireBaseService", Completion);
-			Debug.WriteLine(Messaging.SharedInstance.FcmToken);
-		}
-
 		private void Completion(string fcmToken, NSError error)
 		{
 			Console.WriteLine($"FCM Token: {fcmToken}");
 			Console.WriteLine(error);
 		}
 
-		public void DeleteInstance()
+		public Task<string> CreateToken(string senderId, string scope = "")
 		{
-			Messaging.SharedInstance.DeleteFcmToken("IosFireBaseService", Completion);
+			Messaging.SharedInstance.RetrieveFcmToken(senderId, Completion);
+			Debug.WriteLine(Messaging.SharedInstance.FcmToken);
+			return Task.FromResult(Messaging.SharedInstance.FcmToken);
+		}
+
+		public void DeleteInstance(string senderId, string scope = "")
+		{
+			Messaging.SharedInstance.DeleteFcmToken(senderId, Completion);
 		}
 
 		private void Completion(NSError error)
