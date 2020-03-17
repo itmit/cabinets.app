@@ -19,7 +19,7 @@ namespace cabinets.Droid.Services
 			Console.WriteLine(temp);
 			Task.Run(() =>
 			{
-				FirebaseInstanceId.Instance.GetToken(FirebaseInstanceId.Instance.Id, FirebaseMessaging.InstanceIdScope);
+				FirebaseInstanceId.Instance.DeleteInstanceId();
 			});
 		}
 
