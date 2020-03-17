@@ -1,10 +1,12 @@
-﻿namespace cabinets.Core.Services
+﻿using System.Threading.Tasks;
+
+namespace cabinets.Core.Services
 {
 	public interface IFireBaseService
 	{
-		void CreateInstance();
+		Task<string> CreateToken(string senderId, string scope = "");
 
-		void DeleteInstance();
+		void DeleteInstance(string senderId, string scope = "");
 
 		void SubscribeToAllTopic();
 		

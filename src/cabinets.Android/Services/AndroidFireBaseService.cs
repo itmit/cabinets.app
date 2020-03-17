@@ -7,29 +7,37 @@ using cabinets.Droid.Services;
 using Firebase.Iid;
 using Firebase.Messaging;
 using Xamarin.Forms;
+using cabinets.Core.Helpers;
 
 [assembly: Dependency(typeof(AndroidFireBaseService))]
 namespace cabinets.Droid.Services
 {
 	public class AndroidFireBaseService : IFireBaseService
 	{
-		public void CreateInstance()
+		public Task<string> CreateToken(string senderId, string scope = "")
 		{
-			var temp = FirebaseInstanceId.Instance.Id;
-			Console.WriteLine(temp);
+			if (string.IsNullOrEmpty(scope))
+			{
+				scope = FirebaseMessaging.InstanceIdScope;
+			}
+
+			return Task.Run(() => FirebaseInstanceId.Instance.GetToken(senderId, scope));
+		}
+
+		public void DeleteInstance(string senderId, string scope = "")
+		{
+			if (string.IsNullOrEmpty(scope))
+			{
+				scope = FirebaseMessaging.InstanceIdScope;
+			}
+
 			Task.Run(() =>
 			{
-				FirebaseInstanceId.Instance.GetToken(FirebaseInstanceId.Instance.Id, FirebaseMessaging.InstanceIdScope);
+				FirebaseInstanceId.Instance.DeleteToken(senderId, scope);
+
 			});
 		}
 
-		public void DeleteInstance()
-		{
-			Task.Run(() =>
-			{
-				FirebaseInstanceId.Instance.DeleteInstanceId();
-			});
-		}
 		private const string AllTopicName = "all";
 
 		public async void SubscribeToAllTopic()
