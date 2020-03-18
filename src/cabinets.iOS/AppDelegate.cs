@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using cabinets.Core.Services;
 using FFImageLoading.Forms.Platform;
 using Firebase.CloudMessaging;
 using Foundation;
+using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -20,8 +24,11 @@ namespace cabinets.iOS
 		public void DidRefreshRegistrationToken(Messaging messaging, string fcmToken)
 		{
 			System.Diagnostics.Debug.WriteLine($"FCM Token: {fcmToken}");
+
+			Mvx.IoCProvider.Resolve<IAuthService>()
+			   .SendDeviceToken(fcmToken);
 		}
-		
+
 		#region Overrided
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
