@@ -11,10 +11,20 @@
                       x:Class="cabinets.Core.Pages.Auth.RegistrationPage">
 
     <NavigationPage.IconColor>
-        <Color>#001324</Color>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="Android" Value="#001324"/>
+            <On Platform="iOS" Value="White"/>
+        </OnPlatform>
     </NavigationPage.IconColor>
     <NavigationPage.TitleView>
-        <Label Text="Регистрация" Style="{StaticResource TitleLabel}" TextColor="#001324"/>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}">
+            <Label.TextColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="Android" Value="#001324"/>
+                    <On Platform="iOS" Value="White"/>
+                </OnPlatform>
+            </Label.TextColor>
+        </Label>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
