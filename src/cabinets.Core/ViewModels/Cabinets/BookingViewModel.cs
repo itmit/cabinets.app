@@ -75,7 +75,8 @@ namespace cabinets.Core.ViewModels.Cabinets
 			set
 			{
 				SetProperty(ref _selectedDate, value);
-
+				SelectedTimes = new MvxObservableCollection<CabinetTime>();
+				Price = 0;
 				LoadTimes(Cabinet, value);
 			}
 		}
