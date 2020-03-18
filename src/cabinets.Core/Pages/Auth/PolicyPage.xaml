@@ -9,10 +9,20 @@
                       mc:Ignorable="d"
                       x:Class="cabinets.Core.Pages.Auth.PolicyPage">
     <NavigationPage.IconColor>
-        <Color>#001324</Color>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="Android" Value="#001324"/>
+            <On Platform="iOS" Value="White"/>
+        </OnPlatform>
     </NavigationPage.IconColor>
     <NavigationPage.TitleView>
-        <Label Text="Политика" Style="{StaticResource TitleLabel}" TextColor="#001324"/>
+        <Label Text="Политика" Style="{StaticResource TitleLabel}">
+            <Label.TextColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="Android" Value="#001324"/>
+                    <On Platform="iOS" Value="White"/>
+                </OnPlatform>
+            </Label.TextColor>
+        </Label>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
