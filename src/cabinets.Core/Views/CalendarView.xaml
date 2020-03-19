@@ -5,35 +5,57 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:calendar="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              mc:Ignorable="d"
              x:Class="cabinets.Core.Views.CalendarView">
     <ContentView.Content>
         <!--Календарь-->
-        <StackLayout>
-            <StackLayout BackgroundColor="White" Margin="0,10">
-                <calendar:Calendar Padding="40,20"
-                                   TitleRightArrowTextColor="#31516D"
-                                   TitleLabelFontSize="16"
-                                   TitleLabelTextColor="#31516D"
-                                   TitleLeftArrowTextColor="#31516D"
-                                   SelectedBorderWidth="0"
-                                   SelectedTextColor="#FFFFFF"
-                                   SelectedBackgroundColor="#31516D"
-                                   SelectedBorderColor="Transparent"
-                                   WeekdaysFontSize="16"
-                                   WeekdaysTextColor="#31516D"
-                                   DatesFontSize="12"
-                                   DatesTextColor="#333333"
-                                   BorderWidth="1"
-                                   BorderColor="Transparent"
-                                   DisabledBorderColor="Transparent"
-                                   ShowNumberOfWeek="False"
-                                   StartDay="Monday"
-                                   OuterBorderWidth="0"
-                                   IsClippedToBounds="True"
-                                   SpecialDates="{Binding SpecialDates}"
-                                   SelectedDate="{Binding SelectedDate}" />
-            </StackLayout>
+        <StackLayout BackgroundColor="White" Margin="0,10">
+
+            <OnPlatform x:TypeArguments="View">
+                <On Platform="Android">
+                    <calendar:Calendar Padding="40,20"
+                                       TitleRightArrowTextColor="#31516D"
+                                       TitleLabelFontSize="16"
+                                       TitleLabelTextColor="#31516D"
+                                       TitleLeftArrowTextColor="#31516D"
+                                       SelectedBorderWidth="0"
+                                       SelectedTextColor="#FFFFFF"
+                                       SelectedBackgroundColor="#31516D"
+                                       SelectedBorderColor="Transparent"
+                                       WeekdaysFontSize="16"
+                                       WeekdaysTextColor="#31516D"
+                                       DatesFontSize="12"
+                                       DatesTextColor="#333333"
+                                       BorderWidth="1"
+                                       BorderColor="Transparent"
+                                       DisabledBorderColor="Transparent"
+                                       ShowNumberOfWeek="False"
+                                       StartDay="Monday"
+                                       OuterBorderWidth="0"
+                                       IsClippedToBounds="True"
+                                       SpecialDates="{Binding SpecialDates}"
+                                       SelectedDate="{Binding SelectedDate}" />
+                </On>
+                <On Platform="iOS">
+                    <controls:Calendar
+                        Padding="40, 20"
+                        DaysTitleColor="#31516D"
+                        ArrowsColor="#31516D"
+                        SelectedDayTextColor="#FFFFFF"
+                        SelectedDayBackgroundColor="#31516D"
+                        TodayFillColor="Transparent"
+                        SelectedDateColor="Transparent"
+                        DisabledDayColor="Gray"
+                        DeselectedDayTextColor="Black"
+                        YearLabelColor="#31516D"
+                        MonthLabelColor="#31516D"
+                        TodayOutlineColor="#31516D"
+                        OtherMonthDayColor="Gray"
+                        x:Name="Calendar"
+                        SelectedDate="{Binding SelectedDate}" />
+                </On>
+            </OnPlatform>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

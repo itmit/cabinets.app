@@ -13,6 +13,7 @@ using UserNotifications;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
+[assembly: ExportRenderer(typeof(XamForms.Controls.CalendarButton), typeof(XamForms.Controls.iOS.CalendarButtonRenderer))]
 namespace cabinets.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -21,6 +22,7 @@ namespace cabinets.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : MvxFormsApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
 	{
+		[Export("messaging:didRefreshRegistrationToken:")]
 		public void DidRefreshRegistrationToken(Messaging messaging, string fcmToken)
 		{
 			System.Diagnostics.Debug.WriteLine($"FCM Token: {fcmToken}");
