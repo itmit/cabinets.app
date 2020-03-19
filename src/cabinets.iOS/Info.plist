@@ -24,17 +24,17 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.itmit.cabinets</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1.0.5</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDisplayName</key>
-	<string>Психологическая студия</string>
+	<string>Arendapsy</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -46,7 +46,7 @@
 		<true/>
 	</dict>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.5</string>
 	<key>CFBundleName</key>
 	<string>Arendapsy</string>
 	<key>NSCalendarsUsageDescription</key>
