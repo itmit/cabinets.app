@@ -9,10 +9,10 @@
           x:Class="cabinets.Core.Views.CabinetsViewCell">
     <ViewCell.View>
         <!--Ячейка представления для списка на странице выбрать кабинет-->
-        <Frame Padding="5,0,10,0" Margin="0,5,0,0" HeightRequest="80">
+        <Frame Padding="5,0,10,0" Margin="1,5,1,1" HeightRequest="80">
             <Frame.BorderColor>
                 <OnPlatform x:TypeArguments="Color">
-                    <On Platform="iOS" Value="Gray"/>
+                    <On Platform="iOS" Value="LightGray"/>
                 </OnPlatform>
             </Frame.BorderColor>
             <Frame.HasShadow>

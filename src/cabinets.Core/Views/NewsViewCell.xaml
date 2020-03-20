@@ -9,10 +9,10 @@
           x:Class="cabinets.Views.NewsViewCell">
     <ViewCell.View>
         <!--Ячейка представления для списка новостей-->
-        <Frame Padding="5" Margin="0,5,0,0" HeightRequest="85">
+        <Frame Padding="5" Margin="1,5,1,1" HeightRequest="85">
             <Frame.BorderColor>
                 <OnPlatform x:TypeArguments="Color">
-                    <On Platform="iOS" Value="Gray"/>
+                    <On Platform="iOS" Value="LightGray"/>
                 </OnPlatform>
             </Frame.BorderColor>
             <Frame.HasShadow>
