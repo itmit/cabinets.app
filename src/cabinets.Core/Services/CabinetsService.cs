@@ -221,18 +221,19 @@ namespace cabinets.Core.Services
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{token.Type} {token.Body}");
 
-				var cabTimes = new List<string>();
-				foreach (var time in times)
-				{
-					cabTimes.Add(time.Value);
-				}
-
-				var request = JsonConvert.SerializeObject(new ReservationDto
+				var requestDto = new ReservationDto
 				{
 					Date = date.ToString("yyyy-MM-dd"),
 					Uuid = cabinet.Uuid,
-					Times = cabTimes
-				});
+					Times = new Dictionary<string, string>()
+				};
+
+				foreach (var time in times)
+				{
+					requestDto.Times.Add(time.Key.ToString(), time.Value);
+				}
+
+				var request = JsonConvert.SerializeObject(requestDto);
 
 				var response = await client.PostAsync(MakeReservationUri, new StringContent(request, Encoding.UTF8, "application/json"));
 
