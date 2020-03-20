@@ -10,6 +10,12 @@
     <ViewCell.View>
         <!--Ячейка представления для списка на странице выбрать кабинет-->
         <Frame Padding="5,0,10,0" Margin="0,5,0,0" HeightRequest="80">
+            <Frame.BorderColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="Gray"/>
+                    <On Platform="Android" Value="Transparent"/>
+                </OnPlatform>
+            </Frame.BorderColor>
             <Frame.HasShadow>
                 <OnPlatform x:TypeArguments="system:Boolean">
                     <On Platform="iOS" Value="False"/>

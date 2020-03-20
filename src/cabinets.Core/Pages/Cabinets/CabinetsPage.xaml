@@ -33,7 +33,8 @@
                            VerticalScrollBarVisibility="Never"
                            ItemsSource="{Binding Cabinets}"
                            ItemSelected="ListView_OnItemSelected"
-                           SelectedItem="{Binding SelectedCabinet}">
+                           SelectedItem="{Binding SelectedCabinet}"
+                           BackgroundColor="White">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <views1:CabinetsViewCell />

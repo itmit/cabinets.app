@@ -29,7 +29,8 @@
                                            SeparatorVisibility="None"
                                            HeightRequest="180"
                                            Grid.Column="0"
-                                           ItemsSource="{Binding Times}">
+                                           ItemsSource="{Binding Times}"
+                                           BackgroundColor="White">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <views:MvxViewCell>

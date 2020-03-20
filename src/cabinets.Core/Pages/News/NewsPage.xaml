@@ -30,7 +30,8 @@
                   VerticalScrollBarVisibility="Never"
                   ItemTapped="ListView_ItemTapped"
                   SelectedItem="{Binding SelectedNews}"
-                  ItemsSource="{Binding News}">
+                  ItemsSource="{Binding News}"
+                  BackgroundColor="White">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <viewCell:NewsViewCell />
