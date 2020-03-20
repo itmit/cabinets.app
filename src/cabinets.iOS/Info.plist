@@ -24,7 +24,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.itmit.cabinets</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.5</string>
+	<string>1.0.4</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
@@ -34,7 +34,7 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -46,7 +46,7 @@
 		<true/>
 	</dict>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.5</string>
+	<string>1.0.4</string>
 	<key>CFBundleName</key>
 	<string>Arendapsy</string>
 	<key>NSCalendarsUsageDescription</key>
