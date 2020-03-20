@@ -13,7 +13,6 @@
             <Frame.BorderColor>
                 <OnPlatform x:TypeArguments="Color">
                     <On Platform="iOS" Value="Gray"/>
-                    <On Platform="Android" Value="Transparent"/>
                 </OnPlatform>
             </Frame.BorderColor>
             <Frame.HasShadow>

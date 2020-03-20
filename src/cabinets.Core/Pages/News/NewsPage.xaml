@@ -30,8 +30,13 @@
                   VerticalScrollBarVisibility="Never"
                   ItemTapped="ListView_ItemTapped"
                   SelectedItem="{Binding SelectedNews}"
-                  ItemsSource="{Binding News}"
-                  BackgroundColor="White">
+                  ItemsSource="{Binding News}">
+            <ListView.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="White"/>
+                    <On Platform="Android" Value="Transparent"/>
+                </OnPlatform>
+            </ListView.BackgroundColor>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <viewCell:NewsViewCell />

@@ -33,8 +33,15 @@
                            VerticalScrollBarVisibility="Never"
                            ItemsSource="{Binding Cabinets}"
                            ItemSelected="ListView_OnItemSelected"
-                           SelectedItem="{Binding SelectedCabinet}"
-                           BackgroundColor="White">
+                           SelectedItem="{Binding SelectedCabinet}">
+
+            <views:MvxListView.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="White"/>
+                    <On Platform="Android" Value="Transparent"/>
+                </OnPlatform>
+            </views:MvxListView.BackgroundColor>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <views1:CabinetsViewCell />
