@@ -12,7 +12,7 @@ namespace cabinets.Core.ViewModels.Calendar
 	{
 		#region Data
 		#region Fields
-		private DateTime? _selectedDate;
+		private DateTime _selectedDate;
 		#endregion
 		#endregion
 
@@ -24,16 +24,20 @@ namespace cabinets.Core.ViewModels.Calendar
 		#endregion
 
 		#region Properties
-		public DateTime? SelectedDate
+		public DateTime SelectedDate
 		{
 			get => _selectedDate;
 			set
 			{
-				SetProperty(ref _selectedDate, value);
-				if (value != null)
+				if (value.Year < 1900)
 				{
-					NavigationService.Navigate<DayViewModel, DateTime>(value.Value);
+					return;
 				}
+
+				SetProperty(ref _selectedDate, value);
+				
+				NavigationService.Navigate<DayViewModel, DateTime>(value);
+				
 			}
 		}
 

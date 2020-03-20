@@ -26,7 +26,7 @@
         <!--Страница календаря-->
         <ScrollView>
             <StackLayout>
-                <views1:CalendarView />
+                <views1:CalendarView x:Name="CalendarView"/>
 
                 <StackLayout Margin="15,0">
                     <StackLayout Spacing="0">
