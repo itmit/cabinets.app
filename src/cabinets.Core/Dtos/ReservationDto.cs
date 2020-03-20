@@ -15,7 +15,7 @@ namespace cabinets.Core.Dtos
 		}
 
 		[JsonProperty("times")]
-		public IEnumerable<string> Times
+		public Dictionary<string, string> Times
 		{
 			get;
 			set;

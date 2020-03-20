@@ -92,7 +92,7 @@ namespace cabinets.Core.ViewModels.Cabinets
 			int price = 0;
 			foreach (var time in SelectedTimes)
 			{
-				price += time.Key < 18 ? Cabinet.PriceMorning : Cabinet.PriceEvening;
+				price += time.Key < 20 ? Cabinet.PriceMorning : Cabinet.PriceEvening;
 			}
 
 			Price = price / 2;
