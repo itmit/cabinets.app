@@ -51,13 +51,13 @@
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,0,0,10">
                     <DatePicker Date="{Binding Date}" FontSize="Caption" TextColor="#828282" />
                 </Frame>
-                <Label Text="{Binding ErrorsDictionary[PhoneNumber]}"
-                       IsVisible="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}"
-                       IsEnabled="{Binding ErrorsDictionary[PhoneNumber], Converter={StaticResource NullToBoolConverter}}" TextColor="Red"/>
+                <Label Text="{Binding ErrorsDictionary[Phone]}"
+                       IsVisible="{Binding ErrorsDictionary[Phone], Converter={StaticResource NullToBoolConverter}}"
+                       IsEnabled="{Binding ErrorsDictionary[Phone], Converter={StaticResource NullToBoolConverter}}" TextColor="Red"/>
                 <Frame Style="{StaticResource FrameEntry}" Margin="0,0,0,10">
                     <controls:CustomEntry Placeholder="Номер телефона"
                                           Keyboard="Numeric"
-                                          Text="{Binding PhoneNumber}"
+                                          Text="{Binding Phone}"
                                           Style="{StaticResource EntryReg}">
                         <controls:CustomEntry.Behaviors>
                             <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />

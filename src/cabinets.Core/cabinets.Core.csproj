@@ -30,6 +30,12 @@
     <Compile Update="ContentViews\CarouselContentView.xaml.cs">
       <DependentUpon>CarouselContentView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Auth\RecoveryPage.xaml.cs">
+      <DependentUpon>RecoveryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Auth\SendEmailPage.xaml.cs">
+      <DependentUpon>SendEmailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\BookingLayout.xaml.cs">
       <DependentUpon>BookingLayout.xaml</DependentUpon>
     </Compile>
@@ -44,6 +50,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Auth\AuthorizationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Auth\SendEmailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Auth\RecoveryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Cabinets\BookingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

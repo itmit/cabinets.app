@@ -148,6 +148,51 @@ namespace cabinets.Core.Services
 			}
 		}
 
+		private const string SendRecoveryCodeUri = "http://yakutia.itmit-studio.ru/api/sendCode";
+
+		public async Task<bool> SendRecoveryCode(string email)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+				var response = await client.PostAsync(SendRecoveryCodeUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"email", email }
+				}));
+
+				return response.IsSuccessStatusCode;
+			}
+		}
+
+		private const string RecoveryUri = "http://yakutia.itmit-studio.ru/api/resetPassword";
+
+		public async Task<bool> Recovery(string email, string code, string password, string passwordConfirmation)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+				var response = await client.PostAsync(RecoveryUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"email", email },
+					{"code", code },
+					{"password", password },
+					{"password_confirmation", passwordConfirmation },
+				}));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					return false;
+				}
+
+				return response.IsSuccessStatusCode;
+			}
+		}
+
+
 		public async Task<User> Registration(User user, string password, string confirmPassword)
 		{
 			using (var client = new HttpClient())

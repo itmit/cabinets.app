@@ -25,7 +25,7 @@ namespace cabinets.Core.ViewModels.Auth
 		private readonly IMvxNavigationService _navigationService;
 		private MvxCommand _openPolicyCommand;
 		private string _password;
-		private string _phoneNumber;
+		private string _phone;
 		private MvxCommand _registrationCommand;
 		private string _repeatPass;
 		private readonly IUserRepository _userRepository;
@@ -97,10 +97,10 @@ namespace cabinets.Core.ViewModels.Auth
 			set => SetProperty(ref _password, value);
 		}
 
-		public string PhoneNumber
+		public string Phone
 		{
-			get => _phoneNumber;
-			set => SetProperty(ref _phoneNumber, value);
+			get => _phone;
+			set => SetProperty(ref _phone, value);
 		}
 
 		public IMvxCommand RegistrationCommand
@@ -143,6 +143,14 @@ namespace cabinets.Core.ViewModels.Auth
 				needRaise = true;
 			}
 
+			DateTime zeroTime = new DateTime(1, 1, 1);
+			var span = Date - DateTime.Now;
+			if ((zeroTime + span).Year - 1 < 18)
+			{
+				ErrorsDictionary[nameof(Date)] = "Приложение доступно только для лиц старше 18 лет.";
+				needRaise = true;
+			}
+
 			var pass = Password?.Trim();
 			if (string.IsNullOrEmpty(pass))
 			{
@@ -168,7 +176,7 @@ namespace cabinets.Core.ViewModels.Auth
 				Birthday = Date,
 				Email = Email,
 				Name = $"{firstName} {lastName}",
-				Phone = PhoneNumber
+				Phone = Phone
 			};
 			try
 			{
