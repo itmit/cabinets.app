@@ -5,6 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:cabinets.Core.Converters;assembly=cabinets.Core"
+             xmlns:design="clr-namespace:cabinets.Core.Pages.Design;assembly=cabinets.Core"
              mc:Ignorable="d"
              x:Class="cabinets.Core.App">
     <Application.Resources>
@@ -20,7 +21,7 @@
             </Style>
             <Style x:Key="BaseButton" TargetType ="Button">
                 <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                <Setter Property="FontFamily" Value="{x:Static design:DesignClass.FontRegular}"/>
             </Style>
             <!--Стиль для синих кнопок-->
             <Style x:Key="ButtonBlur" TargetType="Button" BasedOn="{StaticResource BaseButton}">
@@ -35,7 +36,7 @@
                 <Setter Property="BorderWidth" Value="1" />
             </Style>
             <Style x:Key="BaseEntry" TargetType="Entry">
-                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                <Setter Property="FontFamily" Value="{x:Static design:DesignClass.FontRegular}"/>
                 <Setter Property="PlaceholderColor" Value="#828282" />
                 <Setter Property="FontSize" Value="14" />
             </Style>
@@ -65,12 +66,12 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
             <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                <Setter Property="FontFamily" Value="{x:Static design:DesignClass.FontRegular}"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
             <Style x:Key="TitleLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontFamily" Value="Lato-Bold.ttf#Lato-Bold"/>
+                <Setter Property="FontFamily" Value="{x:Static design:DesignClass.FontBold}"/>
                 <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>

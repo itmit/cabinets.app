@@ -11,7 +11,14 @@
              mc:Ignorable="d"
              x:Class="cabinets.Core.Pages.Auth.SendRecoveryCodePage">
     <NavigationPage.TitleView>
-        <Label Text="Восстановление пароля" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Восстановление пароля" Style="{StaticResource TitleLabel}">
+            <Label.TextColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="Android" Value="#001324"/>
+                    <On Platform="iOS" Value="White"/>
+                </OnPlatform>
+            </Label.TextColor>
+        </Label>
     </NavigationPage.TitleView>
 
     <NavigationPage.IconColor>
