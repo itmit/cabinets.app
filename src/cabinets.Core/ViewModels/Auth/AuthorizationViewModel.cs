@@ -22,6 +22,7 @@ namespace cabinets.Core.ViewModels.Auth
 		private MvxCommand _openRegistrationCommand;
 		private readonly IUserRepository _userRepository;
 		private readonly IFireBaseService _fireBaseService;
+		private MvxCommand _openRecoveryCommand;
 		#endregion
 		#endregion
 
@@ -73,6 +74,19 @@ namespace cabinets.Core.ViewModels.Auth
 											   NavigationService.Navigate<RegistrationViewModel>();
 										   });
 				return _openRegistrationCommand;
+			}
+		}
+
+		public MvxCommand OpenRecoveryCommand
+		{
+			get
+			{
+				_openRecoveryCommand = _openRecoveryCommand ??
+										   new MvxCommand(() =>
+										   {
+											   NavigationService.Navigate<SendRecoveryCodeViewModel>();
+										   });
+				return _openRecoveryCommand;
 			}
 		}
 		#endregion

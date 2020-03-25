@@ -144,7 +144,7 @@ namespace cabinets.Core.ViewModels.Auth
 			}
 
 			DateTime zeroTime = new DateTime(1, 1, 1);
-			var span = Date - DateTime.Now;
+			var span = DateTime.Now - Date;
 			if ((zeroTime + span).Year - 1 < 18)
 			{
 				ErrorsDictionary[nameof(Date)] = "Приложение доступно только для лиц старше 18 лет.";

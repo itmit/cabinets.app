@@ -48,6 +48,11 @@
                     <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}" NumberOfTapsRequired="1" />
                 </Label.GestureRecognizers>
             </Label>
+            <Label Text="Восстановить пароль" Margin="0,20,0,0" HorizontalOptions="Center" TextColor="#828282">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenRecoveryCommand}" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

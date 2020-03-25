@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+             xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
              mc:Ignorable="d"
-             Visual="Material"
              x:Class="cabinets.Core.Pages.Auth.RecoveryPage">
     <NavigationPage.TitleView>
         <Label Text="Восстановление пароля" Style="{StaticResource TitleLabel}"/>
@@ -16,49 +15,25 @@
     <ContentPage.Content>
         <!--Страница восстановления пароля-->
         <StackLayout Margin="20,0" VerticalOptions="Center" Spacing="20">
-            <Entry Text="{Binding Code}" Placeholder="Введите полученный код" IsPassword="True" PlaceholderColor="Black" TextColor="Black">
-                <Entry.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="iOS" Value="White"/>
-                    </OnPlatform>
-                </Entry.BackgroundColor>
-                <Entry.FontFamily>
-                    <OnPlatform x:TypeArguments="system:String">
-                        <On Platform="iOS" Value="NotoSans-Regular"/>
-                        <On Platform="Android" Value="NotoSans-Regular.ttf#NotoSans-Regular"/>
-                    </OnPlatform>
-                </Entry.FontFamily>
-            </Entry>
-            <Entry Text="{Binding Password}" Placeholder="Новый пароль" IsPassword="True" PlaceholderColor="Black" TextColor="Black">
-                <Entry.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="iOS" Value="White"/>
-                    </OnPlatform>
-                </Entry.BackgroundColor>
-                <Entry.FontFamily>
-                    <OnPlatform x:TypeArguments="system:String">
-                        <On Platform="iOS" Value="NotoSans-Regular"/>
-                        <On Platform="Android" Value="NotoSans-Regular.ttf#NotoSans-Regular"/>
-                    </OnPlatform>
-                </Entry.FontFamily>
-            </Entry>
-            <Entry Text="{Binding PasswordConfirm}" Placeholder="Повторите пароль" IsPassword="True" PlaceholderColor="Black" TextColor="Black">
-                <Entry.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="iOS" Value="White"/>
-                    </OnPlatform>
-                </Entry.BackgroundColor>
-                <Entry.FontFamily>
-                    <OnPlatform x:TypeArguments="system:String">
-                        <On Platform="iOS" Value="NotoSans-Regular"/>
-                        <On Platform="Android" Value="NotoSans-Regular.ttf#NotoSans-Regular"/>
-                    </OnPlatform>
-                </Entry.FontFamily>
-            </Entry>
-            <Button Text="Сменить пароль" TextColor="White" Margin="0,0,0,15" Command="{Binding RecoverCommand}"/>
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
+                <controls:CustomEntry Text="{Binding Code}" Placeholder="Введите полученный код"
+                                      Style="{StaticResource EntryAuth}" Keyboard="Numeric"/>
+            </Frame>
+
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
+                <controls:CustomEntry Text="{Binding Password}" Placeholder="Новый пароль" IsPassword="True"
+                                      Style="{StaticResource EntryAuth}"/>
+            </Frame>
+
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
+                <controls:CustomEntry Text="{Binding PasswordConfirm}" Placeholder="Повторите пароль" IsPassword="True"
+                                      Style="{StaticResource EntryAuth}"/>
+            </Frame>
+
+            <Button Text="Сменить пароль" Style="{StaticResource ButtonBlur}" TextColor="White" Margin="0,0,0,15" Command="{Binding RecoverCommand}"/>
             <Label Text="Я не получил код!" HorizontalTextAlignment="Center" TextColor="Black">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SendCode}"/>
+                    <TapGestureRecognizer Command="{Binding SendCodeCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>

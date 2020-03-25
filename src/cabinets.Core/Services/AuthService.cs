@@ -148,7 +148,7 @@ namespace cabinets.Core.Services
 			}
 		}
 
-		private const string SendRecoveryCodeUri = "http://yakutia.itmit-studio.ru/api/sendCode";
+		private const string SendRecoveryCodeUri = "http://lk.arendapsy.ru/api/sendCode";
 
 		public async Task<bool> SendRecoveryCode(string email)
 		{
@@ -165,7 +165,7 @@ namespace cabinets.Core.Services
 			}
 		}
 
-		private const string RecoveryUri = "http://yakutia.itmit-studio.ru/api/resetPassword";
+		private const string RecoveryUri = "http://lk.arendapsy.ru/api/resetPassword";
 
 		public async Task<bool> Recovery(string email, string code, string password, string passwordConfirmation)
 		{
@@ -191,7 +191,6 @@ namespace cabinets.Core.Services
 				return response.IsSuccessStatusCode;
 			}
 		}
-
 
 		public async Task<User> Registration(User user, string password, string confirmPassword)
 		{

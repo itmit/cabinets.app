@@ -6,9 +6,9 @@ using Xamarin.Forms.Xaml;
 namespace cabinets.Core.Pages.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SendEmailPage : MvxContentPage<SendEmailViewModel>
+    public partial class SendRecoveryCodePage : MvxContentPage<SendRecoveryCodeViewModel>
     {
-        public SendEmailPage()
+        public SendRecoveryCodePage()
         {
             InitializeComponent();
         }

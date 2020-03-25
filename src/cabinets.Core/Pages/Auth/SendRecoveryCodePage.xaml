@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="auth:SendRecoveryCodeViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:cabinets.Core.ViewModels.Auth;assembly=cabinets.Core"
+             xmlns:controls="clr-namespace:cabinets.Core.Controls;assembly=cabinets.Core"
+             xmlns:behaviors="clr-namespace:cabinets.Core.Behaviors;assembly=cabinets.Core"
+             mc:Ignorable="d"
+             x:Class="cabinets.Core.Pages.Auth.SendRecoveryCodePage">
+    <NavigationPage.TitleView>
+        <Label Text="Восстановление пароля" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout Margin="20,0" VerticalOptions="Center" Spacing="20">
+            <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">
+                <controls:CustomEntry Text="{Binding Email}" Placeholder="E-mail"
+                                      Style="{StaticResource EntryAuth}" Keyboard="Email"/>
+            </Frame>
+            <Button Style="{StaticResource ButtonBlur}" Text="Отправить код" Command="{Binding SendCodeCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

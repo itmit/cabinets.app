@@ -21,7 +21,6 @@ namespace cabinets.Core.Services
 		}
 		#endregion
 
-		#region Overridable
 		/// <summary>
 		/// Проводит авторизацию пользователя.
 		/// </summary>
@@ -35,6 +34,9 @@ namespace cabinets.Core.Services
 		Task<User> Registration(User user, string password, string confirmPassword);
 
 		Task<bool> SendDeviceToken(string token);
-		#endregion
+
+		Task<bool> SendRecoveryCode(string email);
+
+		Task<bool> Recovery(string email, string code, string password, string passwordConfirmation);
 	}
 }
