@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using cabinets.Core.Services;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -15,6 +16,8 @@ namespace cabinets.Core.ViewModels.News
 		private MvxObservableCollection<Models.News> _news;
 		private readonly INewsService _newsService;
 		private Models.News _selectedNews;
+		private bool _isRefreshing;
+		private MvxCommand _refreshCommand;
 		#endregion
 		#endregion
 
@@ -32,6 +35,38 @@ namespace cabinets.Core.ViewModels.News
 		{
 			get => _news;
 			private set => SetProperty(ref _news, value);
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ?? new MvxCommand(Refresh);
+				return _refreshCommand;
+			}
+		}
+
+		private async void Refresh()
+		{
+
+			IsRefreshing = true;
+
+			try
+			{
+				News = new MvxObservableCollection<Models.News>(await _newsService.GetAll());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			IsRefreshing = false;
 		}
 
 		public Models.News SelectedNews

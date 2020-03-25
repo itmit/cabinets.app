@@ -14,6 +14,12 @@
         <Label Text="Восстановление пароля" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
+    <NavigationPage.IconColor>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="Android" Value="#001324"/>
+            <On Platform="iOS" Value="White"/>
+        </OnPlatform>
+    </NavigationPage.IconColor>
     <ContentPage.Content>
         <StackLayout Margin="20,0" VerticalOptions="Center" Spacing="20">
             <Frame Style="{StaticResource FrameEntry}" CornerRadius="10" Margin="0,0,0,5">

@@ -29,6 +29,9 @@
                   SeparatorVisibility="None"
                   VerticalScrollBarVisibility="Never"
                   ItemTapped="ListView_ItemTapped"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
+                  IsPullToRefreshEnabled="True"
                   SelectedItem="{Binding SelectedNews}"
                   ItemsSource="{Binding News}">
             <ListView.BackgroundColor>

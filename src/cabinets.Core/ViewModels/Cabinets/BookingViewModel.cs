@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using cabinets.Core.Models;
 using cabinets.Core.Services;
@@ -141,10 +142,11 @@ namespace cabinets.Core.ViewModels.Cabinets
 		private async void Reservation()
 		{
 			IsReservationEnabled = false;
+			var times = SelectedTimes.OrderBy(time => time.Key);
 			var result = false;
 			try
 			{
-				result = await _cabinetsService.MakeReservation(Cabinet, SelectedDate, SelectedTimes);
+				result = await _cabinetsService.MakeReservation(Cabinet, SelectedDate, times);
 			}
 			catch (Exception e)
 			{
